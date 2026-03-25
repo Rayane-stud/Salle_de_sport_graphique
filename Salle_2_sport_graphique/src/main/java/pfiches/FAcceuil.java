@@ -9,14 +9,25 @@ package pfiches;
  * @author rayan
  */
 public class FAcceuil extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAcceuil.class.getName());
+    private FActivite fichActivite;
+    private FAdmin fichAdmin;
+    private FClient fichClient;
+    private FHistorique fichHistorique;
+    private FInscrire fichInscrire;
+    
 
     /**
      * Creates new form FAcceuil
      */
     public FAcceuil() {
         initComponents();
+        fichActivite = new FActivite(this, false);
+        fichAdmin = new FAdmin(this, false);
+        fichClient = new FClient(this, false);
+        fichHistorique = new FHistorique(this, false);
+        fichInscrire = new FInscrire(this, false);
     }
 
     /**
@@ -39,7 +50,10 @@ public class FAcceuil extends javax.swing.JFrame {
         JB_inscrire = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 255, 204));
 
+        JBconnection.setBackground(new java.awt.Color(255, 204, 204));
+        JBconnection.setFont(new java.awt.Font("Gadugi", 3, 12)); // NOI18N
         JBconnection.setText("Se connecter");
         JBconnection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,31 +105,35 @@ public class FAcceuil extends javax.swing.JFrame {
         JL_logo.setText("LOGO");
 
         JB_inscrire.setText("S'inscrire");
+        JB_inscrire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_inscrireActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(129, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(JBconnection, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(JL_SeConnecter, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(174, 174, 174))))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JB_inscrire)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 123, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(JBconnection, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(JL_SeConnecter, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(174, 174, 174))))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(JL_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(209, 209, 209)
+                        .addComponent(JL_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(JB_inscrire)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,15 +142,17 @@ public class FAcceuil extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(JL_logo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(JL_SeConnecter)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JL_SeConnecter)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JBconnection, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(JB_inscrire)
-                .addGap(14, 14, 14))
+                        .addComponent(JBconnection, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(JB_inscrire)
+                        .addGap(20, 20, 20))))
         );
 
         pack();
@@ -141,6 +161,12 @@ public class FAcceuil extends javax.swing.JFrame {
     private void JBconnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBconnectionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JBconnectionActionPerformed
+
+    private void JB_inscrireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_inscrireActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        fichInscrire.setVisible(true);
+    }//GEN-LAST:event_JB_inscrireActionPerformed
 
     /**
      * @param args the command line arguments
