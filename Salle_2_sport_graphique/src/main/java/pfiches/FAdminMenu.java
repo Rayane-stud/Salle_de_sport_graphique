@@ -8,14 +8,14 @@ package pfiches;
  *
  * @author gabri
  */
-public class FAdmin extends javax.swing.JDialog {
+public class FAdminMenu extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdmin.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdminMenu.class.getName());
 
     /**
      * Creates new form FAdmin
      */
-    public FAdmin(java.awt.Frame parent, boolean modal) {
+    public FAdminMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -70,7 +70,7 @@ public class FAdmin extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FAdmin dialog = new FAdmin(new javax.swing.JFrame(), true);
+                FAdminMenu dialog = new FAdminMenu(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

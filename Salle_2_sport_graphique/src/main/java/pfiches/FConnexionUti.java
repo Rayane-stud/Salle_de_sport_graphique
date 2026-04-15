@@ -8,26 +8,26 @@ package pfiches;
  *
  * @author rayan
  */
-public class FAcceuil extends javax.swing.JFrame {
+public class FConnexionUti extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAcceuil.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FConnexionUti.class.getName());
     private FActivite fichActivite;
-    private FAdmin fichAdmin;
-    private FClient fichClient;
-    private FHistorique fichHistorique;
+    private FAdminMenu fichAdmin;
+    private FClientMenu fichClient;
+    private FHistoriqueCoursClient fichHistorique;
     private FInscrire fichInscrire;
     
 
     /**
      * Creates new form FAcceuil
      */
-    public FAcceuil() {
+    public FConnexionUti() {
         initComponents();
         fichActivite = new FActivite(this, false);
         fichActivite.setVisible(true);
-        fichAdmin = new FAdmin(this, false);
-        fichClient = new FClient(this, false);
-        fichHistorique = new FHistorique(this, false);
+        fichAdmin = new FAdminMenu(this, false);
+        fichClient = new FClientMenu(this, false);
+        fichHistorique = new FHistoriqueCoursClient(this, false);
         fichInscrire = new FInscrire(this, false);
     }
 
@@ -191,7 +191,7 @@ public class FAcceuil extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FAcceuil().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new FConnexionUti().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

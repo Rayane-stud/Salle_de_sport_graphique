@@ -8,14 +8,14 @@ package pfiches;
  *
  * @author gabri
  */
-public class FHistorique extends javax.swing.JDialog {
+public class FHistoriqueCoursClient extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FHistorique.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FHistoriqueCoursClient.class.getName());
 
     /**
      * Creates new form FHistorique
      */
-    public FHistorique(java.awt.Frame parent, boolean modal) {
+    public FHistoriqueCoursClient(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -70,7 +70,7 @@ public class FHistorique extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FHistorique dialog = new FHistorique(new javax.swing.JFrame(), true);
+                FHistoriqueCoursClient dialog = new FHistoriqueCoursClient(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
