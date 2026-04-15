@@ -38,7 +38,9 @@ public class FConnexionUti extends javax.swing.JFrame {
         fichHistorique = new FHistoriqueCoursClient(this, false);
         fichInscrire = new FInscrire(this, false);
         
-        Admin adminS = new  Admin("admin","admin123");
+        Admin adminS = new  Admin("admin","admin123");     
+        maSalle = new Salle("Gabray_Sport",adminS,"Salledata");
+        
         
         
         
