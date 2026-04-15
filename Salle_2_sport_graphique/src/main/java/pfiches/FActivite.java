@@ -168,6 +168,17 @@ public class FActivite extends javax.swing.JDialog {
         if (m % 12 != 0) {
             throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
         }
+        
+        // Vérification du jours
+        if (j % 30 != 0) {
+            throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
+        }
+        else {
+            if (j>28){
+                j = 28;
+            } 
+        }
+        
     
         }
         catch (NumberFormatException ex) {
