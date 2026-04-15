@@ -143,6 +143,13 @@ public class FActivite extends javax.swing.JDialog {
     public MoisInvalideException(String message) {
         super(message);
     }
+    
+    class JourInvalideException extends Exception {
+    public JourInvalideException(String message) {
+        super(message);
+    }
+    
+    
 }
     
     private void jButonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButonRechercherActionPerformed
@@ -158,17 +165,10 @@ public class FActivite extends javax.swing.JDialog {
         if (m <= 0) {
         throw new MoisInvalideException("Le mois doit être > 0");
         }
-    
-        // Appliquer modulo 12
-        if (m > 12) {
-            m = m % 12;
-            if (m == 0) m = 12; // pour éviter 0
+        if (m % 12 != 0) {
+            throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
         }
-
-        System.out.println("Date corrigée : " + j + "/" + m + "/" + a);
-
-        
-        
+    
         }
         catch (NumberFormatException ex) {
             String message = "Le format n'est pas bon !";
