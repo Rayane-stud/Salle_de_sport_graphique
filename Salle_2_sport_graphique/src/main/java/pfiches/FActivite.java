@@ -44,7 +44,7 @@ public class FActivite extends javax.swing.JDialog {
         LocalDate dimanche = lundi.plusDays(6);
         
         
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/AAAA");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         // Conversion en String
         String textel = lundi.format(formatter);
@@ -436,11 +436,27 @@ public class FActivite extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JB_Sem_precActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_precActionPerformed
-        // TODO add your handling code here:
+        
+        String datestring = jLabellundi.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(datestring, formatter);
+        date = date.plusWeeks(-1);
+        initialiserAffichage(date);
+
+
+
+// TODO add your handling code here:
     }//GEN-LAST:event_JB_Sem_precActionPerformed
 
     private void JB_Sem_suivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_suivActionPerformed
-        // TODO add your handling code here:
+
+        String datestring = jLabellundi.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(datestring, formatter);
+        date = date.plusWeeks(1);
+        initialiserAffichage(date);
+
+// TODO add your handling code here:
     }//GEN-LAST:event_JB_Sem_suivActionPerformed
 
     private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
