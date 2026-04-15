@@ -8,14 +8,14 @@ package pfiches;
  *
  * @author gabri
  */
-public class FClient extends javax.swing.JDialog {
+public class FClientMenu extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FClient.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FClientMenu.class.getName());
 
     /**
      * Creates new form PClient
      */
-    public FClient(java.awt.Frame parent, boolean modal) {
+    public FClientMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -114,7 +114,7 @@ public class FClient extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FClient dialog = new FClient(new javax.swing.JFrame(), true);
+                FClientMenu dialog = new FClientMenu(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
