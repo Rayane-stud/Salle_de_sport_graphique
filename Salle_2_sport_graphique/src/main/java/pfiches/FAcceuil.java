@@ -24,6 +24,7 @@ public class FAcceuil extends javax.swing.JFrame {
     public FAcceuil() {
         initComponents();
         fichActivite = new FActivite(this, false);
+        fichActivite.setVisible(true);
         fichAdmin = new FAdmin(this, false);
         fichClient = new FClient(this, false);
         fichHistorique = new FHistorique(this, false);

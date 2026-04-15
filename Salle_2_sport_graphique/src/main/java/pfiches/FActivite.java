@@ -139,16 +139,43 @@ public class FActivite extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JtextAnneeActionPerformed
 
+    class MoisInvalideException extends Exception {
+    public MoisInvalideException(String message) {
+        super(message);
+    }
+}
+    
     private void jButonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButonRechercherActionPerformed
+        
         try {
+            
         int j, m, a;
         j = Integer.parseInt(JtextJour.getText());
         m = Integer.parseInt(JtextMois.getText());
         a = Integer.parseInt(JtextAnnee.getText());
+        
+        // Vérification du mois
+        if (m <= 0) {
+        throw new MoisInvalideException("Le mois doit être > 0");
+        }
+    
+        // Appliquer modulo 12
+        if (m > 12) {
+            m = m % 12;
+            if (m == 0) m = 12; // pour éviter 0
+        }
+
+        System.out.println("Date corrigée : " + j + "/" + m + "/" + a);
+
+        
+        
         }
         catch (NumberFormatException ex) {
-        String message = "Le format n'est pas bon !";
-        JOptionPane.showMessageDialog(this, message); 
+            String message = "Le format n'est pas bon !";
+            JOptionPane.showMessageDialog(this, message); 
+        }
+        catch (MoisInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
 
 // TODO add your handling code here:
