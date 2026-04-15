@@ -4,6 +4,8 @@
  */
 package pfiches;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gabri
@@ -32,7 +34,10 @@ public class FActivite extends javax.swing.JDialog {
         scrollbar1 = new java.awt.Scrollbar();
         JB_Sem_prec = new javax.swing.JButton();
         JB_Sem_suiv = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        JtextJour = new javax.swing.JTextField();
+        JtextMois = new javax.swing.JTextField();
+        JtextAnnee = new javax.swing.JTextField();
+        jButonRechercher = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -50,10 +55,31 @@ public class FActivite extends javax.swing.JDialog {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        JtextJour.setText("dd");
+        JtextJour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                JtextJourActionPerformed(evt);
+            }
+        });
+
+        JtextMois.setText("mm");
+        JtextMois.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextMoisActionPerformed(evt);
+            }
+        });
+
+        JtextAnnee.setText("aa");
+        JtextAnnee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextAnneeActionPerformed(evt);
+            }
+        });
+
+        jButonRechercher.setText("Rechercher");
+        jButonRechercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButonRechercherActionPerformed(evt);
             }
         });
 
@@ -67,8 +93,14 @@ public class FActivite extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(JB_Sem_suiv)
                 .addGap(58, 58, 58)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(jButonRechercher)
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,7 +109,10 @@ public class FActivite extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_Sem_prec)
                     .addComponent(JB_Sem_suiv)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButonRechercher))
                 .addContainerGap(244, Short.MAX_VALUE))
         );
 
@@ -92,9 +127,32 @@ public class FActivite extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JB_Sem_suivActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_JtextJourActionPerformed
+
+    private void JtextMoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextMoisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextMoisActionPerformed
+
+    private void JtextAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextAnneeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextAnneeActionPerformed
+
+    private void jButonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButonRechercherActionPerformed
+        try {
+        int j, m, a;
+        j = Integer.parseInt(JtextJour.getText());
+        m = Integer.parseInt(JtextMois.getText());
+        a = Integer.parseInt(JtextAnnee.getText());
+        }
+        catch (NumberFormatException ex) {
+        String message = "Le format n'est pas bon !";
+        JOptionPane.showMessageDialog(this, message); 
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButonRechercherActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,7 +194,10 @@ public class FActivite extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_Sem_prec;
     private javax.swing.JButton JB_Sem_suiv;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField JtextAnnee;
+    private javax.swing.JTextField JtextJour;
+    private javax.swing.JTextField JtextMois;
+    private javax.swing.JToggleButton jButonRechercher;
     private java.awt.Scrollbar scrollbar1;
     // End of variables declaration//GEN-END:variables
 }
