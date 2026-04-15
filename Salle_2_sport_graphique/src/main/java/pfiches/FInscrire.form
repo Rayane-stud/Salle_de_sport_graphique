@@ -57,14 +57,17 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="JL_ajout_photo" min="-2" pref="85" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="JB_Ajout_Photo_inscri" min="-2" pref="56" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="JL_adresse_inscri" min="-2" pref="75" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="JT_adresse_inscri" min="-2" pref="121" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="jBinscrire" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="JL_ajout_photo" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="JB_Ajout_Photo_inscri" min="-2" pref="56" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -127,7 +130,9 @@
                   <Component id="JL_prenom_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JT_prenom_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jBinscrire" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -212,6 +217,11 @@
           <Font name="Segoe UI Historic" size="36" style="2"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Inscription"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBinscrire">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="S&apos;inscrire"/>
       </Properties>
     </Component>
   </SubComponents>
