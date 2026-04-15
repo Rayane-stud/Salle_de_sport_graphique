@@ -143,14 +143,15 @@ public class FActivite extends javax.swing.JDialog {
     public MoisInvalideException(String message) {
         super(message);
     }
+    }
     
     class JourInvalideException extends Exception {
     public JourInvalideException(String message) {
         super(message);
-    }
+    }}
     
     
-}
+
     
     private void jButonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButonRechercherActionPerformed
         
@@ -188,7 +189,11 @@ public class FActivite extends javax.swing.JDialog {
         catch (MoisInvalideException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-
+        catch (JourInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    
+    
 // TODO add your handling code here:
     }//GEN-LAST:event_jButonRechercherActionPerformed
 
