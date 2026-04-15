@@ -24,8 +24,48 @@ public class FActivite extends javax.swing.JDialog {
     public FActivite(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        LocalDate adj = LocalDate.now();
+        initialiserAffichage(adj);
+     
+        
     }
 
+    public void initialiserAffichage( LocalDate date ){
+    // Trouver le lundi de la même semaine
+        LocalDate lundi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        
+        //Trouver les autres jours de la semaine
+        LocalDate mardi = lundi.plusDays(1);
+        LocalDate mercredi = lundi.plusDays(2);
+        LocalDate jeudi = lundi.plusDays(3);
+        LocalDate vendredi = lundi.plusDays(4);
+        LocalDate samedi = lundi.plusDays(5);
+        LocalDate dimanche = lundi.plusDays(6);
+        
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/AAAA");
+
+        // Conversion en String
+        String textel = lundi.format(formatter);
+        String textema = mardi.format(formatter);
+        String texteme = mercredi.format(formatter);
+        String textej = jeudi.format(formatter);
+        String textev = vendredi.format(formatter);
+        String textes = samedi.format(formatter);
+        String texted = dimanche.format(formatter);
+        
+        
+        jLabellundi.setText(textel);
+        jLabelmardi.setText(textema);
+        jLabelmercredi.setText(texteme);
+        jLabeljeudi.setText(textej);
+        jLabelvendredi.setText(textev);
+        jLabelsamedi.setText(textes);
+        jLabeldimanche.setText(texted);
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -447,7 +487,7 @@ public class FActivite extends javax.swing.JDialog {
         }
         
         // Vérification du jours
-        if (j % 30 != 0) {
+        if (j<0 || j >30 ) {
             throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
         }
         else {
@@ -459,20 +499,7 @@ public class FActivite extends javax.swing.JDialog {
         
         LocalDate date = LocalDate.of(a, m, j);
         
-        // Trouver le lundi de la même semaine
-        LocalDate lundi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-        LocalDate mardi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.TUESDAY));
-        LocalDate mercredi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.WEDNESDAY));
-        //LocalDate lundi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-        //LocalDate lundi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-        
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM");
-
-        // Conversion en String
-        String textel = lundi.format(formatter);
-        
-        
+        initialiserAffichage(date);
         }
         catch (NumberFormatException ex) {
             String message = "Le format n'est pas bon !";
