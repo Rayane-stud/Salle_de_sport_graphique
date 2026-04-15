@@ -44,6 +44,7 @@ public class FInscrire extends javax.swing.JDialog {
         JT_adresse_inscri = new javax.swing.JTextField();
         JB_Ajout_Photo_inscri = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jBinscrire = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -107,6 +108,8 @@ public class FInscrire extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 2, 36)); // NOI18N
         jLabel1.setText("Inscription");
 
+        jBinscrire.setText("S'inscrire");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,13 +140,15 @@ public class FInscrire extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jBinscrire)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,7 +193,9 @@ public class FInscrire extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JL_prenom_inscri)
                     .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(82, 82, 82))
+                .addGap(18, 18, 18)
+                .addComponent(jBinscrire)
+                .addGap(41, 41, 41))
         );
 
         pack();
@@ -274,6 +281,7 @@ public class FInscrire extends javax.swing.JDialog {
     private javax.swing.JTextField JT_nom_inscri;
     private javax.swing.JTextField JT_prenom_inscri;
     private javax.swing.JTextField JT_tel_inscri;
+    private javax.swing.JButton jBinscrire;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

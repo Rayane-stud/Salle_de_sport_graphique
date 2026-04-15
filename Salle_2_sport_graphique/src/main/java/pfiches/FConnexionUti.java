@@ -32,7 +32,6 @@ public class FConnexionUti extends javax.swing.JFrame {
     public FConnexionUti() {
         initComponents();
         fichActivite = new FActivite(this, false);
-        fichActivite.setVisible(true);
         fichAdmin = new FAdminMenu(this, false);
         fichClient = new FClientMenu(this, false);
         fichHistorique = new FHistoriqueCoursClient(this, false);
@@ -41,6 +40,16 @@ public class FConnexionUti extends javax.swing.JFrame {
         Admin adminS = new  Admin("admin","admin123");     
         maSalle = new Salle("Gabray_Sport",adminS,"Salledata");
         
+        fichAdminCreationCours = new FAdminCreationCours(this, false);
+        fichFAdminGestionClient = new FAdminGestionClient(this, false);
+        fichAdminGestionCours = new FAdminGestionCours(this, false);
+        fichAdminCreationCours.setVisible(true);
+        fichAdminStatsCours = new FAdminStatsCours(this, false);
+        fichModifInfoClient = new FModifInfoClient(this, false);
+        fichprofilClient = new FprofilClient(this, false);
+
+        
+     
         
         
         
