@@ -19,19 +19,23 @@ package ptraitements;
  * @author rayan
  */
 public class Admin extends Utilisateur {
-    
+
+    private String idAdm = "admin";
+    private String mdpAdm = "admin123";
     // Aucun attribut supplémentaire à ceux hérités de la classe Utilisateur :
     // l'admin est identifié uniquement par son email et son mot de passe.
-    
     /**
      * Constructeur de la classe Admin.
      * Délègue l'initialisation à la classe mère Utilisateur.
      * 
      * @param identifiant Adresse email de l'administrateur
      * @param motDePasse  Mot de passe de l'administrateur
+     * 
      */
+    
+    
     public Admin(String identifiant, String motDePasse) {
-        super(identifiant, motDePasse); // appelle le constructeur de Utilisateur
+        super(identifiant, motDePasse); // appelle le constructeur de Utilisateur       
     }
     
     // Hérite des méthodes getIdentifiant(), getMot2Passe() et setMot2passe() de Utilisateur.

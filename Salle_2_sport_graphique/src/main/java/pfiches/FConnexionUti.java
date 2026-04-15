@@ -4,6 +4,8 @@
  */
 package pfiches;
 
+import ptraitements.*;
+
 /**
  *
  * @author rayan
@@ -11,6 +13,7 @@ package pfiches;
 public class FConnexionUti extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FConnexionUti.class.getName());
+    private Salle maSalle;
     private FActivite fichActivite;
     private FAdminMenu fichAdmin;
     private FClientMenu fichClient;
@@ -34,6 +37,11 @@ public class FConnexionUti extends javax.swing.JFrame {
         fichClient = new FClientMenu(this, false);
         fichHistorique = new FHistoriqueCoursClient(this, false);
         fichInscrire = new FInscrire(this, false);
+        
+        Admin adminS = new  Admin("admin","admin123");
+        
+        
+        
     }
 
     /**
