@@ -16,8 +16,13 @@ public class FConnexionUti extends javax.swing.JFrame {
     private FClientMenu fichClient;
     private FHistoriqueCoursClient fichHistorique;
     private FInscrire fichInscrire;
-    
-
+    private FAdminCreationCours fichAdminCreationCours;
+    private FAdminGestionClient fichFAdminGestionClient;
+    private FAdminGestionCours fichAdminGestionCours;
+    private FAdminStatsCours fichAdminStatsCours;
+    private FModifInfoClient fichModifInfoClient;
+    private FprofilClient fichprofilClient;
+         
     /**
      * Creates new form FAcceuil
      */
@@ -161,6 +166,12 @@ public class FConnexionUti extends javax.swing.JFrame {
 
     private void JBconnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBconnectionActionPerformed
         // TODO add your handling code here:
+        String mdp, id;
+        mdp = JF_mdp.getText();
+        id = JF_ID.getText();
+        
+        boolean isAdmin = false;
+        
     }//GEN-LAST:event_JBconnectionActionPerformed
 
     private void JB_inscrireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_inscrireActionPerformed
