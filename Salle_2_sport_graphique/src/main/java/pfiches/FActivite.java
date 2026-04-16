@@ -4,6 +4,7 @@
  */
 package pfiches;
 
+import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -81,7 +82,6 @@ public class FActivite extends javax.swing.JDialog {
         JtextJour = new javax.swing.JTextField();
         JtextMois = new javax.swing.JTextField();
         JtextAnnee = new javax.swing.JTextField();
-        jButonRechercher = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -105,6 +105,7 @@ public class FActivite extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabeldimanche = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        JbutonRechercher = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -140,13 +141,6 @@ public class FActivite extends javax.swing.JDialog {
         JtextAnnee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JtextAnneeActionPerformed(evt);
-            }
-        });
-
-        jButonRechercher.setText("Rechercher");
-        jButonRechercher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButonRechercherActionPerformed(evt);
             }
         });
 
@@ -395,6 +389,13 @@ public class FActivite extends javax.swing.JDialog {
 
         jButton1.setText("S'inscrire");
 
+        JbutonRechercher.setText("Rechercher");
+        JbutonRechercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbutonRechercherActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -416,8 +417,8 @@ public class FActivite extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButonRechercher)
-                        .addGap(61, 61, 61))))
+                        .addComponent(JbutonRechercher)
+                        .addGap(58, 58, 58))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -433,7 +434,7 @@ public class FActivite extends javax.swing.JDialog {
                     .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButonRechercher))
+                    .addComponent(JbutonRechercher))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -480,6 +481,55 @@ public class FActivite extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JtextAnneeActionPerformed
 
+    private void JbutonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbutonRechercherActionPerformed
+        // TODO add your handling code here:
+                try {
+            
+        int j, m, a;
+        j = Integer.parseInt(JtextJour.getText().trim());
+        m = Integer.parseInt(JtextMois.getText().trim());
+        a = Integer.parseInt(JtextAnnee.getText().trim());
+        
+        System.out.println("Jour: " + j + " Mois: " + m + " Annee: " + a);
+        // Vérification du mois
+        if (m <= 0) {
+        throw new MoisInvalideException("Le mois doit être > 0");
+        }
+        if (m < 1 || m > 12) {
+            throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
+        }
+        
+        // Vérification du jours
+        if (j<1 || j >30 ) {
+            throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
+        }
+
+        
+        // 3. Création de la date
+        // Note: LocalDate.of lancera sa propre exception si tu mets 31 juin par exemple
+        LocalDate date = LocalDate.of(a, m, j);
+        
+        
+        initialiserAffichage(date);
+        }
+        catch (NumberFormatException ex) {
+            String message = "Le format n'est pas bon !";
+            JOptionPane.showMessageDialog(this, message); 
+        }
+        catch (MoisInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        catch (JourInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        catch (DateTimeException ex) {
+        // Capture les erreurs comme le 31 février ou le 31 avril
+        JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
+    }
+                
+                
+    }//GEN-LAST:event_JbutonRechercherActionPerformed
+
     class MoisInvalideException extends Exception {
     public MoisInvalideException(String message) {
         super(message);
@@ -494,57 +544,6 @@ public class FActivite extends javax.swing.JDialog {
     
 
     
-    private void jButonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButonRechercherActionPerformed
-        
-        try {
-            
-        int j, m, a;
-        j = Integer.parseInt(JtextJour.getText());
-        m = Integer.parseInt(JtextMois.getText());
-        a = Integer.parseInt(JtextAnnee.getText());
-        
-        // Vérification du mois
-        if (m <= 0) {
-        throw new MoisInvalideException("Le mois doit être > 0");
-        }
-        if (m % 12 != 0) {
-            throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
-        }
-        
-        // Vérification du jours
-        if (j<0 || j >30 ) {
-            throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
-        }
-        else {
-            if (j>28){
-                j = 28;
-            } 
-        }
-        
-        
-        LocalDate date = LocalDate.of(a, m, j);
-        
-        initialiserAffichage(date);
-        }
-        catch (NumberFormatException ex) {
-            String message = "Le format n'est pas bon !";
-            JOptionPane.showMessageDialog(this, message); 
-        }
-        catch (MoisInvalideException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        catch (JourInvalideException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        
-        
-        
-
-    
-    
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButonRechercherActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -585,10 +584,10 @@ public class FActivite extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_Sem_prec;
     private javax.swing.JButton JB_Sem_suiv;
+    private javax.swing.JButton JbutonRechercher;
     private javax.swing.JTextField JtextAnnee;
     private javax.swing.JTextField JtextJour;
     private javax.swing.JTextField JtextMois;
-    private javax.swing.JToggleButton jButonRechercher;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
