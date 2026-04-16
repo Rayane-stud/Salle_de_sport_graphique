@@ -29,21 +29,249 @@ public class FAdminGestionClient extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupAbonnement = new javax.swing.ButtonGroup();
+        JT_adresse_inscri = new javax.swing.JTextField();
+        JT_prenom_inscri = new javax.swing.JTextField();
+        JL_nom_inscri = new javax.swing.JLabel();
+        JL_ID_inscri = new javax.swing.JLabel();
+        JB_Ajout_Photo_inscri = new javax.swing.JButton();
+        JT_tel_inscri = new javax.swing.JTextField();
+        JL_prenom_inscri = new javax.swing.JLabel();
+        jBenregistrer = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        JL_tel_inscri = new javax.swing.JLabel();
+        JL_adresse_inscri = new javax.swing.JLabel();
+        JL_ajout_photo = new javax.swing.JLabel();
+        JT_Id_inscri = new javax.swing.JTextField();
+        JT_nom_inscri = new javax.swing.JTextField();
+        JL_mdp_inscri = new javax.swing.JLabel();
+        JT_mdp_inscri = new javax.swing.JTextField();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        JT_adresse_inscri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JT_adresse_inscriActionPerformed(evt);
+            }
+        });
+
+        JT_prenom_inscri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JT_prenom_inscriActionPerformed(evt);
+            }
+        });
+
+        JL_nom_inscri.setText("Nom");
+
+        JL_ID_inscri.setText("Identifiant");
+
+        JB_Ajout_Photo_inscri.setText(". . .");
+        JB_Ajout_Photo_inscri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_Ajout_Photo_inscriActionPerformed(evt);
+            }
+        });
+
+        JT_tel_inscri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JT_tel_inscriActionPerformed(evt);
+            }
+        });
+
+        JL_prenom_inscri.setText("Prenom");
+
+        jBenregistrer.setText("Enregistrer");
+        jBenregistrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBenregistrerActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 2, 36)); // NOI18N
+        jLabel1.setText("Modification info");
+
+        JL_tel_inscri.setText("Tel");
+
+        JL_adresse_inscri.setText("Adresse");
+
+        JL_ajout_photo.setText("Ajouter Photo");
+
+        JT_Id_inscri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JT_Id_inscriActionPerformed(evt);
+            }
+        });
+
+        JT_nom_inscri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JT_nom_inscriActionPerformed(evt);
+            }
+        });
+
+        JL_mdp_inscri.setText("Mot de Passe ");
+
+        JT_mdp_inscri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JT_mdp_inscriActionPerformed(evt);
+            }
+        });
+
+        buttonGroupAbonnement.add(jRadioButton1);
+        jRadioButton1.setText("Actif");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        buttonGroupAbonnement.add(jRadioButton2);
+        jRadioButton2.setText("passif");
+
+        jLabel2.setText("Abonnement");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(JL_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(147, 147, 147))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(JL_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(65, 65, 65)
+                                        .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(JL_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(33, 33, 33)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(JT_Id_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBenregistrer)
+                        .addGap(208, 208, 208)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_tel_inscri)
+                    .addComponent(JT_Id_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JL_ID_inscri))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JL_mdp_inscri)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JL_adresse_inscri)
+                        .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_nom_inscri)
+                    .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JB_Ajout_Photo_inscri)
+                    .addComponent(JL_ajout_photo))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JL_prenom_inscri)
+                            .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButton1))
+                        .addGap(9, 9, 9)
+                        .addComponent(jRadioButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel2)))
+                .addGap(54, 54, 54)
+                .addComponent(jBenregistrer)
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JT_adresse_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_adresse_inscriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JT_adresse_inscriActionPerformed
+
+    private void JT_prenom_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_prenom_inscriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JT_prenom_inscriActionPerformed
+
+    private void JT_tel_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_tel_inscriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JT_tel_inscriActionPerformed
+
+    private void jBenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBenregistrerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBenregistrerActionPerformed
+
+    private void JT_Id_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_Id_inscriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JT_Id_inscriActionPerformed
+
+    private void JT_nom_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_nom_inscriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JT_nom_inscriActionPerformed
+
+    private void JT_mdp_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_mdp_inscriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JT_mdp_inscriActionPerformed
+
+    private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JB_Ajout_Photo_inscriActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,5 +311,25 @@ public class FAdminGestionClient extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JB_Ajout_Photo_inscri;
+    private javax.swing.JLabel JL_ID_inscri;
+    private javax.swing.JLabel JL_adresse_inscri;
+    private javax.swing.JLabel JL_ajout_photo;
+    private javax.swing.JLabel JL_mdp_inscri;
+    private javax.swing.JLabel JL_nom_inscri;
+    private javax.swing.JLabel JL_prenom_inscri;
+    private javax.swing.JLabel JL_tel_inscri;
+    private javax.swing.JTextField JT_Id_inscri;
+    private javax.swing.JTextField JT_adresse_inscri;
+    private javax.swing.JTextField JT_mdp_inscri;
+    private javax.swing.JTextField JT_nom_inscri;
+    private javax.swing.JTextField JT_prenom_inscri;
+    private javax.swing.JTextField JT_tel_inscri;
+    private javax.swing.ButtonGroup buttonGroupAbonnement;
+    private javax.swing.JButton jBenregistrer;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     // End of variables declaration//GEN-END:variables
 }
