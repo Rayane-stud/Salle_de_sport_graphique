@@ -553,20 +553,18 @@ public class Salle {
      */
     public void sauvegarderCours() {
         try {
-            FileWriter writer = new FileWriter("cours.txt");
-            
-            for (Cours c : listeCoursFuturs) {
-                writer.write(
-                    c.getIdCours() + ";" +
-                    c.getActivitecour() + ";" +
-                    c.getDatecour() + ";" +     // format ISO par défaut : yyyy-MM-dd
-                    c.getHeurecour() + ";" +    // format ISO par défaut : HH:mm
-                    c.getTypeCours() + ";" +    // toString() de l'enum, compatible avec valueOf() au chargement
-                    c.getNombrePlacescour() + "\n"
-                );
+            try (FileWriter writer = new FileWriter("cours.txt")) { // Try with ressoruces pour eviter le bloc finally pour refermer le fichier 
+                for (Cours c : listeCoursFuturs) {
+                    writer.write(
+                            c.getIdCours() + ";" +
+                                    c.getActivitecour() + ";" +
+                                    c.getDatecour() + ";" +     // format ISO par défaut : yyyy-MM-dd
+                                    c.getHeurecour() + ";" +    // format ISO par défaut : HH:mm
+                                    c.getTypeCours() + ";" +    // toString() de l'enum, compatible avec valueOf() au chargement
+                                    c.getNombrePlacescour() + "\n"
+                    );
+                }
             }
-            
-            writer.close();
             
         } catch (Exception e) {
             System.out.println("Erreur sauvegarde cours");
@@ -583,30 +581,28 @@ public class Salle {
             listeCoursFuturs.clear(); // réinitialisation avant rechargement
             
             File fichier = new File("cours.txt");
-            Scanner scanner = new Scanner(fichier);
-            
-            while (scanner.hasNextLine()) {
-                String ligne = scanner.nextLine();
-                String[] parts = ligne.split(";"); // découpage selon le séparateur ";"
-                
-                // Reconstruction des champs du cours
-                int id = Integer.parseInt(parts[0]);
-                String activite = parts[1];
-                LocalDate date = LocalDate.parse(parts[2]);  // parsing du format ISO yyyy-MM-dd
-                LocalTime heure = LocalTime.parse(parts[3]); // parsing du format ISO HH:mm
-                TypeCours type = TypeCours.valueOf(parts[4]);
-                int places = Integer.parseInt(parts[5]);
-                
-                Cours c = new Cours(activite, date, heure, type, places, id);
-                listeCoursFuturs.add(c);
-                
-                // Mise à jour du compteur pour éviter les conflits d'ID lors des prochaines créations
-                if (id >= prochainIdCours) {
-                    prochainIdCours = id + 1;
+            try (Scanner scanner = new Scanner(fichier)) { // try with ressources pour eviter le bloc finally pour reclose le Scanner
+                while (scanner.hasNextLine()) {
+                    String ligne = scanner.nextLine();
+                    String[] parts = ligne.split(";"); // découpage selon le séparateur ";"
+                    
+                    // Reconstruction des champs du cours
+                    int id = Integer.parseInt(parts[0]);
+                    String activite = parts[1];
+                    LocalDate date = LocalDate.parse(parts[2]);  // parsing du format ISO yyyy-MM-dd
+                    LocalTime heure = LocalTime.parse(parts[3]); // parsing du format ISO HH:mm
+                    TypeCours type = TypeCours.valueOf(parts[4]);
+                    int places = Integer.parseInt(parts[5]);
+                    
+                    Cours c = new Cours(activite, date, heure, type, places, id);
+                    listeCoursFuturs.add(c);
+                    
+                    // Mise à jour du compteur pour éviter les conflits d'ID lors des prochaines créations
+                    if (id >= prochainIdCours) {
+                        prochainIdCours = id + 1;
+                    }
                 }
             }
-            
-            scanner.close();
             
         } catch (Exception e) {
             System.out.println("Erreur chargement cours");
@@ -620,6 +616,7 @@ public class Salle {
     public void sauvegarderTout() {
         sauvegarderClients();
         sauvegarderCours();
+        sauvegarderInscriptions();
     }
 
     /**
@@ -629,6 +626,7 @@ public class Salle {
     public void chargerTout() {
         chargerClients();
         chargerCours();
+        chargerInscriptions();
     }
     
     
@@ -709,4 +707,49 @@ public class Salle {
             }
         }
     }
+    
+        
+    //___________________________________________________________________________________________________________________
+    
+    // SAUVEGUARDE ET CHARGEMENT DES LIENS DE LIENS ENTRE COURS ET CLIENT INSCRITS 15/04/2026 
+    
+   
+    public void sauvegarderInscriptions() {
+    try (FileWriter writer = new FileWriter("inscriptions.txt")) {
+        for (Cours c : listeCoursFuturs) {
+            for (Client cl : c.getClientsInscritscours()) {
+                writer.write(c.getIdCours() + ";" + cl.getNumeroClient() + "\n");
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("Erreur sauvegarde inscriptions");
+    }
+}
+
+public void chargerInscriptions() {
+    try (Scanner scanner = new Scanner(new File("inscriptions.txt"))) {
+        while (scanner.hasNextLine()) {
+            String[] parts = scanner.nextLine().split(";");
+            int idCours = Integer.parseInt(parts[0]);
+            int numClient = Integer.parseInt(parts[1]);
+
+            Cours coursTrouve = null;
+            for (Cours c : listeCoursFuturs) {
+                if (c.getIdCours() == idCours) { coursTrouve = c; break; }
+            }
+
+            Client clientTrouve = null;
+            for (Client cl : listeClients) {
+                if (cl.getNumeroClient() == numClient) { clientTrouve = cl; break; }
+            }
+
+            if (coursTrouve != null && clientTrouve != null) {
+                coursTrouve.ajouterClient(clientTrouve);
+                clientTrouve.ajouterCoursFutur(coursTrouve);
+            }
+        }
+    } catch (Exception e) {
+        // Le fichier n'existe pas encore au premier lancement, on ignore.
+    }
+}
 }
