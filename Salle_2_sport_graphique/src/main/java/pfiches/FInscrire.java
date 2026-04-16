@@ -4,6 +4,9 @@
  */
 package pfiches;
 
+import javax.swing.JOptionPane;
+import ptraitements.TypeAbonnement;
+
 /**
  *
  * @author gabri
@@ -29,22 +32,25 @@ public class FInscrire extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupAbonnement = new javax.swing.ButtonGroup();
         JL_ID_inscri = new javax.swing.JLabel();
         JL_mdp_inscri = new javax.swing.JLabel();
         JL_nom_inscri = new javax.swing.JLabel();
         JL_prenom_inscri = new javax.swing.JLabel();
         JL_tel_inscri = new javax.swing.JLabel();
         JL_adresse_inscri = new javax.swing.JLabel();
-        JL_ajout_photo = new javax.swing.JLabel();
         JT_Id_inscri = new javax.swing.JTextField();
         JT_nom_inscri = new javax.swing.JTextField();
         JT_mdp_inscri = new javax.swing.JTextField();
         JT_prenom_inscri = new javax.swing.JTextField();
         JT_tel_inscri = new javax.swing.JTextField();
         JT_adresse_inscri = new javax.swing.JTextField();
-        JB_Ajout_Photo_inscri = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jBinscrire = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jRadioButtonAnnuel = new javax.swing.JRadioButton();
+        jRadioButtonTri = new javax.swing.JRadioButton();
+        jRadioButtonSem = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,8 +65,6 @@ public class FInscrire extends javax.swing.JDialog {
         JL_tel_inscri.setText("Tel");
 
         JL_adresse_inscri.setText("Adresse");
-
-        JL_ajout_photo.setText("Ajouter Photo");
 
         JT_Id_inscri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,17 +102,36 @@ public class FInscrire extends javax.swing.JDialog {
             }
         });
 
-        JB_Ajout_Photo_inscri.setText(". . .");
-        JB_Ajout_Photo_inscri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_Ajout_Photo_inscriActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 2, 36)); // NOI18N
         jLabel1.setText("Inscription");
 
         jBinscrire.setText("S'inscrire");
+        jBinscrire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBinscrireActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Type abonnement ");
+
+        buttonGroupAbonnement.add(jRadioButtonAnnuel);
+        jRadioButtonAnnuel.setText("Annuel");
+        jRadioButtonAnnuel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonAnnuelActionPerformed(evt);
+            }
+        });
+
+        buttonGroupAbonnement.add(jRadioButtonTri);
+        jRadioButtonTri.setText("Trimestriel");
+
+        buttonGroupAbonnement.add(jRadioButtonSem);
+        jRadioButtonSem.setText("Hebdomadaire");
+        jRadioButtonSem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonSemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,12 +141,23 @@ public class FInscrire extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBinscrire)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(JL_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
                                 .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(117, 117, 117))
+                                .addGap(80, 80, 80)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
@@ -137,27 +171,17 @@ public class FInscrire extends javax.swing.JDialog {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(JT_Id_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jBinscrire)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRadioButtonSem, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jRadioButtonTri, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jRadioButtonAnnuel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -172,30 +196,34 @@ public class FInscrire extends javax.swing.JDialog {
                     .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JL_ID_inscri))
                 .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JL_mdp_inscri)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JL_adresse_inscri)
+                        .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JB_Ajout_Photo_inscri)
-                            .addComponent(JL_ajout_photo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(JL_mdp_inscri)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JL_adresse_inscri)
-                                .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JL_nom_inscri)
                             .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JL_prenom_inscri)
-                    .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JL_prenom_inscri)
+                            .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jRadioButtonAnnuel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jRadioButtonTri))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButtonSem)))
+                .addGap(31, 31, 31)
                 .addComponent(jBinscrire)
-                .addGap(41, 41, 41))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -225,9 +253,57 @@ public class FInscrire extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JT_adresse_inscriActionPerformed
 
-    private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
+
+    
+    
+    private void jBinscrireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinscrireActionPerformed
+        
+        try {
+        String identifiant = JT_Id_inscri.getText();
+        String motDePasse = JT_mdp_inscri.getText();
+        String nom = JT_nom_inscri.getText();
+        String prenom = JT_prenom_inscri.getText();
+        String telephone = JT_tel_inscri.getText();
+        String adresse = JT_adresse_inscri.getText();
+        TypeAbonnement typeAbonnement = null;
+
+        
+        if (jRadioButtonAnnuel.isSelected()){
+            typeAbonnement = TypeAbonnement.ANNUEL;
+        }
+        TypeAbonnement type = null;
+
+        if (jRadioButtonAnnuel.isSelected()) {
+            type = TypeAbonnement.ANNUEL;
+        } else if (jRadioButtonTri.isSelected()) {
+            type = TypeAbonnement.TRIMESTRIEL;
+        } else if (jRadioButtonSem.isSelected()) {
+            type = TypeAbonnement.SEMAINE;
+        } else {
+            String message = "Veuillez choisir un type d'abonnement";
+            JOptionPane.showMessageDialog(this, message); 
+            return; // on arrête si rien n'est coché
+        }
+//= champPrenom.getText();
+        
+    //((FConnexionUti) getParent()).getsalle().Client( identifiant, motDePasse, nom, prenom,telephone, adresse, typeAbonnement);
+
+} catch (Exception e) {
+    //labelErreur.setText(e.getMessage()); // afficher l'erreur dans l'interface
+}
+        
+        
+        
+        
+    }//GEN-LAST:event_jBinscrireActionPerformed
+
+    private void jRadioButtonAnnuelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAnnuelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JB_Ajout_Photo_inscriActionPerformed
+    }//GEN-LAST:event_jRadioButtonAnnuelActionPerformed
+
+    private void jRadioButtonSemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonSemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,10 +343,8 @@ public class FInscrire extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JB_Ajout_Photo_inscri;
     private javax.swing.JLabel JL_ID_inscri;
     private javax.swing.JLabel JL_adresse_inscri;
-    private javax.swing.JLabel JL_ajout_photo;
     private javax.swing.JLabel JL_mdp_inscri;
     private javax.swing.JLabel JL_nom_inscri;
     private javax.swing.JLabel JL_prenom_inscri;
@@ -281,7 +355,12 @@ public class FInscrire extends javax.swing.JDialog {
     private javax.swing.JTextField JT_nom_inscri;
     private javax.swing.JTextField JT_prenom_inscri;
     private javax.swing.JTextField JT_tel_inscri;
+    private javax.swing.ButtonGroup buttonGroupAbonnement;
     private javax.swing.JButton jBinscrire;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JRadioButton jRadioButtonAnnuel;
+    private javax.swing.JRadioButton jRadioButtonSem;
+    private javax.swing.JRadioButton jRadioButtonTri;
     // End of variables declaration//GEN-END:variables
 }

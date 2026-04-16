@@ -120,6 +120,9 @@ public class Salle {
         return nouveau; // retourne le client créé, ou null si échec
     }
 
+    
+    
+    
     /**
      * Met à jour les informations personnelles d'un client.
      * Délègue chaque modification aux modifieurs de la classe Client.
