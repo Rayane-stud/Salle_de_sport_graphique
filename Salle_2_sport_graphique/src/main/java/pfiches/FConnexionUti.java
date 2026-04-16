@@ -25,6 +25,8 @@ public class FConnexionUti extends javax.swing.JFrame {
     private FAdminStatsCours fichAdminStatsCours;
     private FModifInfoClient fichModifInfoClient;
     private FprofilClient fichprofilClient;
+    
+    protected String ad_id = "admin" ; protected  String ad_mdp = "admin123";
          
     /**
      * Creates new form FAcceuil
@@ -37,8 +39,7 @@ public class FConnexionUti extends javax.swing.JFrame {
         fichHistorique = new FHistoriqueCoursClient(this, false);
         fichInscrire = new FInscrire(this, false);
         
-        Admin adminS = new  Admin("admin","admin123");     
-        maSalle = new Salle("Gabray_Sport",adminS,"Salledata");
+
         
         fichAdminCreationCours = new FAdminCreationCours(this, false);
         fichFAdminGestionClient = new FAdminGestionClient(this, false);
@@ -47,6 +48,10 @@ public class FConnexionUti extends javax.swing.JFrame {
         fichAdminStatsCours = new FAdminStatsCours(this, false);
         fichModifInfoClient = new FModifInfoClient(this, false);
         fichprofilClient = new FprofilClient(this, false);
+        
+        Admin adminS = new  Admin(ad_id,ad_mdp);     
+        maSalle = new Salle("Gabray_Sport",adminS,"Salledata");
+        maSalle.chargerTout();
 
         
      
@@ -186,10 +191,37 @@ public class FConnexionUti extends javax.swing.JFrame {
     private void JBconnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBconnectionActionPerformed
         // TODO add your handling code here:
         String mdp, id;
+        Utilisateur user;
+        
         mdp = JF_mdp.getText();
         id = JF_ID.getText();
         
-        boolean isAdmin = false;
+        // Pas besoin au final, methode de classe déja optimale
+      /*  boolean isAdmin = false;
+        if ((id == null ? ad_id == null : id.equals(ad_id)) && (mdp == null ? ad_mdp == null : mdp.equals(ad_mdp))){ // equals avec verification de null proposée par netbeans
+            isAdmin = true;
+            user = maSalle.seConnecter(id, mdp);
+
+        }
+        
+        if ( isAdmin = false){
+            
+            
+        } */
+      user = maSalle.seConnecter(id,mdp);
+      
+      if (user != null){
+          if (user instanceof Admin){
+            fichAdmin.setLocation(this.getLocation());
+            this.setVisible(false);
+            fichAdmin.setVisible(true);
+          }
+          else if (user instanceof Client){
+          this.setVisible(false);
+          fichClient.setVisible(true);
+          }
+      }
+        
         
     }//GEN-LAST:event_JBconnectionActionPerformed
 
