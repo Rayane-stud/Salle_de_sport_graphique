@@ -32,6 +32,11 @@ public class FConnexionUti extends javax.swing.JFrame {
      * Creates new form FAcceuil
      */
     public FConnexionUti() {
+        
+        Admin adminS = new  Admin(ad_id,ad_mdp);     
+        maSalle = new Salle("Gabray_Sport",adminS,"Salledata");
+        maSalle.chargerTout();
+        
         initComponents();
         fichActivite = new FActivite(this, false);
         fichAdmin = new FAdminMenu(this, false);
@@ -48,16 +53,7 @@ public class FConnexionUti extends javax.swing.JFrame {
         fichAdminStatsCours = new FAdminStatsCours(this, false);
         fichModifInfoClient = new FModifInfoClient(this, false);
         fichprofilClient = new FprofilClient(this, false);
-        
-        Admin adminS = new  Admin(ad_id,ad_mdp);     
-        maSalle = new Salle("Gabray_Sport",adminS,"Salledata");
-        maSalle.chargerTout();
-
-        
-     
-        
-        
-        
+          
     }
 
     /**
@@ -212,13 +208,18 @@ public class FConnexionUti extends javax.swing.JFrame {
       
       if (user != null){
           if (user instanceof Admin){
+             Admin a = (Admin) user; // On transforme l'Utilisateur en Admin
             fichAdmin.setLocation(this.getLocation());
             this.setVisible(false);
             fichAdmin.setVisible(true);
+            
+            fichAdmin.envoyerSalleAdminVersMenuAdmin(maSalle, a); // Envoie des données
           }
           else if (user instanceof Client){
-          this.setVisible(false);
-          fichClient.setVisible(true);
+            Client c = (Client) user; // On transforme l'Utilisateur en Client
+            this.setVisible(false);
+            fichAdmin.setLocation(this.getLocation());
+            fichClient.setVisible(true);
           }
       }
         

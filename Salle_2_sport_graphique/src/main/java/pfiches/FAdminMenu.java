@@ -4,6 +4,8 @@
  */
 package pfiches;
 
+import ptraitements.*;
+
 /**
  *
  * @author gabri
@@ -11,6 +13,8 @@ package pfiches;
 public class FAdminMenu extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdminMenu.class.getName());
+    private Salle maSalle;
+    private Admin lAdmin;
 
     /**
      * Creates new form FAdmin
@@ -18,6 +22,15 @@ public class FAdminMenu extends javax.swing.JDialog {
     public FAdminMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+
+    }
+    
+    public void envoyerSalleAdminVersMenuAdmin(Salle maSalle, Admin admin){
+        this.maSalle = maSalle;
+        this.lAdmin = admin;
+        // test pr voir si o nrecoit les données 
+        LabelDeTest.setText(lAdmin.getIdentifiant());
     }
 
     /**
@@ -32,6 +45,7 @@ public class FAdminMenu extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        LabelDeTest = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,6 +65,8 @@ public class FAdminMenu extends javax.swing.JDialog {
             }
         });
 
+        LabelDeTest.setText("Test");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,11 +79,17 @@ public class FAdminMenu extends javax.swing.JDialog {
                 .addGap(72, 72, 72)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(224, 224, 224)
+                .addComponent(LabelDeTest, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
+                .addGap(34, 34, 34)
+                .addComponent(LabelDeTest, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,6 +146,7 @@ public class FAdminMenu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelDeTest;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
