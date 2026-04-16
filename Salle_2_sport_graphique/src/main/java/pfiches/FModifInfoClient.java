@@ -211,10 +211,6 @@ public class FModifInfoClient extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JT_adresse_inscriActionPerformed
 
-    private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JB_Ajout_Photo_inscriActionPerformed
-
     private void JT_Id_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_Id_inscriActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JT_Id_inscriActionPerformed
@@ -238,6 +234,10 @@ public class FModifInfoClient extends javax.swing.JDialog {
     private void jBenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBenregistrerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBenregistrerActionPerformed
+
+    private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JB_Ajout_Photo_inscriActionPerformed
 
     /**
      * @param args the command line arguments

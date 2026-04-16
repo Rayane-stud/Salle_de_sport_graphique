@@ -4,6 +4,9 @@
  */
 package pfiches;
 
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rayan
@@ -30,28 +33,22 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        JL_tel_inscri = new javax.swing.JLabel();
         jBCreerCours = new javax.swing.JButton();
-        JL_adresse_inscri = new javax.swing.JLabel();
         JL_ajout_photo = new javax.swing.JLabel();
-        JT_Id_inscri = new javax.swing.JTextField();
         JT_nom_inscri = new javax.swing.JTextField();
-        JT_mdp_inscri = new javax.swing.JTextField();
         JT_prenom_inscri = new javax.swing.JTextField();
-        JL_ID_inscri = new javax.swing.JLabel();
-        JT_tel_inscri = new javax.swing.JTextField();
-        JL_mdp_inscri = new javax.swing.JLabel();
-        JT_adresse_inscri = new javax.swing.JTextField();
         JL_nom_inscri = new javax.swing.JLabel();
         JB_Ajout_Photo_inscri = new javax.swing.JButton();
         JL_prenom_inscri = new javax.swing.JLabel();
+        JtextJour = new javax.swing.JTextField();
+        JtextMois = new javax.swing.JTextField();
+        JtextAnnee = new javax.swing.JTextField();
+        jButonRechercher = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 2, 36)); // NOI18N
         jLabel1.setText("Creer cours");
-
-        JL_tel_inscri.setText("Tel");
 
         jBCreerCours.setText("S'inscrire");
         jBCreerCours.addActionListener(new java.awt.event.ActionListener() {
@@ -60,15 +57,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
             }
         });
 
-        JL_adresse_inscri.setText("Adresse");
-
         JL_ajout_photo.setText("Ajouter Photo");
-
-        JT_Id_inscri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_Id_inscriActionPerformed(evt);
-            }
-        });
 
         JT_nom_inscri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,31 +65,9 @@ public class FAdminGestionCours extends javax.swing.JDialog {
             }
         });
 
-        JT_mdp_inscri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_mdp_inscriActionPerformed(evt);
-            }
-        });
-
         JT_prenom_inscri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JT_prenom_inscriActionPerformed(evt);
-            }
-        });
-
-        JL_ID_inscri.setText("Identifiant");
-
-        JT_tel_inscri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_tel_inscriActionPerformed(evt);
-            }
-        });
-
-        JL_mdp_inscri.setText("Mot de Passe ");
-
-        JT_adresse_inscri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_adresse_inscriActionPerformed(evt);
             }
         });
 
@@ -115,6 +82,34 @@ public class FAdminGestionCours extends javax.swing.JDialog {
 
         JL_prenom_inscri.setText("Prenom");
 
+        JtextJour.setText("dd");
+        JtextJour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextJourActionPerformed(evt);
+            }
+        });
+
+        JtextMois.setText("mm");
+        JtextMois.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextMoisActionPerformed(evt);
+            }
+        });
+
+        JtextAnnee.setText("aaaa");
+        JtextAnnee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextAnneeActionPerformed(evt);
+            }
+        });
+
+        jButonRechercher.setText("Rechercher");
+        jButonRechercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButonRechercherActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,82 +117,58 @@ public class FAdminGestionCours extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JL_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)
+                                .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(JL_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
                                 .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(117, 117, 117))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jBCreerCours)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(JL_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(65, 65, 65)
-                                        .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(JL_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(102, 102, 102)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(JT_Id_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jBCreerCours)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(153, 153, 153)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
+                                .addComponent(jButonRechercher)))))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JL_tel_inscri)
-                    .addComponent(JT_Id_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JL_ID_inscri))
                 .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JB_Ajout_Photo_inscri)
-                            .addComponent(JL_ajout_photo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(JL_mdp_inscri)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JL_adresse_inscri)
-                                .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JL_nom_inscri)
-                            .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButonRechercher))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JL_nom_inscri)
+                    .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JB_Ajout_Photo_inscri)
+                    .addComponent(JL_ajout_photo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JL_prenom_inscri)
                     .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -209,29 +180,13 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JT_Id_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_Id_inscriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_Id_inscriActionPerformed
-
     private void JT_nom_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_nom_inscriActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JT_nom_inscriActionPerformed
 
-    private void JT_mdp_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_mdp_inscriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_mdp_inscriActionPerformed
-
     private void JT_prenom_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_prenom_inscriActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JT_prenom_inscriActionPerformed
-
-    private void JT_tel_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_tel_inscriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_tel_inscriActionPerformed
-
-    private void JT_adresse_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_adresse_inscriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_adresse_inscriActionPerformed
 
     private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
         // TODO add your handling code here:
@@ -240,6 +195,75 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     private void jBCreerCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCreerCoursActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBCreerCoursActionPerformed
+
+    private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextJourActionPerformed
+
+    private void JtextMoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextMoisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextMoisActionPerformed
+
+    private void JtextAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextAnneeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextAnneeActionPerformed
+
+    
+     class MoisInvalideException extends Exception {
+    public MoisInvalideException(String message) {
+        super(message);
+    }
+    }
+    
+    class JourInvalideException extends Exception {
+    public JourInvalideException(String message) {
+        super(message);
+    }}
+    
+    
+    
+    private void jButonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButonRechercherActionPerformed
+
+        try {
+
+            int j, m, a;
+            j = Integer.parseInt(JtextJour.getText());
+            m = Integer.parseInt(JtextMois.getText());
+            a = Integer.parseInt(JtextAnnee.getText());
+
+            // Vérification du mois
+            if (m <= 0) {
+                throw new MoisInvalideException("Le mois doit être > 0");
+            }
+            if (m % 12 != 0) {
+                throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
+            }
+
+            // Vérification du jours
+            if (j<0 || j >30 ) {
+                throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
+            }
+            else {
+                if (j>28){
+                    j = 28;
+                }
+            }
+
+            
+        }
+        catch (NumberFormatException ex) {
+            String message = "Le format n'est pas bon !";
+            JOptionPane.showMessageDialog(this, message);
+        }
+        catch (MoisInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        catch (JourInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButonRechercherActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,20 +304,16 @@ public class FAdminGestionCours extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_Ajout_Photo_inscri;
-    private javax.swing.JLabel JL_ID_inscri;
-    private javax.swing.JLabel JL_adresse_inscri;
     private javax.swing.JLabel JL_ajout_photo;
-    private javax.swing.JLabel JL_mdp_inscri;
     private javax.swing.JLabel JL_nom_inscri;
     private javax.swing.JLabel JL_prenom_inscri;
-    private javax.swing.JLabel JL_tel_inscri;
-    private javax.swing.JTextField JT_Id_inscri;
-    private javax.swing.JTextField JT_adresse_inscri;
-    private javax.swing.JTextField JT_mdp_inscri;
     private javax.swing.JTextField JT_nom_inscri;
     private javax.swing.JTextField JT_prenom_inscri;
-    private javax.swing.JTextField JT_tel_inscri;
+    private javax.swing.JTextField JtextAnnee;
+    private javax.swing.JTextField JtextJour;
+    private javax.swing.JTextField JtextMois;
     private javax.swing.JButton jBCreerCours;
+    private javax.swing.JToggleButton jButonRechercher;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
