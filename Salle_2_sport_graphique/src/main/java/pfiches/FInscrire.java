@@ -286,7 +286,7 @@ public class FInscrire extends javax.swing.JDialog {
         }
 //= champPrenom.getText();
         
-    //((FConnexionUti) getParent()).getsalle().Client( identifiant, motDePasse, nom, prenom,telephone, adresse, typeAbonnement);
+    //((FConnexionUti) getOwner()).getsalle().Client( identifiant, motDePasse, nom, prenom,telephone, adresse, typeAbonnement);
 
 } catch (Exception e) {
     //labelErreur.setText(e.getMessage()); // afficher l'erreur dans l'interface
