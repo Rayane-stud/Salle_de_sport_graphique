@@ -22,7 +22,7 @@ public class FInscrire extends javax.swing.JDialog {
     public FInscrire(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-    }
+        jRadioButtonAnnuel.setSelected(true);    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -321,7 +321,7 @@ public class FInscrire extends javax.swing.JDialog {
     } else if (jRadioButtonSem.isSelected()) {
         type = TypeAbonnement.SEMAINE;
     } else {
-        JOptionPane.showMessageDialog(this, "Veuillez choisir un type d'abonnement");
+        JOptionPane.showMessageDialog(this, "Veuillez choisir un type d'abonnement"); // inutile a present car saisie par defaut en place 
         return;
     }
 
@@ -333,11 +333,12 @@ public class FInscrire extends javax.swing.JDialog {
     if (c == null) {
         JOptionPane.showMessageDialog(this, "Cet email est déjà utilisé !");
     } else {
-        // Sauvegarde + retour à la connexion
-        ((FConnexionUti) getOwner()).getsalle().sauvegarderTout();
+        // Sauvegarde + retour à la connexion                          // sauvegarde vrmt necessaire ? peut etre une autre methode qui va append le nv client au lieu de tt reecrire 
+        ((FConnexionUti) getOwner()).getsalle().sauvegarderClients(); // Sauveguarde clients au lieu de tout, moins de ressources gaspillée 
         JOptionPane.showMessageDialog(this, "Compte créé avec succès !");
-        this.dispose(); // dispose() permet de fermer la fenetre comme setVisible(false) mais la détruit de la mémoire car inutile ensuite, trouver avec IA
         getOwner().setVisible(true);
+        this.dispose(); // dispose() permet de fermer la fenetre comme setVisible(false) mais la détruit de la mémoire car inutile ensuite, trouver avec IA
+        
     }
 
         
