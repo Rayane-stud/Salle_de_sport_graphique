@@ -37,7 +37,7 @@ public class FConnexionUti extends javax.swing.JFrame {
         Admin adminS = new  Admin(ad_id,ad_mdp);     
         maSalle = new Salle("Gabray_Sport",adminS,"Salledata");
         maSalle.chargerTout();
-        
+          
         initComponents();
         fichActivite = new FActivite(this, false);
         fichAdmin = new FAdminMenu(this, false);
@@ -53,6 +53,8 @@ public class FConnexionUti extends javax.swing.JFrame {
         fichAdminStatsCours = new FAdminStatsCours(this, false);
         fichModifInfoClient = new FModifInfoClient(this, false);
         fichprofilClient = new FprofilClient(this, false);
+        
+        this.setLocationRelativeTo(null); // ON CENTRE LA FENETRE
           
     }
 
@@ -92,6 +94,14 @@ public class FConnexionUti extends javax.swing.JFrame {
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setOpaque(false);
+        // On crée une bordure arrondie grise
+        jPanel1.setBorder(new com.formdev.flatlaf.ui.FlatLineBorder(
+            new java.awt.Insets(10, 10, 10, 10), // Marges à l'intérieur du panel
+            new java.awt.Color(150, 150, 150),   // Couleur de la ligne (Gris clair)
+            1,                                   // Épaisseur du trait
+            30                                   // L'ARRONDI
+        ));
 
         JL_ID.setText("ID :");
 
@@ -258,6 +268,20 @@ public class FConnexionUti extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+ /*       
+//_______________________________________PARTIE RECHERCHEE SUR REDDIT________________________________
+        try {
+        // Cette ligne magique active le look moderne et sombre
+        com.formdev.flatlaf.FlatLightLaf.setup();
+        
+        // On définit l'arrondi global (en pixels)
+    javax.swing.UIManager.put( "Component.arc", 20 ); 
+    javax.swing.UIManager.put( "Button.arc", 20 );
+
+    } catch( Exception ex ) {
+        System.err.println( "Échec de l'initialisation du thème" );
+    }
+//_______________________________________________________________________________________________________ */
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new FConnexionUti().setVisible(true));

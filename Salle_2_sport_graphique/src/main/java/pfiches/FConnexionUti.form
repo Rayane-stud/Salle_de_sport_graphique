@@ -102,7 +102,11 @@
             <BevelBorder/>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="// On cr&#xe9;e une bordure arrondie grise&#xa;jPanel1.setBorder(new com.formdev.flatlaf.ui.FlatLineBorder(&#xa;    new java.awt.Insets(10, 10, 10, 10), // Marges &#xe0; l&apos;int&#xe9;rieur du panel&#xa;    new java.awt.Color(150, 150, 150),   // Couleur de la ligne (Gris clair)&#xa;    1,                                   // &#xc9;paisseur du trait&#xa;    30                                   // L&apos;ARRONDI&#xa;));"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

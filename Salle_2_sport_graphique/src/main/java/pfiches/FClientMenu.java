@@ -4,9 +4,7 @@
  */
 package pfiches;
 
-import ptraitements.Admin;
-import ptraitements.Client;
-import ptraitements.Salle;
+import ptraitements.*;
 
 
 
@@ -37,7 +35,7 @@ public class FClientMenu extends javax.swing.JDialog {
     
     public void iniAffichage() {
     JL_PRE.setText(Client.getPrenom());
-    JL_NOM.setText(Client.getNom());
+    JL_NomBjr.setText(Client.getNom());
     }
     
     /**
@@ -50,15 +48,30 @@ public class FClientMenu extends javax.swing.JDialog {
     private void initComponents() {
 
         JL_PRE = new javax.swing.JLabel();
-        JB_info = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         JB_histo = new javax.swing.JButton();
-        JL_NOM = new javax.swing.JLabel();
+        JL_NomBjr = new javax.swing.JLabel();
+        JB_Activite = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jTB_InfosMenuC = new javax.swing.JToolBar();
+        jB_MenuClient = new javax.swing.JButton();
+        JB_info = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         JL_PRE.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        JL_PRE.setText("Prenom");
+        JL_PRE.setText("Bonjour,");
+
+        JB_histo.setText("Historique");
+
+        JL_NomBjr.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+
+        JB_Activite.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        JB_Activite.setText("Activité");
+
+        jTB_InfosMenuC.setRollover(true);
+
+        jB_MenuClient.setText("jButton2");
+        jTB_InfosMenuC.add(jB_MenuClient);
 
         JB_info.setText("Info");
         JB_info.addActionListener(new java.awt.event.ActionListener() {
@@ -66,51 +79,50 @@ public class FClientMenu extends javax.swing.JDialog {
                 JB_infoActionPerformed(evt);
             }
         });
+        jTB_InfosMenuC.add(JB_info);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jButton1.setText("Activité");
-
-        JB_histo.setText("Historique");
-
-        JL_NOM.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        JL_NOM.setText("Nom");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTB_InfosMenuC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTB_InfosMenuC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(JB_histo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(54, 54, 54))
+                .addContainerGap(162, Short.MAX_VALUE)
+                .addComponent(JB_histo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(JB_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123))
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JL_PRE, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JB_info)
-                        .addGap(28, 28, 28))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JL_NOM, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(246, 246, 246))))
+                .addGap(35, 35, 35)
+                .addComponent(JL_PRE)
+                .addGap(18, 18, 18)
+                .addComponent(JL_NomBjr, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JL_PRE, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(JL_NomBjr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JL_PRE, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JB_info))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JL_NOM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(JB_histo)
-                .addGap(43, 43, 43))
+                    .addComponent(JB_histo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JB_Activite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -173,10 +185,13 @@ public class FClientMenu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JB_Activite;
     private javax.swing.JButton JB_histo;
     private javax.swing.JButton JB_info;
-    private javax.swing.JLabel JL_NOM;
+    private javax.swing.JLabel JL_NomBjr;
     private javax.swing.JLabel JL_PRE;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jB_MenuClient;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JToolBar jTB_InfosMenuC;
     // End of variables declaration//GEN-END:variables
 }
