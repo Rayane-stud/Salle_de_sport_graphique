@@ -5,6 +5,7 @@
 package pfiches;
 
 import ptraitements.*;
+import ptraitements.Client;
 
 /**
  *
@@ -211,8 +212,8 @@ public class FConnexionUti extends javax.swing.JFrame {
       user = maSalle.seConnecter(id,mdp);
       
       if (user != null){
-          if (user instanceof Admin){
-             Admin a = (Admin) user; // On transforme l'Utilisateur en Admin
+          if (user instanceof Admin) {
+              Admin a = (Admin) user; // On transforme l'Utilisateur en Admin
             fichAdmin.setLocation(this.getLocation());
             this.setVisible(false);
             fichAdmin.setVisible(true);
@@ -224,6 +225,7 @@ public class FConnexionUti extends javax.swing.JFrame {
             this.setVisible(false);
             fichAdmin.setLocation(this.getLocation());
             fichClient.setVisible(true);
+            
           }
       }
         

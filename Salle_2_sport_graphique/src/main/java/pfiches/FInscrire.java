@@ -6,6 +6,7 @@ package pfiches;
 
 import javax.swing.JOptionPane;
 import ptraitements.TypeAbonnement;
+import ptraitements.Client;
 
 /**
  *
@@ -257,7 +258,7 @@ public class FInscrire extends javax.swing.JDialog {
     
     
     private void jBinscrireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinscrireActionPerformed
-        
+        Client c;
         try {
         String identifiant = JT_Id_inscri.getText();
         String motDePasse = JT_mdp_inscri.getText();
@@ -286,7 +287,7 @@ public class FInscrire extends javax.swing.JDialog {
         }
 //= champPrenom.getText();
         
-    //((FConnexionUti) getOwner()).getsalle().Client( identifiant, motDePasse, nom, prenom,telephone, adresse, typeAbonnement);
+    //((FConnexionUti) getOwner()).getsalle().CreerClient( identifiant, motDePasse, nom, prenom,telephone, adresse, typeAbonnement);
 
 } catch (Exception e) {
     //labelErreur.setText(e.getMessage()); // afficher l'erreur dans l'interface

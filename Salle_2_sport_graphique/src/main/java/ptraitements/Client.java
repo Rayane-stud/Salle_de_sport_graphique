@@ -63,6 +63,11 @@ public class Client extends Utilisateur {
         this.listeCoursPasses = new ArrayList<>();
     }
     
+    public void CreerClient(String identifiant, String motDePasse, String nom, String prenom,String telephone, String adresse, TypeAbonnement typeAbonnement){
+        Client c = new Client(identifiant, motDePasse,  nom,  prenom, telephone,  adresse, typeAbonnement);
+    }
+    
+    
     // _________________________________________________ Getters :
 
     /** @return le numéro unique du client */

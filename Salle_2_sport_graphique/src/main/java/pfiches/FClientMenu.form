@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="JL_Nom_Prenom" min="-2" pref="125" max="-2" attributes="0"/>
+              <Component id="JL_ID" min="-2" pref="125" max="-2" attributes="0"/>
               <EmptySpace pref="146" max="32767" attributes="0"/>
               <Component id="JB_info" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -45,7 +45,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JL_Nom_Prenom" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="JL_ID" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="JB_info" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="107" max="32767" attributes="0"/>
@@ -58,12 +58,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="JL_Nom_Prenom">
+    <Component class="javax.swing.JLabel" name="JL_ID">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI Black" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Nom Prenom"/>
+        <Property name="text" type="java.lang.String" value="Identifiant"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="JB_info">
