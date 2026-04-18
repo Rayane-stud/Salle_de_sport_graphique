@@ -20,9 +20,8 @@ public class FClientMenu extends javax.swing.JDialog {
     
     private Salle maSalle;
     private Client Client;
-
-    
-    
+    private FModifInfoClient fichModifInfoClient;
+        
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FClientMenu.class.getName());
 
     /**
@@ -31,11 +30,16 @@ public class FClientMenu extends javax.swing.JDialog {
     public FClientMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
-
+        fichModifInfoClient = new FModifInfoClient(parent, false); 
         
     }
 
+    
+    public void iniAffichage() {
+    JL_PRE.setText(Client.getPrenom());
+    JL_NOM.setText(Client.getNom());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,15 +49,16 @@ public class FClientMenu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JL_ID = new javax.swing.JLabel();
+        JL_PRE = new javax.swing.JLabel();
         JB_info = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         JB_histo = new javax.swing.JButton();
+        JL_NOM = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        JL_ID.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        JL_ID.setText("Identifiant");
+        JL_PRE.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        JL_PRE.setText("Prenom");
 
         JB_info.setText("Info");
         JB_info.addActionListener(new java.awt.event.ActionListener() {
@@ -67,31 +72,41 @@ public class FClientMenu extends javax.swing.JDialog {
 
         JB_histo.setText("Historique");
 
+        JL_NOM.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        JL_NOM.setText("Nom");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(JL_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addComponent(JB_info)
-                .addGap(28, 28, 28))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(JB_histo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(54, 54, 54))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JL_PRE, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JB_info)
+                        .addGap(28, 28, 28))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JL_NOM, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(246, 246, 246))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JL_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JL_PRE, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JB_info))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JL_NOM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(JB_histo)
@@ -104,14 +119,20 @@ public class FClientMenu extends javax.swing.JDialog {
     public void envoyerSalleClientVersMenuClient(Salle maSalle, Client client){
         this.maSalle = maSalle;
         this.Client = client;
-        // test pr voir si o nrecoit les données 
-        JL_ID.setText(client.getIdentifiant());
+        iniAffichage();
     }
+    
+    
+
 
     
     
     private void JB_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_infoActionPerformed
-        // TODO add your handling code here:
+       fichModifInfoClient.envoyerDonneesVersModifInfo(maSalle, Client);     
+       
+       this.setVisible(false);
+       fichModifInfoClient.setVisible(true);
+
     }//GEN-LAST:event_JB_infoActionPerformed
 
     /**
@@ -154,7 +175,8 @@ public class FClientMenu extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_histo;
     private javax.swing.JButton JB_info;
-    private javax.swing.JLabel JL_ID;
+    private javax.swing.JLabel JL_NOM;
+    private javax.swing.JLabel JL_PRE;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

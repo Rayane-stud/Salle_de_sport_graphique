@@ -44,14 +44,13 @@ public class FConnexionUti extends javax.swing.JFrame {
         fichClient = new FClientMenu(this, false);
         fichHistorique = new FHistoriqueCoursClient(this, false);
         fichInscrire = new FInscrire(this, false);
-        fichInscrire.setVisible(true);
 
 
         
         fichAdminCreationCours = new FAdminCreationCours(this, false);
         fichFAdminGestionClient = new FAdminGestionClient(this, false);
         fichAdminGestionCours = new FAdminGestionCours(this, false);
-                fichAdminStatsCours = new FAdminStatsCours(this, false);
+        fichAdminStatsCours = new FAdminStatsCours(this, false);
         fichModifInfoClient = new FModifInfoClient(this, false);
         fichprofilClient = new FprofilClient(this, false);
           
@@ -224,6 +223,7 @@ public class FConnexionUti extends javax.swing.JFrame {
             Client c = (Client) user; // On transforme l'Utilisateur en Client
             this.setVisible(false);
             fichAdmin.setLocation(this.getLocation());
+            fichClient.envoyerSalleClientVersMenuClient(maSalle, c); // Envoie des données
             fichClient.setVisible(true);
             
           }

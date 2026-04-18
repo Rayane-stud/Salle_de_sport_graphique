@@ -4,6 +4,9 @@
  */
 package pfiches;
 
+import ptraitements.Client;
+import ptraitements.Salle;
+
 /**
  *
  * @author rayan
@@ -12,6 +15,9 @@ public class FModifInfoClient extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FModifInfoClient.class.getName());
 
+    private Salle maSalle;
+    private Client Client;
+    
     /**
      * Creates new form FModifInfoClient
      */
@@ -231,8 +237,30 @@ public class FModifInfoClient extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JT_tel_inscriActionPerformed
 
+    public void envoyerDonneesVersModifInfo(Salle salle, Client client) {
+    this.maSalle = salle;
+    this.Client = client;
+     }
+    
+    
     private void jBenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBenregistrerActionPerformed
-        // TODO add your handling code here:
+       String NVidentifiant = JT_Id_inscri.getText();
+       String NVmotDePasse = JT_mdp_inscri.getText();
+       String NVnom = JT_nom_inscri.getText();
+       String NVprenom  = JT_prenom_inscri.getText();
+       String NVtelephone = JT_tel_inscri.getText();
+       String NVadresse = JT_adresse_inscri.getText();
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jBenregistrerActionPerformed
 
     private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
