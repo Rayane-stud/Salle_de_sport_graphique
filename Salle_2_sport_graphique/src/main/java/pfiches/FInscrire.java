@@ -258,40 +258,42 @@ public class FInscrire extends javax.swing.JDialog {
     
     
     private void jBinscrireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinscrireActionPerformed
-        Client c;
-        try {
+        
+
         String identifiant = JT_Id_inscri.getText();
         String motDePasse = JT_mdp_inscri.getText();
         String nom = JT_nom_inscri.getText();
         String prenom = JT_prenom_inscri.getText();
         String telephone = JT_tel_inscri.getText();
         String adresse = JT_adresse_inscri.getText();
-        TypeAbonnement typeAbonnement = null;
-
-        
-        if (jRadioButtonAnnuel.isSelected()){
-            typeAbonnement = TypeAbonnement.ANNUEL;
-        }
         TypeAbonnement type = null;
 
-        if (jRadioButtonAnnuel.isSelected()) {
-            type = TypeAbonnement.ANNUEL;
-        } else if (jRadioButtonTri.isSelected()) {
-            type = TypeAbonnement.TRIMESTRIEL;
-        } else if (jRadioButtonSem.isSelected()) {
-            type = TypeAbonnement.SEMAINE;
-        } else {
-            String message = "Veuillez choisir un type d'abonnement";
-            JOptionPane.showMessageDialog(this, message); 
-            return; // on arrête si rien n'est coché
-        }
-//= champPrenom.getText();
-        
-    //((FConnexionUti) getOwner()).getsalle().CreerClient( identifiant, motDePasse, nom, prenom,telephone, adresse, typeAbonnement);
+    if (jRadioButtonAnnuel.isSelected()) {
+        type = TypeAbonnement.ANNUEL;
+    } else if (jRadioButtonTri.isSelected()) {
+        type = TypeAbonnement.TRIMESTRIEL;
+    } else if (jRadioButtonSem.isSelected()) {
+        type = TypeAbonnement.SEMAINE;
+    } else {
+        JOptionPane.showMessageDialog(this, "Veuillez choisir un type d'abonnement");
+        return;
+    }
 
-} catch (Exception e) {
-    //labelErreur.setText(e.getMessage()); // afficher l'erreur dans l'interface
-}
+    //Creation du client
+    Client c = ((FConnexionUti) getOwner()).getsalle().creerCompte(
+        identifiant, motDePasse, nom, prenom, telephone, adresse, type
+    );
+
+    if (c == null) {
+        JOptionPane.showMessageDialog(this, "Cet email est déjà utilisé !");
+    } else {
+        // Sauvegarde + retour à la connexion
+        ((FConnexionUti) getOwner()).getsalle().sauvegarderTout();
+        JOptionPane.showMessageDialog(this, "Compte créé avec succès !");
+        this.dispose(); // dispose() permet de fermer la fenetre comme setVisible(false) mais la détruit de la mémoire car inutile ensuite, trouver avec IA
+        getOwner().setVisible(true);
+    }
+
         
         
         

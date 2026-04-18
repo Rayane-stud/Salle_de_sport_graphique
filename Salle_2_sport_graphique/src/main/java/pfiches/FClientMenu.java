@@ -31,6 +31,9 @@ public class FClientMenu extends javax.swing.JDialog {
     public FClientMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+
+        
     }
 
     /**
