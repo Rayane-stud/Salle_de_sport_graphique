@@ -24,113 +24,150 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="JL_prenom_inscri" min="-2" pref="54" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="JT_prenom_inscri" min="-2" pref="121" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="JL_nom_inscri" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Component id="JT_nom_inscri" min="-2" pref="121" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="JL_mdp_inscri" min="-2" pref="84" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="JL_ID_inscri" min="-2" pref="69" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="JT_Id_inscri" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
-                                              <Component id="JT_mdp_inscri" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="JL_nom_inscri" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="JL_mdp_inscri" min="-2" pref="84" max="-2" attributes="0"/>
+                  <Component id="JL_ID_inscri" min="-2" pref="69" max="-2" attributes="0"/>
+                  <Component id="JL_prenom_inscri" min="-2" pref="54" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="JL_nom" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="JL_mdp" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                  <Component id="JL_ID" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
+                  <Component id="JL_prenom" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="JT_prenom_inscri" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="JT_nom_inscri" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="JT_Id_inscri" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                          <Component id="JT_mdp_inscri" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="JL_ajout_photo" min="-2" pref="85" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="JB_Ajout_Photo_inscri" min="-2" pref="56" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="JL_adresse_inscri" min="-2" pref="75" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JT_adresse_inscri" min="-2" pref="121" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel1" min="-2" pref="294" max="-2" attributes="0"/>
-                          <Component id="JL_tel_inscri" min="-2" pref="37" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="JT_tel_inscri" min="-2" pref="121" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+                      <Component id="JL_ajout_photo" min="-2" pref="85" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="JB_Ajout_Photo_inscri" min="-2" pref="56" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="JL_adresse_inscri" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="JL_tel_inscri" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="JL_adresse" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="JL_tel" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="JT_adresse_inscri" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                          <Component id="JT_tel_inscri" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="87" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="jBenregistrer" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jBenregistrer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" pref="294" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JL_tel_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JT_Id_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JT_tel_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JL_ID_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace pref="122" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="JB_Ajout_Photo_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JL_ajout_photo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JT_tel_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JL_ID_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="JL_mdp_inscri" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="JT_mdp_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="JL_adresse_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="JT_adresse_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JB_Ajout_Photo_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JL_ajout_photo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="JT_adresse_inscri" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
+                              <Component id="JL_nom_inscri" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="JL_nom_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JT_nom_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="JL_mdp_inscri" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                                      <Component id="JL_prenom_inscri" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="JL_ID" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="JL_nom" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="JL_mdp" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                                      <Component id="JL_prenom" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JT_Id_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JL_tel_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JL_tel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JT_mdp_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JL_adresse_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JL_adresse" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
+                              <Component id="JT_nom_inscri" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="JT_prenom_inscri" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JL_prenom_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JT_prenom_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jBenregistrer" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
@@ -226,6 +263,36 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBenregistrerActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JL_mdp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mot de Passe "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JL_nom">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nom"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JL_ID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Identifiant"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JL_prenom">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Prenom"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JL_adresse">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Adresse"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JL_tel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tel"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

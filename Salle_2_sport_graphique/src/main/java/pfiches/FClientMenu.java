@@ -244,9 +244,9 @@ public class FClientMenu extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JB_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_infoActionPerformed
-        fichModifInfoClient.envoyerDonneesVersModifInfo(maSalle, Client);
+        fichModifInfoClient.envoyerDonneesVersModifInfo(maSalle, Client, this);
 
-        this.setVisible(false);
+        this.setVisible(false); 
         fichModifInfoClient.setVisible(true);
     }//GEN-LAST:event_JB_infoActionPerformed
 
