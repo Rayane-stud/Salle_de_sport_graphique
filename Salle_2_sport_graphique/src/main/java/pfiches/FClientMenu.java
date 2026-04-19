@@ -4,6 +4,7 @@
  */
 package pfiches;
 
+import javax.swing.ImageIcon;
 import ptraitements.*;
 
 
@@ -30,9 +31,6 @@ public class FClientMenu extends javax.swing.JDialog {
         initComponents();
         fichModifInfoClient = new FModifInfoClient(parent, false); 
         
-        
-        
-   
     
     //_____________________________________Configuration graphique du pannel ou sera dit le bonjour
         jP_Bonjour.setOpaque(false);
@@ -44,6 +42,15 @@ public class FClientMenu extends javax.swing.JDialog {
         )
         );
     //__________________________________________________________________________________________________
+    
+    
+    //___________________________________________________Personnalisation de boutons_____________________
+    //_______Btn Historique : ___________________________________
+    ImageIcon icone_Historiquebtn = ptraitements.Outilsgraphiques.redimensionnerIcone("icon_Historique.png", 30, 30);
+    if (icone_Historiquebtn != null){ // verif que tt va bien et que l'icone est trouvée et chargée
+        JB_histo.setIcon(icone_Historiquebtn);   
+    }
+    
 }
         
     
@@ -51,7 +58,7 @@ public class FClientMenu extends javax.swing.JDialog {
     
     public void iniAffichage() {
     JL_PRE.setText(Client.getPrenom());
-    JL_NomBjr.setText(Client.getNom());
+    
     }
     
     /**
@@ -67,15 +74,18 @@ public class FClientMenu extends javax.swing.JDialog {
         JB_Activite = new javax.swing.JButton();
         jP_Bonjour = new javax.swing.JPanel();
         JL_PRE = new javax.swing.JLabel();
-        JL_NomBjr = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel_pp = new javax.swing.JLabel();
         jPannel_2PanneldeToolbox = new javax.swing.JPanel();
         jB_MenuClient = new javax.swing.JButton();
         JB_info = new javax.swing.JButton();
         jBRetourVersConnex = new javax.swing.JButton();
+        JB_info1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        JB_histo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pimages/icon_Historique.png"))); // NOI18N
         JB_histo.setText("Historique ");
         JB_histo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,40 +97,54 @@ public class FClientMenu extends javax.swing.JDialog {
         JB_Activite.setText("Activité à venir");
 
         JL_PRE.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        JL_PRE.setText("Bonjour,");
-
-        JL_NomBjr.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        JL_NomBjr.setText("nom");
+        JL_PRE.setText("Prenom");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel1.setText("Bonjour,");
+
+        jLabel_pp.setText("PHOTO");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_pp, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_pp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jP_BonjourLayout = new javax.swing.GroupLayout(jP_Bonjour);
         jP_Bonjour.setLayout(jP_BonjourLayout);
         jP_BonjourLayout.setHorizontalGroup(
             jP_BonjourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_BonjourLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(JL_PRE)
-                .addGap(56, 56, 56)
-                .addComponent(JL_NomBjr, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGroup(jP_BonjourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_BonjourLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1))
+                    .addGroup(jP_BonjourLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(JL_PRE, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jP_BonjourLayout.setVerticalGroup(
             jP_BonjourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_BonjourLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jP_BonjourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jP_BonjourLayout.createSequentialGroup()
-                        .addGroup(jP_BonjourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JL_PRE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jP_BonjourLayout.createSequentialGroup()
-                        .addComponent(JL_NomBjr, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(65, Short.MAX_VALUE))))
+                .addComponent(jLabel1)
+                .addGap(12, 12, 12)
+                .addComponent(JL_PRE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPannel_2PanneldeToolbox.setBackground(new java.awt.Color(204, 204, 204));
@@ -168,33 +192,48 @@ public class FClientMenu extends javax.swing.JDialog {
                 .addComponent(JB_info))
         );
 
+        JB_info1.setText("Profile");
+        JB_info1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_info1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jP_Bonjour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(141, 141, 141))
             .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(JB_histo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JB_Activite)
-                .addGap(170, 170, 170))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jP_Bonjour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(JB_histo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(JB_info1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(JB_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addComponent(jP_Bonjour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JB_histo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JB_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JB_histo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JB_info1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(JB_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,6 +255,10 @@ public class FClientMenu extends javax.swing.JDialog {
         this.dispose();
         new FConnexionUti().setVisible(true);
     }//GEN-LAST:event_jBRetourVersConnexActionPerformed
+
+    private void JB_info1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_info1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JB_info1ActionPerformed
 
     public void envoyerSalleClientVersMenuClient(Salle maSalle, Client client){
         this.maSalle = maSalle;
@@ -269,12 +312,14 @@ public class FClientMenu extends javax.swing.JDialog {
     private javax.swing.JButton JB_Activite;
     private javax.swing.JButton JB_histo;
     private javax.swing.JButton JB_info;
-    private javax.swing.JLabel JL_NomBjr;
+    private javax.swing.JButton JB_info1;
     private javax.swing.JLabel JL_PRE;
     private javax.swing.JButton jBRetourVersConnex;
     private javax.swing.JButton jB_MenuClient;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel_pp;
     private javax.swing.JPanel jP_Bonjour;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPannel_2PanneldeToolbox;
     // End of variables declaration//GEN-END:variables
 }
