@@ -20,7 +20,8 @@ public class Outilsgraphiques {
     */
     public static ImageIcon redimensionnerIcone(String nomFichier, int largeur, int hauteur){
         try {
-            String chemin = "/pimages/" + nomFichier; // String qui contiendra le chemin d'acces
+            String chemin = "/pimagesR/" + nomFichier; // String qui contiendra le chemin d'acces; pimagesR car creation de dossier ressources
+            System.out.println("Tentative de chargement : " + chemin); // TEMPORAIRE PR TESTS
             
             // recherche de la ressource dans le projet. 
             // getResource cherche l'image à l'intérieur du fichier .jar final. ( principe de jar decouvert en faisant des recherche sur flatlap ) 
