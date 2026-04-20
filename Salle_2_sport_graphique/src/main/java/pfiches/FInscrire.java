@@ -4,6 +4,12 @@
  */
 package pfiches;
 
+import java.awt.FileDialog;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javax.swing.JOptionPane;
 import ptraitements.TypeAbonnement;
 import ptraitements.Client;
@@ -53,6 +59,8 @@ public class FInscrire extends javax.swing.JDialog {
         jBinscrire = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jRadioButtonAnnuel = new javax.swing.JRadioButton();
+        JL_ajout_photo = new javax.swing.JLabel();
+        JB_Ajout_Photo_inscri = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -140,6 +148,15 @@ public class FInscrire extends javax.swing.JDialog {
             }
         });
 
+        JL_ajout_photo.setText("Ajouter Photo");
+
+        JB_Ajout_Photo_inscri.setText(". . .");
+        JB_Ajout_Photo_inscri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_Ajout_Photo_inscriActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelChampsAremplirLayout = new javax.swing.GroupLayout(jPanelChampsAremplir);
         jPanelChampsAremplir.setLayout(jPanelChampsAremplirLayout);
         jPanelChampsAremplirLayout.setHorizontalGroup(
@@ -170,20 +187,24 @@ public class FInscrire extends javax.swing.JDialog {
                         .addGap(78, 78, 78)
                         .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)
-                                .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButtonSem, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButtonTri, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButtonAnnuel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)
+                                .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
                                     .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelChampsAremplirLayout.createSequentialGroup()
+                                .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(19, 19, 19)
+                                    .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jRadioButtonTri, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jRadioButtonAnnuel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jRadioButtonSem)))
+                                .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
                                     .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGap(33, 33, 33)
                                     .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
                         .addGap(226, 226, 226)
@@ -230,9 +251,13 @@ public class FInscrire extends javax.swing.JDialog {
                             .addComponent(jRadioButtonTri))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButtonSem)))
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JB_Ajout_Photo_inscri)
+                    .addComponent(JL_ajout_photo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jBinscrire)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 36)); // NOI18N
@@ -250,7 +275,7 @@ public class FInscrire extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jPanelChampsAremplir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,6 +380,38 @@ public class FInscrire extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonSemActionPerformed
 
+    private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
+        // Créer une instance de la classe FileDialog
+    FileDialog dial = new FileDialog(this, "Sélectionner le fichier du dossier images", FileDialog.LOAD);
+    
+    // Rendre visible la fenêtre de dialogue
+    dial.setVisible(true);
+    
+    // Récupérer le nom et le répertoire du fichier sélectionné
+    String nomFich = dial.getFile();
+    String repertoire = dial.getDirectory();
+    
+    if (nomFich != null) {
+        try {
+            // Chemin source (fichier sélectionné)
+            Path src = Paths.get(repertoire + nomFich);
+            
+            // Chemin destination : dossier "images" dans le package du projet
+            Path dest = Paths.get("src/pimages/" + nomFich);
+            
+            // Copier le fichier (remplace s'il existe déjà)
+            Files.copy(src, dest, StandardCopyOption.REPLACE_EXISTING);
+            
+            
+            JOptionPane.showMessageDialog(this, "Fichier ajouté avec succès !");
+            
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Impossible de copier le fichier : " + e.getMessage(),
+                    "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_JB_Ajout_Photo_inscriActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,8 +450,10 @@ public class FInscrire extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JB_Ajout_Photo_inscri;
     private javax.swing.JLabel JL_ID_inscri;
     private javax.swing.JLabel JL_adresse_inscri;
+    private javax.swing.JLabel JL_ajout_photo;
     private javax.swing.JLabel JL_mdp_inscri;
     private javax.swing.JLabel JL_nom_inscri;
     private javax.swing.JLabel JL_prenom_inscri;
