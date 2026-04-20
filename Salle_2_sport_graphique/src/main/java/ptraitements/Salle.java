@@ -110,11 +110,11 @@ public class Salle {
      * @return le Client créé, ou null si l'email est déjà utilisé
      */
     public Client creerCompte(String email, String mdp, String nom, String prenom,
-                              String tel, String adresse, TypeAbonnement type) {
+                              String tel, String adresse, TypeAbonnement type, String pp) {
         if (idDejaUtilise(email)) {
             return null; // l'interface gérera le message d'erreur
         }
-        Client nouveau = new Client(email, mdp, nom, prenom, tel, adresse, type);
+        Client nouveau = new Client(email, mdp, nom, prenom, tel, adresse, type, pp);
         nouveau.setNumClient(genererNumeroClient()); // attribution du numéro unique
         listeClients.add(nouveau);
         return nouveau; // retourne le client créé, ou null si échec
@@ -498,7 +498,8 @@ public class Salle {
                     c.getTelephone() + ";" +
                     c.getAdresse() + ";" +
                     c.getTypeAbonnement() + ";" +     // toString() de l'enum, compatible avec valueOf() au chargement
-                    c.isAbonnementActif() + "\n"
+                    c.isAbonnementActif() + ";" +
+                    c.getPP() + "\n"
                 );
             }
             
@@ -533,7 +534,8 @@ public class Salle {
                     parts[4], // prénom
                     parts[5], // téléphone
                     parts[6], // adresse
-                    TypeAbonnement.valueOf(parts[7]) // conversion String → enum
+                    TypeAbonnement.valueOf(parts[7]), // conversion String → enum
+                    parts[9] // nom Photo, position 9 car en 8 c'est l'abbonement actif
                 );
                 
                 c.setNumClient(Integer.parseInt(parts[0]));

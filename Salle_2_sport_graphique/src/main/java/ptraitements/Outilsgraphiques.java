@@ -16,7 +16,7 @@ public class Outilsgraphiques {
     /* Methode publique et statique ( n'a pas besoin d'objet ) 
     * Prend en attribut le nom de l'image et les dimmension que l'on attend
     * Mise de tout sous try catch pour eviter de faire planter le programme en cas de problème lié au fichier
-    * on renvoie un icon car seticon() sur les btns est pour les icons, y'a des difference de gestion de ressources par java aussi qui le rendent plus favorable
+    * on renvoie un icon car seticon() sur les btns est pour les icons, y'a des differences de gestion de ressources par java aussi qui le rendent plus favorable
     */
     public static ImageIcon redimensionnerIcone(String nomFichier, int largeur, int hauteur){
         try {

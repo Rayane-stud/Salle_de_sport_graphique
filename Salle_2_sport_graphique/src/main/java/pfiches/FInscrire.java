@@ -61,6 +61,7 @@ public class FInscrire extends javax.swing.JDialog {
         jRadioButtonAnnuel = new javax.swing.JRadioButton();
         JL_ajout_photo = new javax.swing.JLabel();
         JB_Ajout_Photo_inscri = new javax.swing.JButton();
+        jLPhotoNom = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -150,66 +151,73 @@ public class FInscrire extends javax.swing.JDialog {
 
         JL_ajout_photo.setText("Ajouter Photo");
 
-        JB_Ajout_Photo_inscri.setText(". . .");
+        JB_Ajout_Photo_inscri.setText("...");
+        JB_Ajout_Photo_inscri.setAlignmentX(0.5F);
         JB_Ajout_Photo_inscri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JB_Ajout_Photo_inscriActionPerformed(evt);
             }
         });
 
+        jLPhotoNom.setText("Pas de photo selectionné");
+
         javax.swing.GroupLayout jPanelChampsAremplirLayout = new javax.swing.GroupLayout(jPanelChampsAremplir);
         jPanelChampsAremplir.setLayout(jPanelChampsAremplirLayout);
         jPanelChampsAremplirLayout.setHorizontalGroup(
             jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(27, 27, 27)
+                .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                                .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(154, 154, 154))
-                            .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                                .addComponent(JL_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                                .addComponent(JL_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)
-                                .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154))
+                    .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
+                        .addComponent(JL_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
+                        .addComponent(JL_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(JL_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
+                            .addGap(102, 102, 102)
                             .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JL_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                                    .addGap(102, 102, 102)
-                                    .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(JT_Id_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(78, 78, 78)
+                                .addComponent(JT_Id_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(78, 78, 78)
+                .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelChampsAremplirLayout.createSequentialGroup()
+                        .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelChampsAremplirLayout.createSequentialGroup()
                         .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                                .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(57, 57, 57)
-                                .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                                    .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(19, 19, 19)
-                                    .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jRadioButtonTri, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jRadioButtonAnnuel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jRadioButtonSem)))
-                                .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                                    .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(33, 33, 33)
-                                    .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButtonAnnuel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRadioButtonSem)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelChampsAremplirLayout.createSequentialGroup()
+                                    .addComponent(jRadioButtonTri, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap()))
+                            .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(jBinscrire, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))))
+            .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
+                .addGap(225, 225, 225)
+                .addComponent(jBinscrire, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelChampsAremplirLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLPhotoNom, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanelChampsAremplirLayout.setVerticalGroup(
             jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,15 +231,15 @@ public class FInscrire extends javax.swing.JDialog {
                         .addGap(41, 41, 41)
                         .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(JL_mdp_inscri)
-                            .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JL_adresse_inscri))))
                     .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
                         .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JL_tel_inscri)
                             .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
-                        .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JL_adresse_inscri)
-                            .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -243,21 +251,24 @@ public class FInscrire extends javax.swing.JDialog {
                             .addComponent(JL_prenom_inscri)
                             .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanelChampsAremplirLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(jRadioButtonAnnuel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jRadioButtonTri))
+                        .addComponent(jRadioButtonTri)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButtonSem)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JB_Ajout_Photo_inscri)
-                    .addComponent(JL_ajout_photo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelChampsAremplirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jLPhotoNom)
+                .addGap(2, 2, 2)
                 .addComponent(jBinscrire)
-                .addGap(40, 40, 40))
+                .addGap(22, 22, 22))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 36)); // NOI18N
@@ -268,23 +279,22 @@ public class FInscrire extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jPanelChampsAremplir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(215, 215, 215)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(221, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelChampsAremplir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelChampsAremplir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,8 +347,11 @@ public class FInscrire extends javax.swing.JDialog {
         String prenom = JT_prenom_inscri.getText();
         String telephone = JT_tel_inscri.getText();
         String adresse = JT_adresse_inscri.getText();
+        String pp = jLPhotoNom.getText();
         TypeAbonnement type = null;
-
+        
+        
+    // Selection du type d'abonnement
     if (jRadioButtonAnnuel.isSelected()) {
         type = TypeAbonnement.ANNUEL;
     } else if (jRadioButtonTri.isSelected()) {
@@ -349,10 +362,19 @@ public class FInscrire extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Veuillez choisir un type d'abonnement"); // inutile a present car saisie par defaut en place 
         return;
     }
-
+    
+    // vérification si une photo est sélectionné
+    if ( jLPhotoNom.getText().equals("Pas de photo selectionné")){
+        pp = "";
+    } else {
+        pp = jLPhotoNom.getText();
+    }
+    
+    
+    
     //Creation du client
     Client c = ((FConnexionUti) getOwner()).getsalle().creerCompte(
-        identifiant, motDePasse, nom, prenom, telephone, adresse, type
+        identifiant, motDePasse, nom, prenom, telephone, adresse, type, pp
     );
 
     if (c == null) {
@@ -381,7 +403,8 @@ public class FInscrire extends javax.swing.JDialog {
     }//GEN-LAST:event_jRadioButtonSemActionPerformed
 
     private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
-        // Créer une instance de la classe FileDialog
+    //methode trouvé par ia mais assemblé par gabriel
+    // Créer une instance de la classe FileDialog
     FileDialog dial = new FileDialog(this, "Sélectionner le fichier du dossier images", FileDialog.LOAD);
     
     // Rendre visible la fenêtre de dialogue
@@ -390,25 +413,31 @@ public class FInscrire extends javax.swing.JDialog {
     // Récupérer le nom et le répertoire du fichier sélectionné
     String nomFich = dial.getFile();
     String repertoire = dial.getDirectory();
+    jLPhotoNom.setText(nomFich);
     
     if (nomFich != null) {
-        try {
-            // Chemin source (fichier sélectionné)
-            Path src = Paths.get(repertoire + nomFich);
-            
-            // Chemin destination : dossier "images" dans le package du projet
-            Path dest = Paths.get("src/pimages/" + nomFich);
-            
-            // Copier le fichier (remplace s'il existe déjà)
-            Files.copy(src, dest, StandardCopyOption.REPLACE_EXISTING);
-            
-            
-            JOptionPane.showMessageDialog(this, "Fichier ajouté avec succès !");
-            
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Impossible de copier le fichier : " + e.getMessage(),
-                    "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
+    try {
+        // On nettoie le nom : on remplace espaces et caractères spéciaux
+        String nomNettoye = nomFich.replaceAll("[^a-zA-Z0-9._-]", "_");
+        System.out.println("Nom nettoyé : " + nomNettoye); // DEBUG
+        
+        Path src = Paths.get(repertoire + nomFich);
+        Path dest1 = Paths.get("src/pimages/" + nomNettoye);
+        Path dest2 = Paths.get("target/classes/pimages/" + nomNettoye);
+
+        // DEBUG - affiche où on copie vraiment
+        System.out.println("Copie vers : " + dest2.toAbsolutePath());
+
+        Files.copy(src, dest1, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(src, dest2, StandardCopyOption.REPLACE_EXISTING);
+        // On sauvegarde le NOM NETTOYÉ dans le label
+        jLPhotoNom.setText(nomNettoye);
+        
+        JOptionPane.showMessageDialog(this, "Fichier ajouté avec succès !");
+        
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Erreur : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+    }
     }
     }//GEN-LAST:event_JB_Ajout_Photo_inscriActionPerformed
 
@@ -466,6 +495,7 @@ public class FInscrire extends javax.swing.JDialog {
     private javax.swing.JTextField JT_tel_inscri;
     private javax.swing.ButtonGroup buttonGroupAbonnement;
     private javax.swing.JButton jBinscrire;
+    private javax.swing.JLabel jLPhotoNom;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;

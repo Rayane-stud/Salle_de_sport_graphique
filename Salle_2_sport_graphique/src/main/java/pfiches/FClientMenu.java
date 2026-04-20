@@ -4,8 +4,11 @@
  */
 package pfiches;
 
+import java.awt.Component;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import ptraitements.*;
+import static ptraitements.Outilsgraphiques.redimensionnerIcone;
 
 
 
@@ -20,6 +23,8 @@ public class FClientMenu extends javax.swing.JDialog {
     private Salle maSalle;
     private Client Client;
     private FModifInfoClient fichModifInfoClient;
+    private int largeur = 130, hauteur = 106;
+    
         
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FClientMenu.class.getName());
 
@@ -69,7 +74,30 @@ public class FClientMenu extends javax.swing.JDialog {
     public void iniAffichage() {
     JL_PRE.setText(Client.getPrenom());
     
+    String nomImage;
+    
+    if (Client.getPP().equals("")) {
+        nomImage = "default-avatar.png";
+    } else {
+        nomImage = Client.getPP();
     }
+    
+    // DEBUG - affiche dans la console ce qu'on cherche
+    System.out.println("Nom image : " + nomImage);
+    System.out.println("Chemin cherché : " + "/pimages/" + nomImage);
+    System.out.println("Résultat getResource : " + getClass().getResource("/pimages/" + nomImage));
+    
+    // Affiche le chemin absolu où getResource cherche les ressources
+    System.out.println("Dossier de base : " + getClass().getResource("/"));
+    
+    try {
+        ImageIcon i = new ImageIcon(getClass().getResource("/pimages/" + nomImage));
+        jL_photopp.setIcon(i);
+    } catch (Exception e) {
+        jL_photopp.setText("Image introuvable : " + nomImage);
+        System.out.println("Erreur : " + e.getMessage()); // DEBUG
+    }
+}
     
     /**
      * This method is called from within the constructor to initialize the form.

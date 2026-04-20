@@ -44,11 +44,11 @@ public class Salle_2_sport_graphique {
         // Vérifie que creerCompte() ajoute bien les clients et leur attribue un numéro
         Client c1 = salle.creerCompte("rayane@mail.com", "1234",
                 "Ouchiha", "Rayane", "0600000000",
-                "Paris", TypeAbonnement.ANNUEL);
+                "Paris", TypeAbonnement.ANNUEL, "Photo");
         
         Client c2 = salle.creerCompte("gabriel@mail.com", "abcd",
                 "Vignes", "Gabriel", "0700000000",
-                "Lyon", TypeAbonnement.TRIMESTRIEL);
+                "Lyon", TypeAbonnement.TRIMESTRIEL, "Photo");
         
         System.out.println("Clients créés : ");
         c1.afficherProfil();

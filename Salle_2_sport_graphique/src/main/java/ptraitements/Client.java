@@ -31,6 +31,7 @@ public class Client extends Utilisateur {
     private String adresse;
     private TypeAbonnement typeAbonnement;    // Type d'abonnement : ANNUEL, TRIMESTRIEL ou SEMAINE
     private boolean abonnementActif;          // Etat de l'abonnement : true = actif, false = désactivé par l'admin
+    private String PhotoPP;
     
     // Listes de cours associées au client :
     private ArrayList<Cours> listeCoursFuturs; // Cours auxquels le client est inscrit et qui n'ont pas encore eu lieu
@@ -51,7 +52,7 @@ public class Client extends Utilisateur {
      * @param typeAbonnement Type d'abonnement choisi (ANNUEL, TRIMESTRIEL ou SEMAINE)
      */
     public Client(String identifiant, String motDePasse, String nom, String prenom,
-                  String telephone, String adresse, TypeAbonnement typeAbonnement) {
+                  String telephone, String adresse, TypeAbonnement typeAbonnement, String PP) {
         super(identifiant, motDePasse);  // appelle le constructeur de Utilisateur
         this.nom = nom;
         this.prenom = prenom;
@@ -61,10 +62,11 @@ public class Client extends Utilisateur {
         this.abonnementActif = true;           // actif par défaut à la création
         this.listeCoursFuturs = new ArrayList<>();
         this.listeCoursPasses = new ArrayList<>();
+        this.PhotoPP = PP;
     }
     
-    public void CreerClient(String identifiant, String motDePasse, String nom, String prenom,String telephone, String adresse, TypeAbonnement typeAbonnement){
-        Client c = new Client(identifiant, motDePasse,  nom,  prenom, telephone,  adresse, typeAbonnement);
+    public void CreerClient(String identifiant, String motDePasse, String nom, String prenom,String telephone, String adresse, TypeAbonnement typeAbonnement, String PP){
+        Client c = new Client(identifiant, motDePasse,  nom,  prenom, telephone,  adresse, typeAbonnement, PP);
     }
     
     
@@ -98,6 +100,11 @@ public class Client extends Utilisateur {
     /** @return le type d'abonnement du client (ANNUEL, TRIMESTRIEL, SEMAINE) */
     public TypeAbonnement getTypeAbonnement() {
         return typeAbonnement;
+    }
+    
+    /** @return le nom de l'image de pp */
+    public String getPP() {
+        return PhotoPP;
     }
 
     /** @return true si l'abonnement est actif, false s'il a été désactivé par l'admin */
@@ -137,6 +144,11 @@ public class Client extends Utilisateur {
     /** @param adresse nouvelle adresse postale */
     public void modifAdresse(String adresse) {
         this.adresse = adresse;
+    }
+    
+    /** @param PP nouvelle photo */
+    public void modifPP(String pp) {
+        this.PhotoPP = pp;
     }
 
     /**
