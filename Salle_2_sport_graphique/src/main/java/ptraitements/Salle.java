@@ -33,7 +33,7 @@ public class Salle {
     private String nom;                           // Nom de la salle de sport
     private ArrayList<Client> listeClients;       // Liste de tous les clients enregistrés
     private Admin admin;                          // Unique administrateur (une liste si plusieurs admins à l'avenir)
-    private ArrayList<Cours> listeCoursFuturs;    // Cours à venir, non encore passés
+    public ArrayList<Cours> listeCoursFuturs;    // Cours à venir, non encore passés
     private ArrayList<Cours> listeCoursPassees;   // Cours dont la date est dépassée
     private String nomFichSauvegarde;             // Nom du fichier de sauvegarde général (non utilisé directement pour l'instant)
     private int prochainIdCours = 1;              // Compteur pour générer des identifiants de cours uniques et croissants

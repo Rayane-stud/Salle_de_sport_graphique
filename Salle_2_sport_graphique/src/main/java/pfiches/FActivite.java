@@ -6,16 +6,30 @@ package pfiches;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
+import static java.time.DayOfWeek.FRIDAY;
+import static java.time.DayOfWeek.MONDAY;
+import static java.time.DayOfWeek.SATURDAY;
+import static java.time.DayOfWeek.SUNDAY;
+import static java.time.DayOfWeek.THURSDAY;
+import static java.time.DayOfWeek.TUESDAY;
+import static java.time.DayOfWeek.WEDNESDAY;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import ptraitements.Client;
+import ptraitements.Cours;
+import ptraitements.Salle;
 
 /**
  *
  * @author gabri
  */
 public class FActivite extends javax.swing.JDialog {
+    
+    private Salle maSalle;
+    private Client Client;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FActivite.class.getName());
 
@@ -33,7 +47,11 @@ public class FActivite extends javax.swing.JDialog {
     }
 
     public void initialiserAffichage( LocalDate date ){
-    // Trouver le lundi de la même semaine
+        
+        LocalDate adj = LocalDate.now();
+
+        
+        // Trouver le lundi de la même semaine
         LocalDate lundi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         
         //Trouver les autres jours de la semaine
@@ -64,7 +82,81 @@ public class FActivite extends javax.swing.JDialog {
         jLabelvendredi.setText(textev);
         jLabelsamedi.setText(textes);
         jLabeldimanche.setText(texted);
-
+        
+        if(date.isAfter(adj)){
+            for(Cours c : maSalle.getCoursFuturs()){
+            LocalDate d = c.getDatecour();    
+            
+                switch(d.getDayOfWeek()){
+                    case MONDAY -> {
+                        AjouterCoursItem(c,jListLundi);
+                    }
+                    case TUESDAY  -> {
+                        AjouterCoursItem(c,jListMardi);
+                    }
+                    case WEDNESDAY -> {
+                        AjouterCoursItem(c,jListMercredi);
+                    }
+                    case THURSDAY -> {
+                        AjouterCoursItem(c,jListJeudi);
+                    }
+                    case FRIDAY -> {
+                        AjouterCoursItem(c,jListVendredi);
+                    }
+                    case SATURDAY -> {    
+                        AjouterCoursItem(c,jListSamedi);
+                    }
+                    case SUNDAY -> {
+                        AjouterCoursItem(c,jListDimanche);
+                }
+            }
+        } 
+    }else{
+            for(Cours c : maSalle.getListeCoursPassees()){
+            LocalDate d = c.getDatecour();    
+            
+                switch(d.getDayOfWeek()){
+                    case MONDAY -> {
+                        AjouterCoursItem(c,jListLundi);
+                    }
+                    case TUESDAY  -> {
+                        AjouterCoursItem(c,jListMardi);
+                    }
+                    case WEDNESDAY -> {
+                        AjouterCoursItem(c,jListMercredi);
+                    }
+                    case THURSDAY -> {
+                        AjouterCoursItem(c,jListJeudi);
+                    }
+                    case FRIDAY -> {
+                        AjouterCoursItem(c,jListVendredi);
+                    }
+                    case SATURDAY -> {    
+                        AjouterCoursItem(c,jListSamedi);
+                    }
+                    case SUNDAY -> {
+                        AjouterCoursItem(c,jListDimanche);
+                    }
+            
+                }       
+            }
+        }
+    }
+    
+    /**
+     *
+     * @param c
+     * @param j
+     */
+    public void AjouterCoursItem(Cours c, JList j){
+        String nom = c.getActivitecour() + " " + c.getHeurecour();
+        j.add(nom, j);
+    }    
+        
+   
+    public void envoyerSalleClientVersActivite(Salle maSalle, Client client){
+        this.maSalle = maSalle;
+        this.Client = client;
     }
     
     /**
@@ -87,37 +179,37 @@ public class FActivite extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabellundi = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListLundi = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabelmardi = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jListMardi = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabelmercredi = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        jListMercredi = new javax.swing.JList<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabeljeudi = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
+        jListJeudi = new javax.swing.JList<>();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabelvendredi = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList5 = new javax.swing.JList<>();
+        jListVendredi = new javax.swing.JList<>();
         jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabelsamedi = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jList6 = new javax.swing.JList<>();
+        jListSamedi = new javax.swing.JList<>();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabeldimanche = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jList7 = new javax.swing.JList<>();
+        jListDimanche = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         JbutonRechercher = new javax.swing.JButton();
 
@@ -166,7 +258,7 @@ public class FActivite extends javax.swing.JDialog {
 
         jLabellundi.setText("dd/mm");
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jListLundi);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -200,12 +292,12 @@ public class FActivite extends javax.swing.JDialog {
 
         jLabelmardi.setText("dd/mm");
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        jListMardi.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(jListMardi);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -238,12 +330,12 @@ public class FActivite extends javax.swing.JDialog {
 
         jLabelmercredi.setText("dd/mm");
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+        jListMercredi.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(jList3);
+        jScrollPane3.setViewportView(jListMercredi);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -276,12 +368,12 @@ public class FActivite extends javax.swing.JDialog {
 
         jLabeljeudi.setText("dd/mm");
 
-        jList4.setModel(new javax.swing.AbstractListModel<String>() {
+        jListJeudi.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane4.setViewportView(jList4);
+        jScrollPane4.setViewportView(jListJeudi);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -314,12 +406,12 @@ public class FActivite extends javax.swing.JDialog {
 
         jLabelvendredi.setText("dd/mm");
 
-        jList5.setModel(new javax.swing.AbstractListModel<String>() {
+        jListVendredi.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane5.setViewportView(jList5);
+        jScrollPane5.setViewportView(jListVendredi);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -353,12 +445,12 @@ public class FActivite extends javax.swing.JDialog {
 
         jLabelsamedi.setText("dd/mm");
 
-        jList6.setModel(new javax.swing.AbstractListModel<String>() {
+        jListSamedi.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane6.setViewportView(jList6);
+        jScrollPane6.setViewportView(jListSamedi);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -391,12 +483,12 @@ public class FActivite extends javax.swing.JDialog {
 
         jLabeldimanche.setText("dd/mm");
 
-        jList7.setModel(new javax.swing.AbstractListModel<String>() {
+        jListDimanche.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane7.setViewportView(jList7);
+        jScrollPane7.setViewportView(jListDimanche);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -555,7 +647,7 @@ public class FActivite extends javax.swing.JDialog {
 
     private void JbutonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbutonRechercherActionPerformed
         // TODO add your handling code here:
-                try {
+        try {
             
         int j, m, a;
         j = Integer.parseInt(JtextJour.getText().trim());
@@ -675,13 +767,13 @@ public class FActivite extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelmercredi;
     private javax.swing.JLabel jLabelsamedi;
     private javax.swing.JLabel jLabelvendredi;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
-    private javax.swing.JList<String> jList5;
-    private javax.swing.JList<String> jList6;
-    private javax.swing.JList<String> jList7;
+    private javax.swing.JList<String> jListDimanche;
+    private javax.swing.JList<String> jListJeudi;
+    private javax.swing.JList<String> jListLundi;
+    private javax.swing.JList<String> jListMardi;
+    private javax.swing.JList<String> jListMercredi;
+    private javax.swing.JList<String> jListSamedi;
+    private javax.swing.JList<String> jListVendredi;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

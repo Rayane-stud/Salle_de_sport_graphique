@@ -23,8 +23,7 @@ public class FClientMenu extends javax.swing.JDialog {
     private Salle maSalle;
     private Client Client;
     private FModifInfoClient fichModifInfoClient;
-    private int largeur = 130, hauteur = 106;
-    
+    private FActivite fichActivite;
         
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FClientMenu.class.getName());
 
@@ -34,6 +33,7 @@ public class FClientMenu extends javax.swing.JDialog {
     public FClientMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null); // ON CENTRE LA FENETRE
         fichModifInfoClient = new FModifInfoClient(parent, false); 
         
     
@@ -132,6 +132,11 @@ public class FClientMenu extends javax.swing.JDialog {
 
         JB_Activite.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         JB_Activite.setText("Activité à venir");
+        JB_Activite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_ActiviteActionPerformed(evt);
+            }
+        });
 
         JL_PRE.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         JL_PRE.setText("Prenom");
@@ -292,14 +297,18 @@ public class FClientMenu extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JB_info1ActionPerformed
 
+    private void JB_ActiviteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ActiviteActionPerformed
+        fichActivite.envoyerSalleClientVersActivite(maSalle,Client);
+        this.setVisible(false); 
+        fichActivite.setVisible(true);
+    }//GEN-LAST:event_JB_ActiviteActionPerformed
+
     public void envoyerSalleClientVersMenuClient(Salle maSalle, Client client){
         this.maSalle = maSalle;
         this.Client = client;
         iniAffichage();
     }
     
-    
-
 
     
     
