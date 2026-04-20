@@ -62,6 +62,9 @@ public class FConnexionUti extends javax.swing.JFrame {
         return this.maSalle;
     }
     
+    public FClientMenu getFicheClientMenu(){return this.fichClient;}
+    public FprofilClient getFicheClientProfile(){return this.fichprofilClient;}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -232,7 +235,7 @@ public class FConnexionUti extends javax.swing.JFrame {
           else if (user instanceof Client){
             Client c = (Client) user; // On transforme l'Utilisateur en Client
             this.setVisible(false);
-            fichAdmin.setLocation(this.getLocation());
+            fichClient.setLocation(this.getLocation());
             fichClient.envoyerSalleClientVersMenuClient(maSalle, c); // Envoie des données
             fichClient.setVisible(true);
             
@@ -268,7 +271,7 @@ public class FConnexionUti extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
- /*       
+        
 //_______________________________________PARTIE RECHERCHEE SUR REDDIT________________________________
         try {
         // Cette ligne magique active le look moderne et sombre
@@ -281,7 +284,7 @@ public class FConnexionUti extends javax.swing.JFrame {
     } catch( Exception ex ) {
         System.err.println( "Échec de l'initialisation du thème" );
     }
-//_______________________________________________________________________________________________________ */
+//_______________________________________________________________________________________________________ 
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new FConnexionUti().setVisible(true));

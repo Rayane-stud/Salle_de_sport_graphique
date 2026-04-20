@@ -18,7 +18,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
 
     private Salle maSalle;
     private Client Client;
-    private FClientMenu menuClient;
+    private FprofilClient profileClient;
     
     /**
      * Creates new form FModifInfoClient
@@ -395,10 +395,10 @@ public class FModifInfoClient extends javax.swing.JDialog {
 
     // fait par gabriel
     //envoie les donnees entre la fiche client, la modif d'info et la salle
-    public void envoyerDonneesVersModifInfo(Salle salle, Client client, FClientMenu menu) {
+    public void envoyerDonneesVersModifInfo(Salle salle, Client client, FprofilClient menu) {
     this.maSalle = salle;
     this.Client = client;
-    this.menuClient = menu;
+    this.profileClient = menu;
     
     JL_ID.setText(client.getIdentifiant());
     JL_mdp.setText(client.getMot2Passe());
@@ -468,8 +468,8 @@ public class FModifInfoClient extends javax.swing.JDialog {
 
         JOptionPane.showMessageDialog(this, message);
         this.setVisible(false);
-        menuClient.setVisible(true);                            
-        menuClient.iniAffichage();
+        profileClient.setVisible(true);                            
+        profileClient.iniAffichage();
     }//GEN-LAST:event_jBenregistrerActionPerformed
 
     private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed

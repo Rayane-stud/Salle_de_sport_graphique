@@ -22,7 +22,7 @@ public class FClientMenu extends javax.swing.JDialog {
     
     private Salle maSalle;
     private Client Client;
-    private FModifInfoClient fichModifInfoClient;
+    
     private FActivite fichActivite;
         
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FClientMenu.class.getName());
@@ -34,7 +34,7 @@ public class FClientMenu extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null); // ON CENTRE LA FENETRE
-        fichModifInfoClient = new FModifInfoClient(parent, false); 
+         
         
     
     //_____________________________________Configuration graphique du pannel ou sera dit le bonjour
@@ -277,10 +277,9 @@ public class FClientMenu extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JB_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_infoActionPerformed
-        fichModifInfoClient.envoyerDonneesVersModifInfo(maSalle, Client, this);
-
-        this.setVisible(false); 
-        fichModifInfoClient.setVisible(true);
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).setLocation(this.getLocation());
+        ((FConnexionUti)this.getOwner()).getFicheClientProfile().setVisible(true);
     }//GEN-LAST:event_JB_infoActionPerformed
 
     private void JB_histoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_histoActionPerformed
@@ -290,11 +289,15 @@ public class FClientMenu extends javax.swing.JDialog {
     private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FConnexionUti().setVisible(true);
+        ((FConnexionUti)this.getOwner()).setVisible(true);
     }//GEN-LAST:event_jBRetourVersConnexActionPerformed
 
     private void JB_info1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_info1ActionPerformed
         // TODO add your handling code here:
+        
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheClientProfile().setLocation(this.getLocation());
+        ((FConnexionUti)this.getOwner()).getFicheClientProfile().setVisible(true);
     }//GEN-LAST:event_JB_info1ActionPerformed
 
     private void JB_ActiviteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ActiviteActionPerformed

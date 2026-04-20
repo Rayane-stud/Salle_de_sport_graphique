@@ -41,7 +41,8 @@ public class FActivite extends javax.swing.JDialog {
         initComponents();
         
         LocalDate adj = LocalDate.now();
-        initialiserAffichage(adj);
+        // initialiserAffichage(adj); // WOAW CETTE LIGNE FAIS TT PLANTER
+        
      
         
     }
