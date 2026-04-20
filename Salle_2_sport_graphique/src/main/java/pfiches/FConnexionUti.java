@@ -64,6 +64,9 @@ public class FConnexionUti extends javax.swing.JFrame {
     
     public FClientMenu getFicheClientMenu(){return this.fichClient;}
     public FprofilClient getFicheClientProfile(){return this.fichprofilClient;}
+    public FModifInfoClient getFichClientModifInfo(){return this.fichModifInfoClient;}
+    
+    public void clearChamps(){JF_ID.setText(""); JF_mdp.setText("");}
     
     /**
      * This method is called from within the constructor to initialize the form.

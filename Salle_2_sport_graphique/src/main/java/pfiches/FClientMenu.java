@@ -21,7 +21,7 @@ public class FClientMenu extends javax.swing.JDialog {
     
     
     private Salle maSalle;
-    private Client Client;
+    private Client client;
     
     private FActivite fichActivite;
         
@@ -72,14 +72,14 @@ public class FClientMenu extends javax.swing.JDialog {
 
     
     public void iniAffichage() {
-    JL_PRE.setText(Client.getPrenom());
+    JL_PRE.setText(client.getPrenom());
     
     String nomImage;
     
-    if (Client.getPP().equals("")) {
+    if (client.getPP().equals("")) {
         nomImage = "default-avatar.png";
     } else {
-        nomImage = Client.getPP();
+        nomImage = client.getPP();
     }
     
     // DEBUG - affiche dans la console ce qu'on cherche
@@ -294,21 +294,21 @@ public class FClientMenu extends javax.swing.JDialog {
 
     private void JB_info1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_info1ActionPerformed
         // TODO add your handling code here:
-        
+        ((FConnexionUti)this.getOwner()).getFicheClientProfile().passageClientMenuProfil(this.client, this.maSalle);
         this.dispose();
         ((FConnexionUti)this.getOwner()).getFicheClientProfile().setLocation(this.getLocation());
         ((FConnexionUti)this.getOwner()).getFicheClientProfile().setVisible(true);
     }//GEN-LAST:event_JB_info1ActionPerformed
 
     private void JB_ActiviteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ActiviteActionPerformed
-        fichActivite.envoyerSalleClientVersActivite(maSalle,Client);
+        fichActivite.envoyerSalleClientVersActivite(maSalle,client);
         this.setVisible(false); 
         fichActivite.setVisible(true);
     }//GEN-LAST:event_JB_ActiviteActionPerformed
 
     public void envoyerSalleClientVersMenuClient(Salle maSalle, Client client){
         this.maSalle = maSalle;
-        this.Client = client;
+        this.client = client;
         iniAffichage();
     }
     

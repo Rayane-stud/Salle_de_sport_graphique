@@ -24,11 +24,23 @@ public class FprofilClient extends javax.swing.JDialog {
     public FprofilClient(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        fichModifInfoClient = new FModifInfoClient(parent, false);
+        fichModifInfoClient = ((FConnexionUti)this.getOwner()).getFichClientModifInfo();
     }
     
     public void iniAffichage(){
+     Jl_mdp.setText(client.getMot2Passe());
+     jL_Id.setText(client.getIdentifiant());
+     jL_adresse.setText(client.getAdresse());
+     jL_nom.setText(client.getNom());
+     jL_prenom.setText(client.getPrenom());
+     jL_tel.setText(client.getTelephone());
         
+    }
+    
+    public void passageClientMenuProfil(Client client, Salle maSalle){
+        this.client = client;
+        this.maSalle = maSalle;
+        this.iniAffichage(); 
     }
 
     /**
@@ -40,6 +52,7 @@ public class FprofilClient extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -55,13 +68,15 @@ public class FprofilClient extends javax.swing.JDialog {
         jL_prenom = new javax.swing.JLabel();
         jL_tel = new javax.swing.JLabel();
         jL_adresse = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jL_photopp = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jPannel_2PanneldeToolbox3 = new javax.swing.JPanel();
-        jB_MenuClient3 = new javax.swing.JButton();
-        jBRetourVersConnex3 = new javax.swing.JButton();
         jB_Modifier = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jPannel_2PanneldeToolbox = new javax.swing.JPanel();
+        jB_MenuClient = new javax.swing.JButton();
+        jBRetourVersConnex = new javax.swing.JButton();
+
+        jLabel8.setText("jLabel8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -161,68 +176,6 @@ public class FprofilClient extends javax.swing.JDialog {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jL_photopp.setText("PHOTO");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jL_photopp, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jL_photopp, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jLabel8.setText("photo de profile : ");
-
-        jPannel_2PanneldeToolbox3.setBackground(new java.awt.Color(204, 204, 204));
-        jPannel_2PanneldeToolbox3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jB_MenuClient3.setBackground(new java.awt.Color(204, 255, 204));
-        jB_MenuClient3.setText("Menu");
-        jB_MenuClient3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB_MenuClient3ActionPerformed(evt);
-            }
-        });
-
-        jBRetourVersConnex3.setBackground(new java.awt.Color(255, 102, 102));
-        jBRetourVersConnex3.setText("Retour");
-        jBRetourVersConnex3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBRetourVersConnex3.setIconTextGap(5);
-        jBRetourVersConnex3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jBRetourVersConnex3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBRetourVersConnex3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPannel_2PanneldeToolbox3Layout = new javax.swing.GroupLayout(jPannel_2PanneldeToolbox3);
-        jPannel_2PanneldeToolbox3.setLayout(jPannel_2PanneldeToolbox3Layout);
-        jPannel_2PanneldeToolbox3Layout.setHorizontalGroup(
-            jPannel_2PanneldeToolbox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPannel_2PanneldeToolbox3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jB_MenuClient3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBRetourVersConnex3)
-                .addContainerGap())
-        );
-        jPannel_2PanneldeToolbox3Layout.setVerticalGroup(
-            jPannel_2PanneldeToolbox3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jBRetourVersConnex3)
-            .addComponent(jB_MenuClient3)
-        );
-
         jB_Modifier.setText("Modifier");
         jB_Modifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,44 +183,110 @@ public class FprofilClient extends javax.swing.JDialog {
             }
         });
 
+        jLabel9.setText("Photo de profil : ");
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel10.setText("PHOTO PP");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPannel_2PanneldeToolbox.setBackground(new java.awt.Color(204, 204, 204));
+        jPannel_2PanneldeToolbox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jB_MenuClient.setBackground(new java.awt.Color(204, 255, 204));
+        jB_MenuClient.setText("Menu");
+        jB_MenuClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_MenuClientActionPerformed(evt);
+            }
+        });
+
+        jBRetourVersConnex.setBackground(new java.awt.Color(255, 102, 102));
+        jBRetourVersConnex.setText("Retour");
+        jBRetourVersConnex.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBRetourVersConnex.setIconTextGap(5);
+        jBRetourVersConnex.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBRetourVersConnex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRetourVersConnexActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPannel_2PanneldeToolboxLayout = new javax.swing.GroupLayout(jPannel_2PanneldeToolbox);
+        jPannel_2PanneldeToolbox.setLayout(jPannel_2PanneldeToolboxLayout);
+        jPannel_2PanneldeToolboxLayout.setHorizontalGroup(
+            jPannel_2PanneldeToolboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPannel_2PanneldeToolboxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jB_MenuClient)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBRetourVersConnex)
+                .addContainerGap())
+        );
+        jPannel_2PanneldeToolboxLayout.setVerticalGroup(
+            jPannel_2PanneldeToolboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jBRetourVersConnex)
+            .addComponent(jB_MenuClient)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(299, 299, 299)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73))
-            .addComponent(jPannel_2PanneldeToolbox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jB_Modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(314, 314, 314))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(299, 299, 299)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(314, 314, 314)
+                        .addComponent(jB_Modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel9)))))
+                .addContainerGap(65, Short.MAX_VALUE))
+            .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jPannel_2PanneldeToolbox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(jLabel8)
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(jB_Modifier)
                 .addGap(53, 53, 53))
         );
@@ -289,7 +308,7 @@ public class FprofilClient extends javax.swing.JDialog {
     private void jBRetourVersConnex3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnex3ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FConnexionUti().setVisible(true);
+        ((FConnexionUti)this.getOwner()).setVisible(true);
     }//GEN-LAST:event_jBRetourVersConnex3ActionPerformed
 
     private void jB_MenuClient3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuClient3ActionPerformed
@@ -302,9 +321,22 @@ public class FprofilClient extends javax.swing.JDialog {
         // TODO add your handling code here:
         fichModifInfoClient.envoyerDonneesVersModifInfo(maSalle, client, this);
 
-        this.setVisible(false); 
+        this.dispose(); 
         fichModifInfoClient.setVisible(true);
     }//GEN-LAST:event_jB_ModifierActionPerformed
+
+    private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheClientMenu().setVisible(true);
+    }//GEN-LAST:event_jBRetourVersConnexActionPerformed
+
+    private void jB_MenuClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuClientActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).setVisible(true);
+        ((FConnexionUti)this.getOwner()).clearChamps();
+    }//GEN-LAST:event_jB_MenuClientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,26 +377,17 @@ public class FprofilClient extends javax.swing.JDialog {
 
     // Bugs avec les boutons du a des copier coller, netbeans a garder 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JB_info;
-    private javax.swing.JButton JB_info1;
-    private javax.swing.JButton JB_info2;
     private javax.swing.JLabel Jl_mdp;
     private javax.swing.JButton jBRetourVersConnex;
-    private javax.swing.JButton jBRetourVersConnex1;
-    private javax.swing.JButton jBRetourVersConnex2;
-    private javax.swing.JButton jBRetourVersConnex3;
     private javax.swing.JButton jB_MenuClient;
-    private javax.swing.JButton jB_MenuClient1;
-    private javax.swing.JButton jB_MenuClient2;
-    private javax.swing.JButton jB_MenuClient3;
     private javax.swing.JButton jB_Modifier;
     private javax.swing.JLabel jL_Id;
     private javax.swing.JLabel jL_adresse;
     private javax.swing.JLabel jL_nom;
-    private javax.swing.JLabel jL_photopp;
     private javax.swing.JLabel jL_prenom;
     private javax.swing.JLabel jL_tel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -372,12 +395,10 @@ public class FprofilClient extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPannel_2PanneldeToolbox;
-    private javax.swing.JPanel jPannel_2PanneldeToolbox1;
-    private javax.swing.JPanel jPannel_2PanneldeToolbox2;
-    private javax.swing.JPanel jPannel_2PanneldeToolbox3;
     // End of variables declaration//GEN-END:variables
 }
