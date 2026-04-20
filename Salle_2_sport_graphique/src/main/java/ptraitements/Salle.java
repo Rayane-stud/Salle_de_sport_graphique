@@ -299,7 +299,13 @@ public class Salle {
                             TypeCours typeCours, int nombrePlaces) {
         Cours c = new Cours(activite, date, heure, typeCours, nombrePlaces, prochainIdCours);
         prochainIdCours++; // incrémentation pour le prochain cours
-        getCoursFuturs().add(c);
+        LocalDate adj = LocalDate.now();
+        if(date.isAfter(adj)){
+            getCoursFuturs().add(c);
+        }
+        else{
+            getListeCoursPassees().add(c);
+        }
         return c;
     }
     

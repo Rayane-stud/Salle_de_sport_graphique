@@ -4,6 +4,13 @@
  */
 package pfiches;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import javax.swing.JOptionPane;
+import ptraitements.TypeAbonnement;
+import ptraitements.TypeCours;
+
 /**
  *
  * @author rayan
@@ -29,26 +36,25 @@ public class FAdminGestionClient extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroupAbonnement = new javax.swing.ButtonGroup();
+        buttonGroupeTypeCours = new javax.swing.ButtonGroup();
         JT_adresse_inscri = new javax.swing.JTextField();
-        JT_prenom_inscri = new javax.swing.JTextField();
         JL_nom_inscri = new javax.swing.JLabel();
         JL_ID_inscri = new javax.swing.JLabel();
-        JB_Ajout_Photo_inscri = new javax.swing.JButton();
-        JT_tel_inscri = new javax.swing.JTextField();
+        JT_NBplace = new javax.swing.JTextField();
         JL_prenom_inscri = new javax.swing.JLabel();
         jBenregistrer = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         JL_tel_inscri = new javax.swing.JLabel();
         JL_adresse_inscri = new javax.swing.JLabel();
-        JL_ajout_photo = new javax.swing.JLabel();
-        JT_Id_inscri = new javax.swing.JTextField();
-        JT_nom_inscri = new javax.swing.JTextField();
+        JT_Activite = new javax.swing.JTextField();
         JL_mdp_inscri = new javax.swing.JLabel();
-        JT_mdp_inscri = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel2 = new javax.swing.JLabel();
+        jRBindiv = new javax.swing.JRadioButton();
+        jRBcoll = new javax.swing.JRadioButton();
+        JtextJour = new javax.swing.JTextField();
+        JtextMois = new javax.swing.JTextField();
+        JtextAnnee = new javax.swing.JTextField();
+        JtextHeure = new javax.swing.JTextField();
+        JtextMinute = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,30 +64,17 @@ public class FAdminGestionClient extends javax.swing.JDialog {
             }
         });
 
-        JT_prenom_inscri.addActionListener(new java.awt.event.ActionListener() {
+        JL_nom_inscri.setText("Heure");
+
+        JL_ID_inscri.setText("Activité");
+
+        JT_NBplace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_prenom_inscriActionPerformed(evt);
+                JT_NBplaceActionPerformed(evt);
             }
         });
 
-        JL_nom_inscri.setText("Nom");
-
-        JL_ID_inscri.setText("Identifiant");
-
-        JB_Ajout_Photo_inscri.setText(". . .");
-        JB_Ajout_Photo_inscri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_Ajout_Photo_inscriActionPerformed(evt);
-            }
-        });
-
-        JT_tel_inscri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_tel_inscriActionPerformed(evt);
-            }
-        });
-
-        JL_prenom_inscri.setText("Prenom");
+        JL_prenom_inscri.setText("Type Cours");
 
         jBenregistrer.setText("Enregistrer");
         jBenregistrer.addActionListener(new java.awt.event.ActionListener() {
@@ -93,44 +86,63 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 2, 36)); // NOI18N
         jLabel1.setText("Modification info");
 
-        JL_tel_inscri.setText("Tel");
+        JL_tel_inscri.setText("Nombre de place");
 
         JL_adresse_inscri.setText("Adresse");
 
-        JL_ajout_photo.setText("Ajouter Photo");
-
-        JT_Id_inscri.addActionListener(new java.awt.event.ActionListener() {
+        JT_Activite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_Id_inscriActionPerformed(evt);
+                JT_ActiviteActionPerformed(evt);
             }
         });
 
-        JT_nom_inscri.addActionListener(new java.awt.event.ActionListener() {
+        JL_mdp_inscri.setText("Date");
+
+        buttonGroupeTypeCours.add(jRBindiv);
+        jRBindiv.setText("Individuel");
+        jRBindiv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_nom_inscriActionPerformed(evt);
+                jRBindivActionPerformed(evt);
             }
         });
 
-        JL_mdp_inscri.setText("Mot de Passe ");
+        buttonGroupeTypeCours.add(jRBcoll);
+        jRBcoll.setText("Collectif");
 
-        JT_mdp_inscri.addActionListener(new java.awt.event.ActionListener() {
+        JtextJour.setText("dd");
+        JtextJour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_mdp_inscriActionPerformed(evt);
+                JtextJourActionPerformed(evt);
             }
         });
 
-        buttonGroupAbonnement.add(jRadioButton1);
-        jRadioButton1.setText("Actif");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        JtextMois.setText("mm");
+        JtextMois.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                JtextMoisActionPerformed(evt);
             }
         });
 
-        buttonGroupAbonnement.add(jRadioButton2);
-        jRadioButton2.setText("passif");
+        JtextAnnee.setText("aaaa");
+        JtextAnnee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextAnneeActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Abonnement");
+        JtextHeure.setText("hh");
+        JtextHeure.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextHeureActionPerformed(evt);
+            }
+        });
+
+        JtextMinute.setText("mm");
+        JtextMinute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextMinuteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,97 +151,92 @@ public class FAdminGestionClient extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(JL_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(147, 147, 147))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(JL_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(65, 65, 65)
-                                        .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(JL_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(33, 33, 33)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(JT_Id_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JL_tel_inscri, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JT_NBplace, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBenregistrer)
-                        .addGap(208, 208, 208)))
+                        .addContainerGap(23, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(JL_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(65, 65, 65)
+                                                    .addComponent(JtextHeure, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(JtextMinute, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(30, 30, 30))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(33, 33, 33)
+                                                    .addComponent(JT_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(JL_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(125, 125, 125))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(JL_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jRBcoll, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jRBindiv, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(177, 177, 177)))
+                                .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jBenregistrer)
+                                .addGap(208, 208, 208)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JL_tel_inscri)
-                    .addComponent(JT_Id_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JT_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JL_ID_inscri))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JL_mdp_inscri)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(JT_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(JL_adresse_inscri)
-                        .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JL_nom_inscri)
-                    .addComponent(JT_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JB_Ajout_Photo_inscri)
-                    .addComponent(JL_ajout_photo))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JL_tel_inscri)
+                            .addComponent(JT_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JT_NBplace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JL_ID_inscri))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(JL_mdp_inscri)
+                                .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(JL_adresse_inscri)
+                                .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JL_prenom_inscri)
-                            .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton1))
-                        .addGap(9, 9, 9)
-                        .addComponent(jRadioButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel2)))
-                .addGap(54, 54, 54)
+                            .addComponent(JL_nom_inscri)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(JtextHeure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JtextMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(45, 45, 45)
+                        .addComponent(JL_prenom_inscri)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jRBindiv)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBcoll)))
+                .addGap(121, 121, 121)
                 .addComponent(jBenregistrer)
                 .addGap(17, 17, 17))
         );
@@ -241,37 +248,143 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JT_adresse_inscriActionPerformed
 
-    private void JT_prenom_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_prenom_inscriActionPerformed
+    private void JT_NBplaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_NBplaceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JT_prenom_inscriActionPerformed
+    }//GEN-LAST:event_JT_NBplaceActionPerformed
 
-    private void JT_tel_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_tel_inscriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_tel_inscriActionPerformed
-
+    class MoisInvalideException extends Exception {
+    public MoisInvalideException(String message) {
+        super(message);
+    }
+    }
+    
+    class JourInvalideException extends Exception {
+    public JourInvalideException(String message) {
+        super(message);
+    }}
+    
+    
     private void jBenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBenregistrerActionPerformed
-        // TODO add your handling code here:
+        
+        String activite = JT_Activite.getText();
+        
+        try {
+            
+        int j, m, a;
+        j = Integer.parseInt(JtextJour.getText().trim());
+        m = Integer.parseInt(JtextMois.getText().trim());
+        a = Integer.parseInt(JtextAnnee.getText().trim());
+        
+        System.out.println("Jour: " + j + " Mois: " + m + " Annee: " + a);
+        // Vérification du mois
+        if (m <= 0) {
+        throw new MoisInvalideException("Le mois doit être > 0");
+        }
+        if (m < 1 || m > 12) {
+            throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
+        }
+        
+        // Vérification du jours
+        if (j<1 || j >30 ) {
+            throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
+        }
+
+        
+        // 3. Création de la date
+        // Note: LocalDate.of lancera sa propre exception si tu mets 31 juin par exemple
+        LocalDate date = LocalDate.of(a, m, j);
+        
+        
+        TypeCours type = null;
+        
+        
+        // Selection du type d'abonnement
+        if (jRBindiv.isSelected()) {
+            type = TypeCours.Individuel;
+            JT_NBplace.setText("1");
+        } else if (jRBcoll.isSelected()) {
+            type = TypeCours.Collectif;
+        } else {
+            JOptionPane.showMessageDialog(this, "Veuillez choisir un type d'abonnement"); // inutile a present car saisie par defaut en place 
+            return;
+        }
+        
+        
+        
+    
+    
+            int h, n;
+            h = Integer.parseInt(JtextHeure.getText().trim());
+            n = Integer.parseInt(JtextMinute.getText().trim());
+        
+            System.out.println("Heure: " + j + " Minute: " + m);
+            
+            // Vérification du mois
+            if (h < 0) {
+            throw new MoisInvalideException("L'heure doit être > 0");
+            }
+            if (h < 0 || h > 23) {
+                throw new MoisInvalideException("L'heure doit être compris entre 00 et 23");
+            }
+            if (n < 0) {
+            throw new MoisInvalideException("La minute doit être > 0");
+            }
+            // Vérification du jours
+            if (n<0 || n >59 ) {
+                throw new JourInvalideException("La minute doit être compris entre 00 et 59");
+            }
+    
+            LocalTime heure = LocalTime.of(h,n);
+            
+            
+            int nbInscrit = Integer.parseInt(JT_NBplace.getText().trim());
+            
+        }
+        catch (NumberFormatException ex) {
+            String message = "Le format n'est pas bon !";
+            JOptionPane.showMessageDialog(this, message); 
+        }
+        catch (MoisInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        catch (JourInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        catch (DateTimeException ex) {
+        // Capture les erreurs comme le 31 février ou le 31 avril
+        JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
+    }
+        
+        
     }//GEN-LAST:event_jBenregistrerActionPerformed
 
-    private void JT_Id_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_Id_inscriActionPerformed
+    private void JT_ActiviteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_ActiviteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JT_Id_inscriActionPerformed
+    }//GEN-LAST:event_JT_ActiviteActionPerformed
 
-    private void JT_nom_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_nom_inscriActionPerformed
+    private void jRBindivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBindivActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JT_nom_inscriActionPerformed
+    }//GEN-LAST:event_jRBindivActionPerformed
 
-    private void JT_mdp_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_mdp_inscriActionPerformed
+    private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JT_mdp_inscriActionPerformed
+    }//GEN-LAST:event_JtextJourActionPerformed
 
-    private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
+    private void JtextMoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextMoisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JB_Ajout_Photo_inscriActionPerformed
+    }//GEN-LAST:event_JtextMoisActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void JtextAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextAnneeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_JtextAnneeActionPerformed
+
+    private void JtextHeureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextHeureActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextHeureActionPerformed
+
+    private void JtextMinuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextMinuteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextMinuteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,25 +424,24 @@ public class FAdminGestionClient extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JB_Ajout_Photo_inscri;
     private javax.swing.JLabel JL_ID_inscri;
     private javax.swing.JLabel JL_adresse_inscri;
-    private javax.swing.JLabel JL_ajout_photo;
     private javax.swing.JLabel JL_mdp_inscri;
     private javax.swing.JLabel JL_nom_inscri;
     private javax.swing.JLabel JL_prenom_inscri;
     private javax.swing.JLabel JL_tel_inscri;
-    private javax.swing.JTextField JT_Id_inscri;
+    private javax.swing.JTextField JT_Activite;
+    private javax.swing.JTextField JT_NBplace;
     private javax.swing.JTextField JT_adresse_inscri;
-    private javax.swing.JTextField JT_mdp_inscri;
-    private javax.swing.JTextField JT_nom_inscri;
-    private javax.swing.JTextField JT_prenom_inscri;
-    private javax.swing.JTextField JT_tel_inscri;
-    private javax.swing.ButtonGroup buttonGroupAbonnement;
+    private javax.swing.JTextField JtextAnnee;
+    private javax.swing.JTextField JtextHeure;
+    private javax.swing.JTextField JtextJour;
+    private javax.swing.JTextField JtextMinute;
+    private javax.swing.JTextField JtextMois;
+    private javax.swing.ButtonGroup buttonGroupeTypeCours;
     private javax.swing.JButton jBenregistrer;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRBcoll;
+    private javax.swing.JRadioButton jRBindiv;
     // End of variables declaration//GEN-END:variables
 }

@@ -243,7 +243,7 @@ public class FActivite extends javax.swing.JDialog {
             }
         });
 
-        JtextAnnee.setText("aa");
+        JtextAnnee.setText("aaaa");
         JtextAnnee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JtextAnneeActionPerformed(evt);
