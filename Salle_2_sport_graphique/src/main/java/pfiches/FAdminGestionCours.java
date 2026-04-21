@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import ptraitements.Admin;
 import ptraitements.Cours;
-import ptraitements.Salle;
+import ptraitements.*;
 
 /**
  *
@@ -144,16 +144,13 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         jLabelsamedi.setText(textes);
         jLabeldimanche.setText(texted);
         
-        // Choisir la bonne liste selon si on regarde dans le futur ou le passé
-        ArrayList<Cours> listeCours;
-        if (!date.isBefore(adj)) {
-            listeCours = maSalle.getCoursFuturs();
-        } else {
-            listeCours = maSalle.getListeCoursPassees();
-        }
+        // On parcourt LES DEUX listes à chaque fois
+        ArrayList<Cours> tousLesCours = new ArrayList<>();
+        tousLesCours.addAll(maSalle.getCoursFuturs());
+        tousLesCours.addAll(maSalle.getListeCoursPassees());
 
         // Parcours avec filtre par semaine
-        for (Cours c : listeCours) {
+        for (Cours c : tousLesCours) {
             LocalDate d = c.getDatecour();
 
         // On n'affiche que les cours de la semaine affichée
@@ -780,7 +777,19 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     }//GEN-LAST:event_jButonRechercherActionPerformed
 
     private void jBSuppCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSuppCoursActionPerformed
-        // TODO add your handling code here:
+        
+        javax.swing.DefaultListModel<String> modelSemaine = new javax.swing.DefaultListModel<>();
+
+        jListLundi.getSelectionModel();
+        jListMardi.getSelectionModel();
+        jListMercredi.getSelectionModel();
+        jListJeudi.getSelectionModel();
+        jListVendredi.getSelectionModel();
+        jListSamedi.getSelectionModel();
+        jListDimanche.getSelectionModel();
+        
+        
+        
     }//GEN-LAST:event_jBSuppCoursActionPerformed
 
     private void jBCreeCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCreeCoursActionPerformed
