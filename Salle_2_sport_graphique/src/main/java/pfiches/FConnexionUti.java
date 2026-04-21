@@ -47,9 +47,9 @@ public class FConnexionUti extends javax.swing.JFrame {
 
 
         
-        fichAdminCreationCours = new FAdminCreationCours(this, false);
-        fichFAdminGestionClient = new FAdminGestionClient(this, false);
         fichAdminGestionCours = new FAdminGestionCours(this, false);
+        fichFAdminGestionClient = new FAdminGestionClient(this, false);
+        fichAdminCreationCours = new FAdminCreationCours(this, false);
         fichAdminStatsCours = new FAdminStatsCours(this, false);
         fichModifInfoClient = new FModifInfoClient(this, false);
         fichprofilClient = new FprofilClient(this, false);
@@ -66,6 +66,8 @@ public class FConnexionUti extends javax.swing.JFrame {
     public FprofilClient getFicheClientProfile(){return this.fichprofilClient;}
     public FModifInfoClient getFichClientModifInfo(){return this.fichModifInfoClient;}
     public FActivite getFicheActivite() { return this.fichActivite; }
+    public FAdminGestionCours getFicheAdminGestionCours() { return this.fichAdminGestionCours; }
+    public FAdminCreationCours getFicheAdminCreationCours() { return this.fichAdminCreationCours; }
     
     public void clearChamps(){JF_ID.setText(""); JF_mdp.setText("");}
     

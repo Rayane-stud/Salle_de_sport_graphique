@@ -85,6 +85,15 @@ public class FActivite extends javax.swing.JDialog {
         // Sécurité : on ne fait rien si maSalle n'est pas encore initialisée, car ca a planté à cuase de ca
         if (maSalle == null) return;
         
+        // Vider les modèles avant de les reremplir
+        modelLundi.clear();
+        modelMardi.clear();
+        modelMercredi.clear();
+        modelJeudi.clear();
+        modelVendredi.clear();
+        modelSamedi.clear();
+        modelDimanche.clear();
+        
         
         LocalDate adj = LocalDate.now();
 
@@ -194,7 +203,7 @@ public class FActivite extends javax.swing.JDialog {
     public void envoyerSalleClientVersActivite(Salle maSalle, Client client){
         this.maSalle = maSalle;
         this.Client = client;
-        initialiserAffichage(LocalDate.now()); // ← ici maSalle est prête 
+        initialiserAffichage(LocalDate.now()); //ici maSalle est prête 
     }
     
     /**

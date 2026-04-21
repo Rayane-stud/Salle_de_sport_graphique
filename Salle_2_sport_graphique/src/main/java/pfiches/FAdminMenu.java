@@ -15,7 +15,11 @@ public class FAdminMenu extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdminMenu.class.getName());
     private Salle maSalle;
     private Admin lAdmin;
+    
+    private FAdminGestionClient fichFAdminGestionClient;
+    private FAdminGestionCours fichAdminGestionCours;
 
+    
     /**
      * Creates new form FAdmin
      */
@@ -58,7 +62,7 @@ public class FAdminMenu extends javax.swing.JDialog {
         jBRetourVersConnex = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBGestionCours = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         LabelDeTest = new javax.swing.JLabel();
@@ -108,10 +112,10 @@ public class FAdminMenu extends javax.swing.JDialog {
 
         jButton1.setText("Gestion Client");
 
-        jButton2.setText("Gestion Cours");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBGestionCours.setText("Gestion Cours");
+        jBGestionCours.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBGestionCoursActionPerformed(evt);
             }
         });
 
@@ -130,7 +134,7 @@ public class FAdminMenu extends javax.swing.JDialog {
                 .addGap(12, 12, 12)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBGestionCours, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -141,7 +145,7 @@ public class FAdminMenu extends javax.swing.JDialog {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBGestionCours, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -195,9 +199,12 @@ public class FAdminMenu extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jBGestionCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGestionCoursActionPerformed
+        FAdminGestionCours fiche = ((FConnexionUti) getOwner()).getFicheAdminGestionCours();
+        fiche.envoyerMenuAdminVersGestionCours(maSalle, lAdmin);
+        this.setVisible(false);
+        fiche.setVisible(true);
+    }//GEN-LAST:event_jBGestionCoursActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -252,10 +259,10 @@ public class FAdminMenu extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelDeTest;
+    private javax.swing.JButton jBGestionCours;
     private javax.swing.JButton jBRetourVersConnex;
     private javax.swing.JButton jB_MenuAdmin;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
