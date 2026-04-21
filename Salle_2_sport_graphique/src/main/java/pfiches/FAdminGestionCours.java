@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import ptraitements.Admin;
 import ptraitements.Cours;
@@ -33,13 +34,13 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     
     
     // déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, c'est pour ca que ca plantait trouvé par ia
-    private javax.swing.DefaultListModel<String> modelLundi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelMardi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelMercredi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelJeudi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelVendredi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelSamedi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelDimanche = new javax.swing.DefaultListModel<>();
+    private DefaultListModel<Cours> modelLundi = new DefaultListModel<>();
+    private DefaultListModel<String> modelMardi = new DefaultListModel<>();
+    private DefaultListModel<String> modelMercredi = new DefaultListModel<>();
+    private DefaultListModel<String> modelJeudi = new DefaultListModel<>();
+    private DefaultListModel<String> modelVendredi = new DefaultListModel<>();
+    private DefaultListModel<String> modelSamedi = new DefaultListModel<>();
+    private DefaultListModel<String> modelDimanche = new DefaultListModel<>();
 
     private FAdminCreationCours fichCreaCours;
     
