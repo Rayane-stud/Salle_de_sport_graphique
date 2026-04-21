@@ -30,6 +30,15 @@ public class FActivite extends javax.swing.JDialog {
     
     private Salle maSalle;
     private Client Client;
+    // déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, c'est pour ca que ca plantait trouvé par ia
+    private javax.swing.DefaultListModel<String> modelLundi = new javax.swing.DefaultListModel<>();
+    private javax.swing.DefaultListModel<String> modelMardi = new javax.swing.DefaultListModel<>();
+    private javax.swing.DefaultListModel<String> modelMercredi = new javax.swing.DefaultListModel<>();
+    private javax.swing.DefaultListModel<String> modelJeudi = new javax.swing.DefaultListModel<>();
+    private javax.swing.DefaultListModel<String> modelVendredi = new javax.swing.DefaultListModel<>();
+    private javax.swing.DefaultListModel<String> modelSamedi = new javax.swing.DefaultListModel<>();
+    private javax.swing.DefaultListModel<String> modelDimanche = new javax.swing.DefaultListModel<>();
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FActivite.class.getName());
 
@@ -39,15 +48,43 @@ public class FActivite extends javax.swing.JDialog {
     public FActivite(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        // Taille fixe de la fenêtre
+        this.setSize(900, 450); // largeur, hauteur
+        this.setResizable(false); // empêche le redimensionnement
+        this.setLocationRelativeTo(null); // centre la fenêtre      
         
-        LocalDate adj = LocalDate.now();
-        // initialiserAffichage(adj); // WOAW CETTE LIGNE FAIS TT PLANTER
+        //Liaison du model à la JList
+        jListLundi.setModel(modelLundi);
+        jListMardi.setModel(modelMardi);
+        jListMercredi.setModel(modelMercredi);
+        jListJeudi.setModel(modelJeudi);
+        jListVendredi.setModel(modelVendredi);
+        jListSamedi.setModel(modelSamedi);
+        jListDimanche.setModel(modelDimanche);
         
+        
+        //initialiserAffichage(LocalDate.now()); // On ne l'appelle pas ici car ma salle est null à ce moment, les données n'y sont pas arrivé
+        // Fixer la taille de chaque ScrollPane
+        int largeur = 100; // largeur de chaque colonne
+        int hauteur = 250; // hauteur de la liste
+    
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane5.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane6.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane7.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
      
         
     }
 
     public void initialiserAffichage( LocalDate date ){
+        
+        
+        // Sécurité : on ne fait rien si maSalle n'est pas encore initialisée, car ca a planté à cuase de ca
+        if (maSalle == null) return;
+        
         
         LocalDate adj = LocalDate.now();
 
@@ -90,25 +127,25 @@ public class FActivite extends javax.swing.JDialog {
             
                 switch(d.getDayOfWeek()){
                     case MONDAY -> {
-                        AjouterCoursItem(c,jListLundi);
+                        AjouterCoursItem(c,modelLundi);
                     }
                     case TUESDAY  -> {
-                        AjouterCoursItem(c,jListMardi);
+                        AjouterCoursItem(c,modelMardi);
                     }
                     case WEDNESDAY -> {
-                        AjouterCoursItem(c,jListMercredi);
+                        AjouterCoursItem(c,modelMercredi);
                     }
                     case THURSDAY -> {
-                        AjouterCoursItem(c,jListJeudi);
+                        AjouterCoursItem(c,modelJeudi);
                     }
                     case FRIDAY -> {
-                        AjouterCoursItem(c,jListVendredi);
+                        AjouterCoursItem(c,modelVendredi);
                     }
                     case SATURDAY -> {    
-                        AjouterCoursItem(c,jListSamedi);
+                        AjouterCoursItem(c,modelSamedi);
                     }
                     case SUNDAY -> {
-                        AjouterCoursItem(c,jListDimanche);
+                        AjouterCoursItem(c,modelDimanche);
                 }
             }
         } 
@@ -118,25 +155,25 @@ public class FActivite extends javax.swing.JDialog {
             
                 switch(d.getDayOfWeek()){
                     case MONDAY -> {
-                        AjouterCoursItem(c,jListLundi);
+                        AjouterCoursItem(c,modelLundi);
                     }
                     case TUESDAY  -> {
-                        AjouterCoursItem(c,jListMardi);
+                        AjouterCoursItem(c,modelMardi);
                     }
                     case WEDNESDAY -> {
-                        AjouterCoursItem(c,jListMercredi);
+                        AjouterCoursItem(c,modelMercredi);
                     }
                     case THURSDAY -> {
-                        AjouterCoursItem(c,jListJeudi);
+                        AjouterCoursItem(c,modelJeudi);
                     }
                     case FRIDAY -> {
-                        AjouterCoursItem(c,jListVendredi);
+                        AjouterCoursItem(c,modelVendredi);
                     }
                     case SATURDAY -> {    
-                        AjouterCoursItem(c,jListSamedi);
+                        AjouterCoursItem(c,modelSamedi);
                     }
                     case SUNDAY -> {
-                        AjouterCoursItem(c,jListDimanche);
+                        AjouterCoursItem(c,modelDimanche);
                     }
             
                 }       
@@ -147,17 +184,17 @@ public class FActivite extends javax.swing.JDialog {
     /**
      *
      * @param c
-     * @param j
+     * @param model
      */
-    public void AjouterCoursItem(Cours c, JList j){
-        String nom = c.getActivitecour() + " " + c.getHeurecour();
-        j.add(nom, j);
-    }    
-        
+    public void AjouterCoursItem(Cours c, javax.swing.DefaultListModel<String> model) {
+    String nom = c.getActivitecour() + " " + c.getHeurecour();
+    model.addElement(nom); // ← addElement sur le modèle
+    }        
    
     public void envoyerSalleClientVersActivite(Salle maSalle, Client client){
         this.maSalle = maSalle;
         this.Client = client;
+        initialiserAffichage(LocalDate.now()); // ← ici maSalle est prête 
     }
     
     /**
@@ -294,7 +331,7 @@ public class FActivite extends javax.swing.JDialog {
         jLabelmardi.setText("dd/mm");
 
         jListMardi.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -332,7 +369,7 @@ public class FActivite extends javax.swing.JDialog {
         jLabelmercredi.setText("dd/mm");
 
         jListMercredi.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -370,7 +407,7 @@ public class FActivite extends javax.swing.JDialog {
         jLabeljeudi.setText("dd/mm");
 
         jListJeudi.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -408,7 +445,7 @@ public class FActivite extends javax.swing.JDialog {
         jLabelvendredi.setText("dd/mm");
 
         jListVendredi.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -447,7 +484,7 @@ public class FActivite extends javax.swing.JDialog {
         jLabelsamedi.setText("dd/mm");
 
         jListSamedi.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -485,7 +522,7 @@ public class FActivite extends javax.swing.JDialog {
         jLabeldimanche.setText("dd/mm");
 
         jListDimanche.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -565,12 +602,16 @@ public class FActivite extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(47, 47, 47))
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JB_Sem_prec)
                         .addGap(18, 18, 18)
@@ -580,14 +621,10 @@ public class FActivite extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JbutonRechercher)
                         .addGap(58, 58, 58))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -604,7 +641,7 @@ public class FActivite extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

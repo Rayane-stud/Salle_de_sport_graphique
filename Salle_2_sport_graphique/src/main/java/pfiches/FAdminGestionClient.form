@@ -125,12 +125,12 @@
                           </Group>
                       </Group>
                       <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="JL_nom_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="JtextHeure" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="JtextMinute" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="JL_nom_inscri" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="JL_prenom_inscri" min="-2" max="-2" attributes="0"/>

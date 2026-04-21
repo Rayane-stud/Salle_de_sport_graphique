@@ -24,6 +24,7 @@ public class FClientMenu extends javax.swing.JDialog {
     private Client client;
     
     private FActivite fichActivite;
+    private FModifInfoClient fichModifInfoClient;
         
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FClientMenu.class.getName());
 
@@ -301,6 +302,7 @@ public class FClientMenu extends javax.swing.JDialog {
     }//GEN-LAST:event_JB_info1ActionPerformed
 
     private void JB_ActiviteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ActiviteActionPerformed
+        FActivite fichActivite = ((FConnexionUti) getOwner()).getFicheActivite();
         fichActivite.envoyerSalleClientVersActivite(maSalle,client);
         this.setVisible(false); 
         fichActivite.setVisible(true);

@@ -65,6 +65,7 @@ public class FConnexionUti extends javax.swing.JFrame {
     public FClientMenu getFicheClientMenu(){return this.fichClient;}
     public FprofilClient getFicheClientProfile(){return this.fichprofilClient;}
     public FModifInfoClient getFichClientModifInfo(){return this.fichModifInfoClient;}
+    public FActivite getFicheActivite() { return this.fichActivite; }
     
     public void clearChamps(){JF_ID.setText(""); JF_mdp.setText("");}
     
