@@ -1,0 +1,4 @@
+2;yoga;2026-12-12;12:01;Collectif;2
+3;danse;2026-04-22;12:01;Collectif;2
+4;yoga;2026-12-12;12:01;Collectif;1
+5;DANSE;2026-04-30;13:01;Collectif;3

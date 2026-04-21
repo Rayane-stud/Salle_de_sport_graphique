@@ -30,6 +30,7 @@ public class FAdminCreationCours extends javax.swing.JDialog {
     public FAdminCreationCours(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
     }
 
     /**
@@ -232,6 +233,18 @@ public class FAdminCreationCours extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void initialiserComposant(){
+        JT_Activite.setText("");
+        JtextJour.setText("dd");
+        JtextMois.setText("mm");
+        JtextAnnee.setText("aaaa");
+        JtextHeure.setText("hh");
+        JtextMinute.setText("mm");
+        JT_NBplace.setText("");
+        buttonGroupcOURS.clearSelection();
+    }
+    
+    
     private void jBenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBenregistrerActionPerformed
 
         String activite = JT_Activite.getText();
@@ -275,7 +288,7 @@ public class FAdminCreationCours extends javax.swing.JDialog {
             h = Integer.parseInt(JtextHeure.getText().trim());
             n = Integer.parseInt(JtextMinute.getText().trim());
 
-            System.out.println("Heure: " + j + " Minute: " + m);
+            System.out.println("Heure: " + j + " Minute: " + n);
 
             // Vérification de l'heure
             if (h < 0 || h > 23) {
@@ -301,6 +314,7 @@ public class FAdminCreationCours extends javax.swing.JDialog {
             maSalle.sauvegarderTout();
             this.setVisible(false);
             fiche.setVisible(true);
+            fiche.initialiserAffichage(date);
 
         }
         catch (NumberFormatException ex) {

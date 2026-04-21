@@ -288,7 +288,7 @@ public class FClientMenu extends javax.swing.JDialog {
     }//GEN-LAST:event_JB_histoActionPerformed
 
     private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed
-        // TODO add your handling code here:
+
         this.dispose();
         ((FConnexionUti)this.getOwner()).setVisible(true);
     }//GEN-LAST:event_jBRetourVersConnexActionPerformed

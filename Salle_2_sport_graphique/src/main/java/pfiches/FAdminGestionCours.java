@@ -15,6 +15,7 @@ import static java.time.DayOfWeek.WEDNESDAY;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import ptraitements.Admin;
 import ptraitements.Cours;
@@ -143,63 +144,31 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         jLabelsamedi.setText(textes);
         jLabeldimanche.setText(texted);
         
-        if(date.isAfter(adj)){
-            for(Cours c : maSalle.getCoursFuturs()){
-            LocalDate d = c.getDatecour();    
-            
-                switch(d.getDayOfWeek()){
-                    case MONDAY -> {
-                        AjouterCoursItem(c,modelLundi);
-                    }
-                    case TUESDAY  -> {
-                        AjouterCoursItem(c,modelMardi);
-                    }
-                    case WEDNESDAY -> {
-                        AjouterCoursItem(c,modelMercredi);
-                    }
-                    case THURSDAY -> {
-                        AjouterCoursItem(c,modelJeudi);
-                    }
-                    case FRIDAY -> {
-                        AjouterCoursItem(c,modelVendredi);
-                    }
-                    case SATURDAY -> {    
-                        AjouterCoursItem(c,modelSamedi);
-                    }
-                    case SUNDAY -> {
-                        AjouterCoursItem(c,modelDimanche);
-                }
-            }
-        } 
-    }else{
-            for(Cours c : maSalle.getListeCoursPassees()){
-            LocalDate d = c.getDatecour();    
-            
-                switch(d.getDayOfWeek()){
-                    case MONDAY -> {
-                        AjouterCoursItem(c,modelLundi);
-                    }
-                    case TUESDAY  -> {
-                        AjouterCoursItem(c,modelMardi);
-                    }
-                    case WEDNESDAY -> {
-                        AjouterCoursItem(c,modelMercredi);
-                    }
-                    case THURSDAY -> {
-                        AjouterCoursItem(c,modelJeudi);
-                    }
-                    case FRIDAY -> {
-                        AjouterCoursItem(c,modelVendredi);
-                    }
-                    case SATURDAY -> {    
-                        AjouterCoursItem(c,modelSamedi);
-                    }
-                    case SUNDAY -> {
-                        AjouterCoursItem(c,modelDimanche);
-                    }
-            
-                }       
-            }
+        // Choisir la bonne liste selon si on regarde dans le futur ou le passé
+        ArrayList<Cours> listeCours;
+        if (!date.isBefore(adj)) {
+            listeCours = maSalle.getCoursFuturs();
+        } else {
+            listeCours = maSalle.getListeCoursPassees();
+        }
+
+        // Parcours avec filtre par semaine
+        for (Cours c : listeCours) {
+            LocalDate d = c.getDatecour();
+
+        // On n'affiche que les cours de la semaine affichée
+        if (d.isBefore(lundi) || d.isAfter(dimanche)) continue;
+
+        switch (d.getDayOfWeek()) {
+            case MONDAY -> AjouterCoursItem(c, modelLundi);
+            case TUESDAY -> AjouterCoursItem(c, modelMardi);
+            case WEDNESDAY -> AjouterCoursItem(c, modelMercredi);
+            case THURSDAY -> AjouterCoursItem(c, modelJeudi);
+            case FRIDAY -> AjouterCoursItem(c, modelVendredi);
+            case SATURDAY -> AjouterCoursItem(c, modelSamedi);
+            case SUNDAY -> AjouterCoursItem(c, modelDimanche);
+        }
+    
         }
     }
     
@@ -221,6 +190,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         JB_Sem_prec = new javax.swing.JButton();
         JB_Sem_suiv = new javax.swing.JButton();
         JtextJour = new javax.swing.JTextField();
@@ -265,6 +235,9 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         jListDimanche = new javax.swing.JList<>();
         jBSuppCours = new javax.swing.JButton();
         jBCreeCours = new javax.swing.JButton();
+        jBretour = new javax.swing.JButton();
+
+        jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -630,6 +603,13 @@ public class FAdminGestionCours extends javax.swing.JDialog {
             }
         });
 
+        jBretour.setText("Retour");
+        jBretour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBretourActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -637,6 +617,13 @@ public class FAdminGestionCours extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBretour)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBSuppCours)
+                        .addGap(58, 58, 58)
+                        .addComponent(jBCreeCours)
+                        .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
@@ -653,12 +640,6 @@ public class FAdminGestionCours extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButonRechercher)
                         .addGap(61, 61, 61))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBSuppCours)
-                .addGap(58, 58, 58)
-                .addComponent(jBCreeCours)
-                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -674,10 +655,15 @@ public class FAdminGestionCours extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBCreeCours)
-                    .addComponent(jBSuppCours))
-                .addGap(28, 28, 28))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBCreeCours)
+                            .addComponent(jBSuppCours))
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jBretour)
+                        .addGap(17, 17, 17))))
         );
 
         pack();
@@ -802,7 +788,13 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         fiche.envoyerMenuAdminVersCreationCoursadmin(maSalle, lAdmin);
         this.setVisible(false);
         fiche.setVisible(true);
+        fiche.initialiserComposant();
     }//GEN-LAST:event_jBCreeCoursActionPerformed
+
+    private void jBretourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBretourActionPerformed
+        this.setVisible(false);
+        ((FConnexionUti)this.getOwner()).setVisible(true);
+    }//GEN-LAST:event_jBretourActionPerformed
 
     /**
      * @param args the command line arguments
@@ -849,6 +841,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     private javax.swing.JTextField JtextMois;
     private javax.swing.JButton jBCreeCours;
     private javax.swing.JButton jBSuppCours;
+    private javax.swing.JButton jBretour;
     private javax.swing.JToggleButton jButonRechercher;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -886,5 +879,6 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

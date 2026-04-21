@@ -300,7 +300,7 @@ public class Salle {
         Cours c = new Cours(activite, date, heure, typeCours, nombrePlaces, prochainIdCours);
         prochainIdCours++; // incrémentation pour le prochain cours
         LocalDate adj = LocalDate.now();
-        if(date.isAfter(adj)){
+        if(date.isAfter(adj)|| date.isEqual(adj)){ //adj ou demain
             getCoursFuturs().add(c);
         }
         else{
@@ -510,6 +510,7 @@ public class Salle {
             }
             
             writer.close();
+            System.out.println("Sauvegarde dans : " + new java.io.File("clients.txt").getAbsolutePath());
             
         } catch (Exception e) {
             System.out.println("Erreur sauvegarde clients");
@@ -576,7 +577,7 @@ public class Salle {
                     );
                 }
             }
-            
+            System.out.println("Sauvegarde dans : " + new java.io.File("cours.txt").getAbsolutePath());
         } catch (Exception e) {
             System.out.println("Erreur sauvegarde cours");
         }
