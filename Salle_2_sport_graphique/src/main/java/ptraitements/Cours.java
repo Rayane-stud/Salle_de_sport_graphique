@@ -79,6 +79,10 @@ public class Cours implements Comparable<Cours> {
         return autre.getNbreInscrits() - this.getNbreInscrits(); // tri décroissant : grand → petit
     }
     
+    @Override
+    public String toString() {
+        return getActivitecour() + " " + getHeurecour();
+    }
     
     // _________________________________________________ Getters :
 

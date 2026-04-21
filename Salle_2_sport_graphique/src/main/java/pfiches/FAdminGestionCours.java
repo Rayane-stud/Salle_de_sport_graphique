@@ -35,13 +35,24 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     
     // déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, c'est pour ca que ca plantait trouvé par ia
     private DefaultListModel<Cours> modelLundi = new DefaultListModel<>();
-    private DefaultListModel<String> modelMardi = new DefaultListModel<>();
-    private DefaultListModel<String> modelMercredi = new DefaultListModel<>();
-    private DefaultListModel<String> modelJeudi = new DefaultListModel<>();
-    private DefaultListModel<String> modelVendredi = new DefaultListModel<>();
-    private DefaultListModel<String> modelSamedi = new DefaultListModel<>();
-    private DefaultListModel<String> modelDimanche = new DefaultListModel<>();
-
+    private DefaultListModel<Cours> modelMardi = new DefaultListModel<>();
+    private DefaultListModel<Cours> modelMercredi = new DefaultListModel<>();
+    private DefaultListModel<Cours> modelJeudi = new DefaultListModel<>();
+    private DefaultListModel<Cours> modelVendredi = new DefaultListModel<>();
+    private DefaultListModel<Cours> modelSamedi = new DefaultListModel<>();
+    private DefaultListModel<Cours> modelDimanche = new DefaultListModel<>();
+    
+    
+    //liste parrallele pour la suppression de cours
+    private ArrayList<Cours> listeLundi = new ArrayList<>();
+    private ArrayList<Cours> listeMardi = new ArrayList<>();
+    private ArrayList<Cours> listeMercredi = new ArrayList<>();
+    private ArrayList<Cours> listeJeudi = new ArrayList<>();
+    private ArrayList<Cours> listeVendredi = new ArrayList<>();
+    private ArrayList<Cours> listeSamedi = new ArrayList<>();
+    private ArrayList<Cours> listeDimanche = new ArrayList<>();
+    
+    
     private FAdminCreationCours fichCreaCours;
     
     /**
@@ -95,6 +106,15 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         initialiserAffichage( LocalDate.now());
     }
     public void initialiserAffichage( LocalDate date ){
+        
+        
+        listeLundi.clear();
+        listeMardi.clear();
+        listeMercredi.clear();
+        listeJeudi.clear();
+        listeVendredi.clear();
+        listeSamedi.clear();
+        listeDimanche.clear();
         
         
         // Sécurité : on ne fait rien si maSalle n'est pas encore initialisée, car ca a planté à cuase de ca
@@ -157,16 +177,38 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         // On n'affiche que les cours de la semaine affichée
         if (d.isBefore(lundi) || d.isAfter(dimanche)) continue;
 
+        String affichage = c.getActivitecour() + " - " + c.getHeurecour();
+
         switch (d.getDayOfWeek()) {
-            case MONDAY -> AjouterCoursItem(c, modelLundi);
-            case TUESDAY -> AjouterCoursItem(c, modelMardi);
-            case WEDNESDAY -> AjouterCoursItem(c, modelMercredi);
-            case THURSDAY -> AjouterCoursItem(c, modelJeudi);
-            case FRIDAY -> AjouterCoursItem(c, modelVendredi);
-            case SATURDAY -> AjouterCoursItem(c, modelSamedi);
-            case SUNDAY -> AjouterCoursItem(c, modelDimanche);
-        }
-    
+            case MONDAY -> {
+                modelLundi.add(modelLundi.getSize(), c);
+                listeLundi.add(c);
+            }
+            case TUESDAY -> {
+                modelMardi.add(modelLundi.getSize(), c);
+                listeMardi.add(c);
+            }
+            case WEDNESDAY -> {
+                modelMercredi.add(modelLundi.getSize(), c);
+                listeMercredi.add(c);
+            }
+            case THURSDAY -> {
+                modelJeudi.add(modelLundi.getSize(), c);
+                listeJeudi.add(c);
+            }
+            case FRIDAY -> {
+                modelVendredi.add(modelLundi.getSize(), c);
+                listeVendredi.add(c);
+            }
+            case SATURDAY -> {
+                modelSamedi.add(modelLundi.getSize(), c);
+                listeSamedi.add(c);
+            }
+            case SUNDAY -> {
+                modelDimanche.add(modelLundi.getSize(), c);
+                listeDimanche.add(c);
+    }
+}    
         }
     }
     
@@ -175,9 +217,8 @@ public class FAdminGestionCours extends javax.swing.JDialog {
      * @param c
      * @param model
      */
-    public void AjouterCoursItem(Cours c, javax.swing.DefaultListModel<String> model) {
-    String nom = c.getActivitecour() + " " + c.getHeurecour();
-    model.addElement(nom); // ← addElement sur le modèle
+    public void AjouterCoursItem(Cours c, DefaultListModel<Cours> model) {
+        model.add(model.size(), c);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -778,16 +819,47 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     }//GEN-LAST:event_jButonRechercherActionPerformed
 
     private void jBSuppCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSuppCoursActionPerformed
-        
-        javax.swing.DefaultListModel<String> modelSemaine = new javax.swing.DefaultListModel<>();
+    
+    Cours selection = null;
 
-        jListLundi.getSelectionModel();
-        jListMardi.getSelectionModel();
-        jListMercredi.getSelectionModel();
-        jListJeudi.getSelectionModel();
-        jListVendredi.getSelectionModel();
-        jListSamedi.getSelectionModel();
-        jListDimanche.getSelectionModel();
+    if (!jListLundi.isSelectionEmpty()) {
+        selection = listeLundi.get(jListLundi.getSelectedIndex());
+    } 
+    else if (!jListMardi.isSelectionEmpty()) {
+        selection = listeMardi.get(jListMardi.getSelectedIndex());
+    } 
+    else if (!jListMercredi.isSelectionEmpty()) {
+        selection = listeMercredi.get(jListMercredi.getSelectedIndex());
+    } 
+    else if (!jListJeudi.isSelectionEmpty()) {
+        selection = listeJeudi.get(jListJeudi.getSelectedIndex());
+    } 
+    else if (!jListVendredi.isSelectionEmpty()) {
+        selection = listeVendredi.get(jListVendredi.getSelectedIndex());
+    } 
+    else if (!jListSamedi.isSelectionEmpty()) {
+        selection = listeSamedi.get(jListSamedi.getSelectedIndex());
+    } 
+    else if (!jListDimanche.isSelectionEmpty()) {
+        selection = listeDimanche.get(jListDimanche.getSelectedIndex());
+    }
+
+    if (selection == null) {
+        JOptionPane.showMessageDialog(this, "Veuillez sélectionner un cours.");
+        return;
+    }
+
+    boolean supprime = maSalle.supprimerCours(selection);
+
+    if (supprime) {
+        maSalle.sauvegarderTout();
+        JOptionPane.showMessageDialog(this, "Cours supprimé !");
+        initialiserAffichage(LocalDate.now());
+    } else {
+        JOptionPane.showMessageDialog(this, "Impossible : des clients sont inscrits.");
+    }
+
+
         
         
         
