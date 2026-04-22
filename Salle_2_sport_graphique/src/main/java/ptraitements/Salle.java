@@ -453,6 +453,16 @@ public class Salle {
     }
     
     /**
+     * Retourne la liste des cours futurs.
+     * 
+     * @return la liste des cours passées
+     */
+    public ArrayList<Cours> getCoursPassees() {
+        return listeCoursPassees;
+    }
+    
+    
+    /**
      * Retourne la liste de toutes les activités distinctes proposées dans la salle.
      * Parcourt à la fois les cours futurs et passés pour être exhaustif.
      * Evite les doublons grâce au test contains() avant chaque ajout.

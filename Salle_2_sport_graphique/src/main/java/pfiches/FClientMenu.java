@@ -25,6 +25,8 @@ public class FClientMenu extends javax.swing.JDialog {
     
     private FActivite fichActivite;
     private FModifInfoClient fichModifInfoClient;
+    private FHistoriqueCoursClient fichHistorique;
+
         
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FClientMenu.class.getName());
 
@@ -284,7 +286,10 @@ public class FClientMenu extends javax.swing.JDialog {
     }//GEN-LAST:event_JB_infoActionPerformed
 
     private void JB_histoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_histoActionPerformed
-        // TODO add your handling code here:
+       FHistoriqueCoursClient fiche = ((FConnexionUti) getOwner()).getFicheHistorique();
+        fiche.envoyerSalleClientVersHistorique(maSalle, client);
+        this.setVisible(false);
+        fiche.setVisible(true);
     }//GEN-LAST:event_JB_histoActionPerformed
 
     private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed
