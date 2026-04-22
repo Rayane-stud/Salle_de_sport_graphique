@@ -34,13 +34,13 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     
     
     // déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, c'est pour ca que ca plantait trouvé par ia
-    private DefaultListModel<Cours> modelLundi = new DefaultListModel<>();
-    private DefaultListModel<Cours> modelMardi = new DefaultListModel<>();
-    private DefaultListModel<Cours> modelMercredi = new DefaultListModel<>();
-    private DefaultListModel<Cours> modelJeudi = new DefaultListModel<>();
-    private DefaultListModel<Cours> modelVendredi = new DefaultListModel<>();
-    private DefaultListModel<Cours> modelSamedi = new DefaultListModel<>();
-    private DefaultListModel<Cours> modelDimanche = new DefaultListModel<>();
+    private DefaultListModel<String> modelLundi = new DefaultListModel<>();
+    private DefaultListModel<String> modelMardi = new DefaultListModel<>();
+    private DefaultListModel<String> modelMercredi = new DefaultListModel<>();
+    private DefaultListModel<String> modelJeudi = new DefaultListModel<>();
+    private DefaultListModel<String> modelVendredi = new DefaultListModel<>();
+    private DefaultListModel<String> modelSamedi = new DefaultListModel<>();
+    private DefaultListModel<String> modelDimanche = new DefaultListModel<>();
     
     
     //liste parrallele pour la suppression de cours
@@ -130,8 +130,6 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         modelSamedi.clear();
         modelDimanche.clear();
         
-        LocalDate adj = LocalDate.now();
-
         
         // Trouver le lundi de la même semaine
         LocalDate lundi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
@@ -181,34 +179,34 @@ public class FAdminGestionCours extends javax.swing.JDialog {
 
         switch (d.getDayOfWeek()) {
             case MONDAY -> {
-                modelLundi.add(modelLundi.getSize(), c);
+                modelLundi.addElement(affichage);
                 listeLundi.add(c);
-            }
+                }
             case TUESDAY -> {
-                modelMardi.add(modelLundi.getSize(), c);
+                modelMardi.addElement(affichage);
                 listeMardi.add(c);
             }
             case WEDNESDAY -> {
-                modelMercredi.add(modelLundi.getSize(), c);
+                modelMercredi.addElement(affichage);
                 listeMercredi.add(c);
             }
             case THURSDAY -> {
-                modelJeudi.add(modelLundi.getSize(), c);
+                modelJeudi.addElement(affichage);
                 listeJeudi.add(c);
             }
             case FRIDAY -> {
-                modelVendredi.add(modelLundi.getSize(), c);
-                listeVendredi.add(c);
+                modelVendredi.addElement(affichage);
+                 listeVendredi.add(c);
             }
             case SATURDAY -> {
-                modelSamedi.add(modelLundi.getSize(), c);
+                modelSamedi.addElement(affichage);
                 listeSamedi.add(c);
             }
             case SUNDAY -> {
-                modelDimanche.add(modelLundi.getSize(), c);
+                modelDimanche.addElement(affichage);
                 listeDimanche.add(c);
-    }
-}    
+            }
+            }    
         }
     }
     
@@ -875,7 +873,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
 
     private void jBretourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBretourActionPerformed
         this.setVisible(false);
-        ((FConnexionUti)this.getOwner()).setVisible(true);
+        ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
     }//GEN-LAST:event_jBretourActionPerformed
 
     /**

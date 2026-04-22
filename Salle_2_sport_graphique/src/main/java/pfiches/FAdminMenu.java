@@ -27,6 +27,8 @@ public class FAdminMenu extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
+        this.setLocationRelativeTo(null); // centre la fenêtre      
+        
         
         jPanel1.setOpaque(false);
         jPanel1.putClientProperty("FlatLaf.style", "arc: 25; background: #353535");

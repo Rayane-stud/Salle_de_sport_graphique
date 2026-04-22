@@ -24,6 +24,7 @@ public class FprofilClient extends javax.swing.JDialog {
     public FprofilClient(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null); // centre la fenêtre      
         fichModifInfoClient = ((FConnexionUti)this.getOwner()).getFichClientModifInfo();
     }
     

@@ -26,6 +26,8 @@ public class FModifInfoClient extends javax.swing.JDialog {
     public FModifInfoClient(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.setLocationRelativeTo(null); // centre la fenêtre      
     }
 
     /**

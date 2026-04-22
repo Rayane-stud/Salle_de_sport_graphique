@@ -30,6 +30,8 @@ public class FAdminCreationCours extends javax.swing.JDialog {
     public FAdminCreationCours(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.setLocationRelativeTo(null); // centre la fenêtre      
 
     }
 
@@ -59,6 +61,7 @@ public class FAdminCreationCours extends javax.swing.JDialog {
         JtextAnnee = new javax.swing.JTextField();
         JtextHeure = new javax.swing.JTextField();
         JtextMinute = new javax.swing.JTextField();
+        jBannuler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -140,6 +143,13 @@ public class FAdminCreationCours extends javax.swing.JDialog {
             }
         });
 
+        jBannuler.setText("Annuler");
+        jBannuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBannulerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,7 +190,9 @@ public class FAdminCreationCours extends javax.swing.JDialog {
                                         .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(327, 327, 327))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(JL_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jBannuler)
+                                    .addComponent(JL_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -227,7 +239,9 @@ public class FAdminCreationCours extends javax.swing.JDialog {
                             .addComponent(jBenregistrer))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRBcoll)))
-                .addGap(161, 161, 161))
+                .addGap(122, 122, 122)
+                .addComponent(jBannuler)
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -374,6 +388,11 @@ public class FAdminCreationCours extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JtextMinuteActionPerformed
 
+    private void jBannulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBannulerActionPerformed
+       this.setVisible(false);
+       ((FConnexionUti)this.getOwner()).getFicheAdminGestionCours().setVisible(true);
+    }//GEN-LAST:event_jBannulerActionPerformed
+
     
      class MoisInvalideException extends Exception {
     public MoisInvalideException(String message) {
@@ -439,6 +458,7 @@ public class FAdminCreationCours extends javax.swing.JDialog {
     private javax.swing.JTextField JtextMinute;
     private javax.swing.JTextField JtextMois;
     private javax.swing.ButtonGroup buttonGroupcOURS;
+    private javax.swing.JButton jBannuler;
     private javax.swing.JButton jBenregistrer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRBcoll;

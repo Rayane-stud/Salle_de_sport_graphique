@@ -18,6 +18,8 @@ public class FAdminStatsCours extends javax.swing.JDialog {
     public FAdminStatsCours(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.setLocationRelativeTo(null); // centre la fenêtre      
     }
 
     /**

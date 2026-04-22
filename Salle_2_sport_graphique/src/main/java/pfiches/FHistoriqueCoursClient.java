@@ -18,6 +18,8 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
     public FHistoriqueCoursClient(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.setLocationRelativeTo(null); // centre la fenêtre      
     }
 
     /**

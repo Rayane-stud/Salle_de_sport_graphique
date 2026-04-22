@@ -68,6 +68,7 @@ public class FConnexionUti extends javax.swing.JFrame {
     public FActivite getFicheActivite() { return this.fichActivite; }
     public FAdminGestionCours getFicheAdminGestionCours() { return this.fichAdminGestionCours; }
     public FAdminCreationCours getFicheAdminCreationCours() { return this.fichAdminCreationCours; }
+    public FAdminMenu getFicheAdminMenu(){return this.fichAdmin;}
     
     public void clearChamps(){JF_ID.setText(""); JF_mdp.setText("");}
     
