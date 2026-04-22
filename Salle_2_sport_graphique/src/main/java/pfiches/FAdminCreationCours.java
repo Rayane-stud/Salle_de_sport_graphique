@@ -97,6 +97,11 @@ public class FAdminCreationCours extends javax.swing.JDialog {
 
         buttonGroupcOURS.add(jRBcoll);
         jRBcoll.setText("Collectif");
+        jRBcoll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBcollActionPerformed(evt);
+            }
+        });
 
         JL_ID_inscri.setText("Activité");
 
@@ -255,6 +260,7 @@ public class FAdminCreationCours extends javax.swing.JDialog {
         JtextHeure.setText("hh");
         JtextMinute.setText("mm");
         JT_NBplace.setText("");
+        JT_NBplace.setEditable(true); // réactive le champ
         buttonGroupcOURS.clearSelection();
     }
     
@@ -290,7 +296,6 @@ public class FAdminCreationCours extends javax.swing.JDialog {
             // Selection du type d'abonnement
             if (jRBindiv.isSelected()) {
                 type = TypeCours.Individuel;
-                JT_NBplace.setText("1");
             } else if (jRBcoll.isSelected()) {
                 type = TypeCours.Collectif;
             } else {
@@ -318,8 +323,7 @@ public class FAdminCreationCours extends javax.swing.JDialog {
             int nbPlace = Integer.parseInt(JT_NBplace.getText().trim());
             
             if(jRBindiv.isSelected() && nbPlace != 1){
-                throw new MoisInvalideException("Si le cours est individuel, il faut mettre 1 dans le nombre de place"); //flemme de refaire une exceptions, il faudrait centraliser les exceptions enft
-
+                throw new NombreInvalideException("Si le cours est individuel, il faut mettre 1 dans le nombre de place");
             }
             
             maSalle.creerCours(activite, date, heure, type, nbPlace);
@@ -345,6 +349,9 @@ public class FAdminCreationCours extends javax.swing.JDialog {
             // Capture les erreurs comme le 31 février ou le 31 avril
             JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
         }
+        catch (NombreInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());}
+
 
     }//GEN-LAST:event_jBenregistrerActionPerformed
 
@@ -361,7 +368,8 @@ public class FAdminCreationCours extends javax.swing.JDialog {
     }//GEN-LAST:event_JT_ActiviteActionPerformed
 
     private void jRBindivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBindivActionPerformed
-        // TODO add your handling code here:
+        JT_NBplace.setText("1");
+        JT_NBplace.setEditable(false); // on bloque le champ pour ne pas mettre un autre chiffre
     }//GEN-LAST:event_jRBindivActionPerformed
 
     private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
@@ -393,6 +401,11 @@ public class FAdminCreationCours extends javax.swing.JDialog {
        ((FConnexionUti)this.getOwner()).getFicheAdminGestionCours().setVisible(true);
     }//GEN-LAST:event_jBannulerActionPerformed
 
+    private void jRBcollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBcollActionPerformed
+        JT_NBplace.setText("");
+        JT_NBplace.setEditable(true); // on débloque le champ
+    }//GEN-LAST:event_jRBcollActionPerformed
+
     
      class MoisInvalideException extends Exception {
     public MoisInvalideException(String message) {
@@ -402,6 +415,11 @@ public class FAdminCreationCours extends javax.swing.JDialog {
     
     class JourInvalideException extends Exception {
     public JourInvalideException(String message) {
+        super(message);
+    }}
+    
+    class NombreInvalideException extends Exception {
+    public NombreInvalideException(String message) {
         super(message);
     }}
     

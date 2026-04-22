@@ -200,6 +200,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Collectif"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRBcollActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="JL_ID_inscri">
       <Properties>

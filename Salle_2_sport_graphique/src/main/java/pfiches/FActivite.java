@@ -16,6 +16,8 @@ import static java.time.DayOfWeek.WEDNESDAY;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import ptraitements.Client;
@@ -30,14 +32,25 @@ public class FActivite extends javax.swing.JDialog {
     
     private Salle maSalle;
     private Client Client;
-    // déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, c'est pour ca que ca plantait trouvé par ia
-    private javax.swing.DefaultListModel<String> modelLundi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelMardi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelMercredi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelJeudi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelVendredi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelSamedi = new javax.swing.DefaultListModel<>();
-    private javax.swing.DefaultListModel<String> modelDimanche = new javax.swing.DefaultListModel<>();
+    
+// déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, c'est pour ca que ca plantait trouvé par ia
+    private DefaultListModel<String> modelLundi = new DefaultListModel<>();
+    private DefaultListModel<String> modelMardi = new DefaultListModel<>();
+    private DefaultListModel<String> modelMercredi = new DefaultListModel<>();
+    private DefaultListModel<String> modelJeudi = new DefaultListModel<>();
+    private DefaultListModel<String> modelVendredi = new DefaultListModel<>();
+    private DefaultListModel<String> modelSamedi = new DefaultListModel<>();
+    private DefaultListModel<String> modelDimanche = new DefaultListModel<>();
+    
+    
+    //liste parrallele pour la suppression de cours
+    private ArrayList<Cours> listeLundi = new ArrayList<>();
+    private ArrayList<Cours> listeMardi = new ArrayList<>();
+    private ArrayList<Cours> listeMercredi = new ArrayList<>();
+    private ArrayList<Cours> listeJeudi = new ArrayList<>();
+    private ArrayList<Cours> listeVendredi = new ArrayList<>();
+    private ArrayList<Cours> listeSamedi = new ArrayList<>();
+    private ArrayList<Cours> listeDimanche = new ArrayList<>();
     
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FActivite.class.getName());
@@ -49,7 +62,7 @@ public class FActivite extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         // Taille fixe de la fenêtre
-        this.setSize(900, 450); // largeur, hauteur
+        this.setSize(900, 550); // largeur, hauteur
         this.setResizable(false); // empêche le redimensionnement
         this.setLocationRelativeTo(null); // centre la fenêtre      
         
@@ -82,8 +95,18 @@ public class FActivite extends javax.swing.JDialog {
     public void initialiserAffichage( LocalDate date ){
         
         
+        listeLundi.clear();
+        listeMardi.clear();
+        listeMercredi.clear();
+        listeJeudi.clear();
+        listeVendredi.clear();
+        listeSamedi.clear();
+        listeDimanche.clear();
+        
+        
         // Sécurité : on ne fait rien si maSalle n'est pas encore initialisée, car ca a planté à cuase de ca
         if (maSalle == null) return;
+        
         
         // Vider les modèles avant de les reremplir
         modelLundi.clear();
@@ -94,9 +117,6 @@ public class FActivite extends javax.swing.JDialog {
         modelSamedi.clear();
         modelDimanche.clear();
         
-        
-        LocalDate adj = LocalDate.now();
-
         
         // Trouver le lundi de la même semaine
         LocalDate lundi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
@@ -130,66 +150,52 @@ public class FActivite extends javax.swing.JDialog {
         jLabelsamedi.setText(textes);
         jLabeldimanche.setText(texted);
         
-        if(date.isAfter(adj)){
-            for(Cours c : maSalle.getCoursFuturs()){
-            LocalDate d = c.getDatecour();    
-            
-                switch(d.getDayOfWeek()){
-                    case MONDAY -> {
-                        AjouterCoursItem(c,modelLundi);
-                    }
-                    case TUESDAY  -> {
-                        AjouterCoursItem(c,modelMardi);
-                    }
-                    case WEDNESDAY -> {
-                        AjouterCoursItem(c,modelMercredi);
-                    }
-                    case THURSDAY -> {
-                        AjouterCoursItem(c,modelJeudi);
-                    }
-                    case FRIDAY -> {
-                        AjouterCoursItem(c,modelVendredi);
-                    }
-                    case SATURDAY -> {    
-                        AjouterCoursItem(c,modelSamedi);
-                    }
-                    case SUNDAY -> {
-                        AjouterCoursItem(c,modelDimanche);
+        // On parcourt LES DEUX listes à chaque fois
+        ArrayList<Cours> tousLesCours = new ArrayList<>();
+        tousLesCours.addAll(maSalle.getCoursFuturs());
+        tousLesCours.addAll(maSalle.getListeCoursPassees());
+
+        // Parcours avec filtre par semaine
+        for (Cours c : tousLesCours) {
+            LocalDate d = c.getDatecour();
+
+        // On n'affiche que les cours de la semaine affichée
+        if (d.isBefore(lundi) || d.isAfter(dimanche)) continue;
+
+        String affichage = c.getActivitecour() + " - " + c.getHeurecour();
+
+        switch (d.getDayOfWeek()) {
+            case MONDAY -> {
+                modelLundi.addElement(affichage);
+                listeLundi.add(c);
                 }
+            case TUESDAY -> {
+                modelMardi.addElement(affichage);
+                listeMardi.add(c);
             }
-        } 
-    }else{
-            for(Cours c : maSalle.getListeCoursPassees()){
-            LocalDate d = c.getDatecour();    
-            
-                switch(d.getDayOfWeek()){
-                    case MONDAY -> {
-                        AjouterCoursItem(c,modelLundi);
-                    }
-                    case TUESDAY  -> {
-                        AjouterCoursItem(c,modelMardi);
-                    }
-                    case WEDNESDAY -> {
-                        AjouterCoursItem(c,modelMercredi);
-                    }
-                    case THURSDAY -> {
-                        AjouterCoursItem(c,modelJeudi);
-                    }
-                    case FRIDAY -> {
-                        AjouterCoursItem(c,modelVendredi);
-                    }
-                    case SATURDAY -> {    
-                        AjouterCoursItem(c,modelSamedi);
-                    }
-                    case SUNDAY -> {
-                        AjouterCoursItem(c,modelDimanche);
-                    }
-            
-                }       
+            case WEDNESDAY -> {
+                modelMercredi.addElement(affichage);
+                listeMercredi.add(c);
             }
+            case THURSDAY -> {
+                modelJeudi.addElement(affichage);
+                listeJeudi.add(c);
+            }
+            case FRIDAY -> {
+                modelVendredi.addElement(affichage);
+                 listeVendredi.add(c);
+            }
+            case SATURDAY -> {
+                modelSamedi.addElement(affichage);
+                listeSamedi.add(c);
+            }
+            case SUNDAY -> {
+                modelDimanche.addElement(affichage);
+                listeDimanche.add(c);
+            }
+            }    
         }
     }
-    
     /**
      *
      * @param c
@@ -259,6 +265,7 @@ public class FActivite extends javax.swing.JDialog {
         jListDimanche = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         JbutonRechercher = new javax.swing.JButton();
+        jBretour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -599,6 +606,11 @@ public class FActivite extends javax.swing.JDialog {
         );
 
         jButton1.setText("S'inscrire");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         JbutonRechercher.setText("Rechercher");
         JbutonRechercher.addActionListener(new java.awt.event.ActionListener() {
@@ -607,12 +619,21 @@ public class FActivite extends javax.swing.JDialog {
             }
         });
 
+        jBretour.setText("Retour");
+        jBretour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBretourActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
+                .addComponent(jBretour)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(47, 47, 47))
             .addGroup(layout.createSequentialGroup()
@@ -648,9 +669,15 @@ public class FActivite extends javax.swing.JDialog {
                     .addComponent(JbutonRechercher))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addContainerGap(18, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBretour)
+                        .addContainerGap())))
         );
 
         pack();
@@ -741,6 +768,70 @@ public class FActivite extends javax.swing.JDialog {
                 
     }//GEN-LAST:event_JbutonRechercherActionPerformed
 
+    private void jBretourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBretourActionPerformed
+        this.setVisible(false);
+        ((FConnexionUti)this.getOwner()).getFicheClientMenu().setVisible(true);
+    }//GEN-LAST:event_jBretourActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Cours selection = null;
+
+    if (!jListLundi.isSelectionEmpty()) {
+        selection = listeLundi.get(jListLundi.getSelectedIndex());
+    } 
+    else if (!jListMardi.isSelectionEmpty()) {
+        selection = listeMardi.get(jListMardi.getSelectedIndex());
+    } 
+    else if (!jListMercredi.isSelectionEmpty()) {
+        selection = listeMercredi.get(jListMercredi.getSelectedIndex());
+    } 
+    else if (!jListJeudi.isSelectionEmpty()) {
+        selection = listeJeudi.get(jListJeudi.getSelectedIndex());
+    } 
+    else if (!jListVendredi.isSelectionEmpty()) {
+        selection = listeVendredi.get(jListVendredi.getSelectedIndex());
+    } 
+    else if (!jListSamedi.isSelectionEmpty()) {
+        selection = listeSamedi.get(jListSamedi.getSelectedIndex());
+    } 
+    else if (!jListDimanche.isSelectionEmpty()) {
+        selection = listeDimanche.get(jListDimanche.getSelectedIndex());
+    }
+
+    if (selection == null) {
+        JOptionPane.showMessageDialog(this, "Veuillez sélectionner un cours.");
+        return;
+    }
+
+    int supprime = maSalle.sInscrireACours(Client, selection);
+
+    switch (supprime) {
+        
+        case 3 -> {
+        maSalle.sauvegarderTout();
+        JOptionPane.showMessageDialog(this, "Inscrit au cours!");
+        initialiserAffichage(LocalDate.now());}
+        
+        case 1 -> {
+        JOptionPane.showMessageDialog(this, "Impossible : votre abonnement est inactif.");
+        }
+        
+        case 2 -> {
+        JOptionPane.showMessageDialog(this, "Impossible : il n'y a plus de place.");
+        }
+        
+        case 0 -> {
+        JOptionPane.showMessageDialog(this, "Impossible : vous êtes déjà inscrit");
+        }
+        
+        case 4 -> {
+        JOptionPane.showMessageDialog(this, "Impossible : le cours est passé");
+        }
+        
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     class MoisInvalideException extends Exception {
     public MoisInvalideException(String message) {
         super(message);
@@ -799,6 +890,7 @@ public class FActivite extends javax.swing.JDialog {
     private javax.swing.JTextField JtextAnnee;
     private javax.swing.JTextField JtextJour;
     private javax.swing.JTextField JtextMois;
+    private javax.swing.JButton jBretour;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

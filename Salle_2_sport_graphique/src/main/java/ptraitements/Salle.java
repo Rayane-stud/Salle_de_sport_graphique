@@ -151,33 +151,33 @@ public class Salle {
      * 
      * @param client le client qui souhaite s'inscrire
      * @param cours  le cours visé
-     * @return true si l'inscription a réussi, false sinon
+     * @return 3 si l'inscription a réussi, un autre chiffre sinon
      */
-    public boolean sInscrireACours(Client client, Cours cours) {
+    public int sInscrireACours(Client client, Cours cours) {
         LocalDate aujourdHui = LocalDate.now();
         
         // Vérifie que le client n'est pas déjà inscrit
         if (client.getCoursFuturs().contains(cours)) {
-            return false;
+            return 0;
         }
         
         // Vérifie que le cours est bien dans le futur
         if (cours.getDatecour().isAfter(aujourdHui)) {
             
             if (!client.isAbonnementActif()) {
-                return false; // abonnement inactif
+                return 1; // abonnement inactif
             }
             if (!cours.placesDisponibles()) {
-                return false; // cours complet
+                return 2; // cours complet
             }
             
             // Inscription effective : mise à jour des deux côtés (cours et client)
             cours.ajouterClient(client);
             client.ajouterCoursFutur(cours);
-            return true;
+            return 3;
         }
         
-        return false; // cours déjà passé
+        return 4; // cours déjà passé
     }
     
     /**
