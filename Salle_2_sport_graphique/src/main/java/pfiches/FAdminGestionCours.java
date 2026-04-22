@@ -61,8 +61,8 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     public FAdminGestionCours(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        
+
+                
         // Taille fixe de la fenêtre
         this.setSize(900, 550); // largeur, hauteur
         this.setResizable(false); // empêche le redimensionnement
@@ -273,6 +273,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         jBSuppCours = new javax.swing.JButton();
         jBCreeCours = new javax.swing.JButton();
         jBretour = new javax.swing.JButton();
+        jB_ModifierCours = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -647,6 +648,13 @@ public class FAdminGestionCours extends javax.swing.JDialog {
             }
         });
 
+        jB_ModifierCours.setText("Modifier Cours");
+        jB_ModifierCours.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_ModifierCoursActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -658,7 +666,9 @@ public class FAdminGestionCours extends javax.swing.JDialog {
                         .addComponent(jBretour)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBSuppCours)
-                        .addGap(58, 58, 58)
+                        .addGap(32, 32, 32)
+                        .addComponent(jB_ModifierCours)
+                        .addGap(34, 34, 34)
                         .addComponent(jBCreeCours)
                         .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -696,7 +706,8 @@ public class FAdminGestionCours extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBCreeCours)
-                            .addComponent(jBSuppCours))
+                            .addComponent(jBSuppCours)
+                            .addComponent(jB_ModifierCours))
                         .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jBretour)
@@ -876,6 +887,12 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
     }//GEN-LAST:event_jBretourActionPerformed
 
+    private void jB_ModifierCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ModifierCoursActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheAdminModifCours().setVisible(true);
+    }//GEN-LAST:event_jB_ModifierCoursActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -921,6 +938,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     private javax.swing.JTextField JtextMois;
     private javax.swing.JButton jBCreeCours;
     private javax.swing.JButton jBSuppCours;
+    private javax.swing.JButton jB_ModifierCours;
     private javax.swing.JButton jBretour;
     private javax.swing.JToggleButton jButonRechercher;
     private javax.swing.JLabel jLabel1;

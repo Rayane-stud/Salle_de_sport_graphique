@@ -66,9 +66,13 @@ public class FConnexionUti extends javax.swing.JFrame {
     public FprofilClient getFicheClientProfile(){return this.fichprofilClient;}
     public FModifInfoClient getFichClientModifInfo(){return this.fichModifInfoClient;}
     public FActivite getFicheActivite() { return this.fichActivite; }
+    
     public FAdminGestionCours getFicheAdminGestionCours() { return this.fichAdminGestionCours; }
     public FAdminCreationCours getFicheAdminCreationCours() { return this.fichAdminCreationCours; }
     public FAdminMenu getFicheAdminMenu(){return this.fichAdmin;}
+    public FAdminGestionClient getFicheAdminModifCours(){return this.fichFAdminGestionClient;}
+    
+    
     public FHistoriqueCoursClient getFicheHistorique(){return this.fichHistorique;}
 
     
