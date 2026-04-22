@@ -252,6 +252,38 @@ public class Salle {
         return resultats;
     }
     
+    
+    // Besoin de cette methode pour filtrer une liste en boucle jusque l'avoir en ayant pris en compte tt les critères, voir la fich gestionclientVraie pour les admin
+        public ArrayList<Client> rechercherClientGeneral(String critere, String valeur, ArrayList<Client> liste) {
+        ArrayList<Client> resultats = new ArrayList<>();
+        for (Client c : liste) {
+            switch (critere) {
+                case "nom" -> {
+                    if (c.getNom().equalsIgnoreCase(valeur))
+                        resultats.add(c);
+                }
+                case "prenom" -> {
+                    if (c.getPrenom().equalsIgnoreCase(valeur))
+                        resultats.add(c);
+                }
+                case "telephone" -> {
+                    if (c.getTelephone().equals(valeur))
+                        resultats.add(c);
+                }
+                case "numero" -> {
+                    if (c.getNumeroClient() == Integer.parseInt(valeur))
+                        resultats.add(c);
+                }
+                case "abonnement" -> {
+                    // comparaison entre la valeur de l'enum en String et la valeur recherchée
+                    if (c.getTypeAbonnement().toString().equalsIgnoreCase(valeur))
+                        resultats.add(c);
+                }
+            }
+        }
+        return resultats;
+    }
+    
     /**
      * Désactive l'abonnement d'un client.
      * Un client avec un abonnement inactif ne peut plus se connecter ni s'inscrire à des cours.

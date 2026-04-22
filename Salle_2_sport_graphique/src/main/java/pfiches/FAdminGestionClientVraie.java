@@ -5,6 +5,10 @@
 package pfiches;
 
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import ptraitements.Admin;
+import ptraitements.Client;
+import ptraitements.Salle;
 
 /**
  *
@@ -15,6 +19,8 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdminGestionClientVraie.class.getName());
     private ArrayList<javax.swing.JCheckBox> listeCheckBox = new ArrayList<>();
     private ArrayList<javax.swing.JTextField> listeTextFields = new ArrayList<>();
+    private ArrayList<String> listeTypes = new ArrayList<>();
+    private Salle maSalle;
 
     /**
      * Creates new form FAdminGestionClientVraie
@@ -26,22 +32,30 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
         // ORDRE TRES IMPORTANT PR GARDER LE LIEN ENTRE CHACUN DES DEUX PAR LA SUITE 
         listeCheckBox.add(jCB_ID);
         listeTextFields.add(jTF_ID);
+        listeTypes.add("numero");
         
         listeCheckBox.add(jCB_Tel);
         listeTextFields.add(jTF_Tel);
+        listeTypes.add("telephone");
         
         listeCheckBox.add(jCB_Nom);
         listeTextFields.add(jTF_Nom);
+        listeTypes.add("nom");
         
         listeCheckBox.add(jCB_Prenom);
         listeTextFields.add(jTF_Prenom);
-        
+        listeTypes.add("prenom");
 
         jTF_ID.setText("");
         jTF_Nom.setText("");
         jTF_Prenom.setText("");
         jTF_Tel.setText("");
         jTF_ID.setText("");
+        
+        // this.maSalle = ((FConnexionUti)this.getOwner()).getsalle();
+        Admin adminS = new  Admin("1","2");     
+        maSalle = new Salle("Gabray_Sport",adminS,"Salledata");
+        maSalle.chargerTout();
         
     }
 
@@ -82,6 +96,11 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
         jB_Rechercher = new javax.swing.JButton();
         jB_trier = new javax.swing.JButton();
         jB_ModifierAbo = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -90,21 +109,46 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
         jTab_Clients.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTab_Clients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Tel", "Nom", "Prenom", "Abonnement"
+                "ID", "Tel", "Nom", "Prenom", "Abonnement", "Active"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTab_Clients.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTab_Clients);
 
@@ -333,12 +377,57 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
 
         jB_trier.setText("Trier");
 
-        jB_ModifierAbo.setText("Modifier Abo");
+        jB_ModifierAbo.setText("Activer / Desactiver");
         jB_ModifierAbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_ModifierAboActionPerformed(evt);
             }
         });
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jButton1.setText("Semestriel");
+
+        jButton2.setText("Trimestriel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Annuel");
+
+        jLabel2.setText("Changer l'Abonnement");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton1))
+                .addGap(7, 7, 7))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -350,21 +439,24 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(318, 318, 318)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jB_Rechercher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jB_trier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jB_ModifierAbo)
-                .addGap(76, 76, 76))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jB_ModifierAbo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(16, 16, 16))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(47, 47, 47)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jB_Rechercher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jB_trier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,11 +473,13 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
                         .addComponent(jB_Rechercher)
                         .addGap(18, 18, 18)
                         .addComponent(jB_trier)))
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jB_ModifierAbo)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jB_ModifierAbo))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -440,13 +534,86 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
 
     private void jB_RechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_RechercherActionPerformed
         // TODO add your handling code here:
+        // Verif que chaque champ est au bon format 
+        ArrayList<Client> resultat = new ArrayList<>(maSalle.getListeClients()); // pr duppliquer la liste des clients
         
+      
+        // boucle de parcours : 
+        for(int i=0; i < listeCheckBox.size(); i++){
+            // Coché ou pas 
+            if (listeCheckBox.get(i).isSelected()){
+                String type = listeTypes.get(i); // on recupère  si c un nom un prenom un tel ou un id 
+                String valeur = listeTextFields.get(i).getText().trim(); // on recupere ce qu'il y a des les Textes fields sans espaces
+                
+                // Est cque qlq choque est ecrite dans le TF
+                if (!valeur.isBlank()){ resultat = maSalle.rechercherClientGeneral(type,valeur,resultat);}
+                else{javax.swing.JOptionPane.showMessageDialog(this, "Aucun client trouvé avec ces critères.", "Recherche infructueuse", javax.swing.JOptionPane.INFORMATION_MESSAGE);}
+
+            }
+        }
+                    // Gestion pr l'abonnelent 
+            if(jCB_Abonnement.isSelected()){
+
+                String aboVal = "";                
+                if (JRB_Annuel.isSelected()) {
+                    aboVal = "ANNUEL";
+                } else if (jRB_Trimestriel.isSelected()) {
+                     aboVal ="TRIMESTRIEL";
+                } else if (jRB_Semestre.isSelected()) {
+                     aboVal = "SEMESTRIEL";
+                } else if (jRB_Inactif.isSelected()) {
+                     aboVal = "INACTIF";
+                }
+
+
+
+                resultat = maSalle.rechercherClientGeneral("abonnement", aboVal, resultat);
+            }
+            
+            // Affichage dans le tableau
+            // Affichage dans le tableau
+            if (resultat.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Aucun client trouvé.", 
+                    "Recherche infructueuse", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                afficherDansTableau(resultat);
+}
+            
+
     }//GEN-LAST:event_jB_RechercherActionPerformed
 
     private void jB_ModifierAboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ModifierAboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jB_ModifierAboActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
+    // DECOUVERTE DE LA NOTION DE MODEL AVEC IA 
+    // Affichage dans le tableau
+    private void afficherDansTableau(ArrayList<Client> liste) {
+
+        // 1. Récupérer le modèle du tableau
+        DefaultTableModel modele = (DefaultTableModel) jTab_Clients.getModel();
+
+        // 2. Vider le tableau avant d'afficher les nouveaux résultats
+        modele.setRowCount(0);
+
+        // 3. Parcourir la liste et ajouter chaque client ligne par ligne
+        for (Client c : liste) {
+            modele.addRow(new Object[]{
+                c.getNumeroClient(),
+                c.getTelephone(),
+                c.getNom(),
+                c.getPrenom(),
+                c.getTypeAbonnement(), // ex: "ANNUEL", "INACTIF", etc.
+                c.isAbonnementActif()
+            });
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -492,17 +659,22 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
     private javax.swing.JButton jB_ModifierAbo;
     private javax.swing.JButton jB_Rechercher;
     private javax.swing.JButton jB_trier;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCB_Abonnement;
     private javax.swing.JCheckBox jCB_ID;
     private javax.swing.JCheckBox jCB_Nom;
     private javax.swing.JCheckBox jCB_Prenom;
     private javax.swing.JCheckBox jCB_Tel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPannel_2PanneldeToolbox;
     private javax.swing.JRadioButton jRB_Inactif;
     private javax.swing.JRadioButton jRB_Semestre;
