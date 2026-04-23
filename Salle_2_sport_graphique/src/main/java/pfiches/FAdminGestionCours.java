@@ -175,7 +175,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         // On n'affiche que les cours de la semaine affichée
         if (d.isBefore(lundi) || d.isAfter(dimanche)) continue;
 
-        String affichage = c.getActivitecour() + " - " + c.getHeurecour();
+        String affichage = c.getActivitecour() + " - " + c.getHeurecour() + " - " + c.getNbreInscrits() + "/" + c.getNombrePlacescour();
 
         switch (d.getDayOfWeek()) {
             case MONDAY -> {

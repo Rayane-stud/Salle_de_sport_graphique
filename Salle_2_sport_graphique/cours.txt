@@ -7,3 +7,5 @@
 8;course;2026-04-25;14:00;Individuel;1
 9;course;2026-04-26;14:06;Individuel;1
 11;yoga;2026-05-03;12:00;Individuel;1
+12;course;2026-04-23;18:00;Collectif;10
+13;testheure;2026-04-23;17:25;Collectif;3

@@ -62,7 +62,7 @@ public class FActivite extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         // Taille fixe de la fenêtre
-        this.setSize(900, 550); // largeur, hauteur
+        this.setSize(1000, 550); // largeur, hauteur
         this.setResizable(false); // empêche le redimensionnement
         this.setLocationRelativeTo(null); // centre la fenêtre      
         
@@ -78,7 +78,7 @@ public class FActivite extends javax.swing.JDialog {
         
         //initialiserAffichage(LocalDate.now()); // On ne l'appelle pas ici car ma salle est null à ce moment, les données n'y sont pas arrivé
         // Fixer la taille de chaque ScrollPane
-        int largeur = 100; // largeur de chaque colonne
+        int largeur = 120; // largeur de chaque colonne
         int hauteur = 250; // hauteur de la liste
     
         jScrollPane1.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
@@ -162,7 +162,7 @@ public class FActivite extends javax.swing.JDialog {
         // On n'affiche que les cours de la semaine affichée
         if (d.isBefore(lundi) || d.isAfter(dimanche)) continue;
 
-        String affichage = c.getActivitecour() + " - " + c.getHeurecour();
+        String affichage = c.getActivitecour() + " - " + c.getHeurecour() + " - " + c.getNbreInscrits() + "/" + c.getNombrePlacescour();
 
         switch (d.getDayOfWeek()) {
             case MONDAY -> {
@@ -774,7 +774,8 @@ public class FActivite extends javax.swing.JDialog {
     }//GEN-LAST:event_jBretourActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Cours selection = null;
+    
+    Cours selection = null;
 
     if (!jListLundi.isSelectionEmpty()) {
         selection = listeLundi.get(jListLundi.getSelectedIndex());
@@ -814,18 +815,22 @@ public class FActivite extends javax.swing.JDialog {
         
         case 1 -> {
         JOptionPane.showMessageDialog(this, "Impossible : votre abonnement est inactif.");
+        initialiserAffichage(LocalDate.now());
         }
         
         case 2 -> {
         JOptionPane.showMessageDialog(this, "Impossible : il n'y a plus de place.");
+        initialiserAffichage(LocalDate.now());
         }
         
         case 0 -> {
         JOptionPane.showMessageDialog(this, "Impossible : vous êtes déjà inscrit");
+        initialiserAffichage(LocalDate.now());
         }
         
         case 4 -> {
         JOptionPane.showMessageDialog(this, "Impossible : le cours est passé");
+        initialiserAffichage(LocalDate.now());
         }
         
         }

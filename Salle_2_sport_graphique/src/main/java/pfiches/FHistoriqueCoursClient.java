@@ -32,6 +32,8 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
     private Salle maSalle;
     private Client Client;
     
+    private LocalDate dateselec;
+    
     // déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, c'est pour ca que ca plantait trouvé par ia
     private DefaultListModel<String> modelLundi = new DefaultListModel<>();
     private DefaultListModel<String> modelMardi = new DefaultListModel<>();
@@ -63,9 +65,45 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
+        // Taille fixe de la fenêtre
+        this.setSize(1000, 550); // largeur, hauteur
+        this.setResizable(false); // empêche le redimensionnement
         this.setLocationRelativeTo(null); // centre la fenêtre      
+
+        
+        //Liaison du model à la JList
+        jListLundi.setModel(modelLundi);
+        jListMardi.setModel(modelMardi);
+        jListMercredi.setModel(modelMercredi);
+        jListJeudi.setModel(modelJeudi);
+        jListVendredi.setModel(modelVendredi);
+        jListSamedi.setModel(modelSamedi);
+        jListDimanche.setModel(modelDimanche);
+        
+        
+        // Fixer la taille de chaque ScrollPane
+        int largeur = 120; // largeur de chaque colonne
+        int hauteur = 250; // hauteur de la liste
+    
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane5.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane6.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+        jScrollPane7.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
+     
+        
+        
     }
 
+    public void initialiserDate (){
+        String textdate = jLabellundi.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        dateselec = LocalDate.parse(textdate, formatter);
+}
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,7 +160,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText("S'inscrire");
+        jButton1.setText("Se desinscrire");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -675,6 +713,8 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
 
         if (selection == null) {
             JOptionPane.showMessageDialog(this, "Veuillez sélectionner un cours.");
+            initialiserDate();
+            initialiserAffichage(dateselec);
             return;
         }
 
@@ -683,9 +723,13 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         if(supprime){
             maSalle.sauvegarderTout();
             JOptionPane.showMessageDialog(this, "Desinscrit du cours!");
+            initialiserDate();
+            initialiserAffichage(dateselec);
         }else{
             maSalle.sauvegarderTout();
             JOptionPane.showMessageDialog(this, "Vous n'êtes pas inscrit au cours!");
+            initialiserDate();
+            initialiserAffichage(dateselec);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -717,7 +761,8 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
             // Note: LocalDate.of lancera sa propre exception si tu mets 31 juin par exemple
             LocalDate date = LocalDate.of(a, m, j);
 
-            initialiserAffichage(date);
+            dateselec = date;
+            initialiserAffichage(dateselec);
         }
         catch (NumberFormatException ex) {
             String message = "Le format n'est pas bon !";
@@ -746,8 +791,11 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         String datestring = jLabellundi.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(datestring, formatter);
-        date = date.plusWeeks(-1);
-        initialiserAffichage(date);
+        date = date.minusWeeks(1);
+
+        dateselec = date;
+        initialiserAffichage(dateselec);
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JB_Sem_precActionPerformed
@@ -758,7 +806,9 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(datestring, formatter);
         date = date.plusWeeks(1);
-        initialiserAffichage(date);
+        
+        dateselec = date;
+        initialiserAffichage(dateselec);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_JB_Sem_suivActionPerformed

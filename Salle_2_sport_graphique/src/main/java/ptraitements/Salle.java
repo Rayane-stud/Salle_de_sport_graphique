@@ -162,7 +162,7 @@ public class Salle {
         }
         
         // Vérifie que le cours est bien dans le futur
-        if (cours.getDatecour().isAfter(aujourdHui)) {
+        if (cours.getDatecour().isAfter(aujourdHui) || (cours.getDatecour().isEqual(aujourdHui) && cours.getHeurecour().isAfter(LocalTime.now())) ) {
             
             if (!client.isAbonnementActif()) {
                 return 1; // abonnement inactif
