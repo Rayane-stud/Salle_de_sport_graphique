@@ -80,7 +80,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         
         //initialiserAffichage(LocalDate.now()); // On ne l'appelle pas ici car ma salle est null à ce moment, les données n'y sont pas arrivé
         // Fixer la taille de chaque ScrollPane
-        int largeur = 100; // largeur de chaque colonne
+        int largeur = 120; // largeur de chaque colonne
         int hauteur = 250; // hauteur de la liste
     
         jScrollPane1.setPreferredSize(new java.awt.Dimension(largeur, hauteur));
