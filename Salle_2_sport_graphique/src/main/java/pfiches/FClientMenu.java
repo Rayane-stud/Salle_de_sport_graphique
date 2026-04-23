@@ -5,6 +5,7 @@
 package pfiches;
 
 import java.awt.Component;
+import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import ptraitements.*;
@@ -76,29 +77,35 @@ public class FClientMenu extends javax.swing.JDialog {
     
     public void iniAffichage() {
     JL_PRE.setText(client.getPrenom());
-    
+
     String nomImage;
-    
+
     if (client.getPP().equals("")) {
         nomImage = "default-avatar.png";
     } else {
         nomImage = client.getPP();
     }
-    
-    // DEBUG - affiche dans la console ce qu'on cherche
-    System.out.println("Nom image : " + nomImage);
-    System.out.println("Chemin cherché : " + "/pimages/" + nomImage);
-    System.out.println("Résultat getResource : " + getClass().getResource("/pimages/" + nomImage));
-    
-    // Affiche le chemin absolu où getResource cherche les ressources
-    System.out.println("Dossier de base : " + getClass().getResource("/"));
-    
+
+    System.out.println("Image cherchée : pimages/" + nomImage);
+
     try {
-        ImageIcon i = new ImageIcon(getClass().getResource("/pimages/" + nomImage));
-        jL_photopp.setIcon(i);
+        java.io.File fichier = new java.io.File("pimages/" + nomImage);
+
+        if (fichier.exists()) {
+            ImageIcon icon = new ImageIcon(fichier.getAbsolutePath());
+
+            // (optionnel) redimensionnement
+            Image img = icon.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+            jL_photopp.setIcon(new ImageIcon(img));
+
+            jL_photopp.setText("");
+        } else {
+            jL_photopp.setText("Image introuvable");
+        }
+
     } catch (Exception e) {
-        jL_photopp.setText("Image introuvable : " + nomImage);
-        System.out.println("Erreur : " + e.getMessage()); // DEBUG
+        jL_photopp.setText("Erreur image");
+        System.out.println("Erreur : " + e.getMessage());
     }
 }
     

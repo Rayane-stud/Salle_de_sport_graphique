@@ -404,41 +404,38 @@ public class FInscrire extends javax.swing.JDialog {
 
     private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
     //methode trouvé par ia mais assemblé par gabriel
-    // Créer une instance de la classe FileDialog
-    FileDialog dial = new FileDialog(this, "Sélectionner le fichier du dossier images", FileDialog.LOAD);
-    
-    // Rendre visible la fenêtre de dialogue
+                                                
+    FileDialog dial = new FileDialog(this, "Sélectionner une image", FileDialog.LOAD);
     dial.setVisible(true);
-    
-    // Récupérer le nom et le répertoire du fichier sélectionné
+
     String nomFich = dial.getFile();
     String repertoire = dial.getDirectory();
-    jLPhotoNom.setText(nomFich);
-    
+
     if (nomFich != null) {
-    try {
-        // On nettoie le nom : on remplace espaces et caractères spéciaux
-        String nomNettoye = nomFich.replaceAll("[^a-zA-Z0-9._-]", "_");
-        System.out.println("Nom nettoyé : " + nomNettoye); // DEBUG
-        
-        Path src = Paths.get(repertoire + nomFich);
-        Path dest1 = Paths.get("src/pimages/" + nomNettoye);
-        Path dest2 = Paths.get("target/classes/pimages/" + nomNettoye);
+        try {
+            // Nettoyage du nom
+            String nomNettoye = nomFich.replaceAll("[^a-zA-Z0-9._-]", "_");
 
-        // DEBUG - affiche où on copie vraiment
-        System.out.println("Copie vers : " + dest2.toAbsolutePath());
+            Path src = Paths.get(repertoire + nomFich);
 
-        Files.copy(src, dest1, StandardCopyOption.REPLACE_EXISTING);
-        Files.copy(src, dest2, StandardCopyOption.REPLACE_EXISTING);
-        // On sauvegarde le NOM NETTOYÉ dans le label
-        jLPhotoNom.setText(nomNettoye);
-        
-        JOptionPane.showMessageDialog(this, "Fichier ajouté avec succès !");
-        
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Erreur : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            // 📁 dossier à la racine du projet
+            Path dossier = Paths.get("pimages");
+            if (!Files.exists(dossier)) {
+                Files.createDirectories(dossier);
+            }
+
+            Path dest = dossier.resolve(nomNettoye);
+
+            Files.copy(src, dest, StandardCopyOption.REPLACE_EXISTING);
+
+            jLPhotoNom.setText(nomNettoye);
+
+            JOptionPane.showMessageDialog(this, "Image ajoutée !");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Erreur : " + e.getMessage());
+        }
     }
-    }
+
     }//GEN-LAST:event_JB_Ajout_Photo_inscriActionPerformed
 
     /**
