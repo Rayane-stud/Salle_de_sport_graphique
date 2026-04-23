@@ -71,6 +71,7 @@ public class FConnexionUti extends javax.swing.JFrame {
     public FAdminCreationCours getFicheAdminCreationCours() { return this.fichAdminCreationCours; }
     public FAdminMenu getFicheAdminMenu(){return this.fichAdmin;}
     public FAdminGestionClient getFicheAdminModifCours(){return this.fichFAdminGestionClient;}
+    public FAdminStatsCours getFichAdminStats() {return this.fichAdminStatsCours;}
     
     
     public FHistoriqueCoursClient getFicheHistorique(){return this.fichHistorique;}

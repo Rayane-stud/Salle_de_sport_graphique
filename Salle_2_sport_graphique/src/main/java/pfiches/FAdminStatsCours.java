@@ -4,6 +4,13 @@
  */
 package pfiches;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import ptraitements.Client;
+import ptraitements.Cours;
+import ptraitements.Salle;
+
 /**
  *
  * @author rayan
@@ -11,6 +18,8 @@ package pfiches;
 public class FAdminStatsCours extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdminStatsCours.class.getName());
+    private Salle maSalle;
+    private ArrayList<Cours> listeAffichage = new ArrayList<>();
 
     /**
      * Creates new form FAdminStatsCours
@@ -19,7 +28,8 @@ public class FAdminStatsCours extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        this.setLocationRelativeTo(null); // centre la fenêtre      
+        this.setLocationRelativeTo(null); // centre la fenêtre 
+        this.maSalle = ((FConnexionUti)this.getOwner()).getsalle();
     }
 
     /**
@@ -31,22 +41,220 @@ public class FAdminStatsCours extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTab_Affichage = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jB_PlusPopu = new javax.swing.JButton();
+        jB_MoinsPopu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPannel_2PanneldeToolbox4 = new javax.swing.JPanel();
+        jB_MenuAdmin4 = new javax.swing.JButton();
+        jBRetourVersConnex4 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTab_Affichage.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Id du Cour", "Nom ", "Date", "Heure", "Nombre d'inscrits"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTab_Affichage);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jB_PlusPopu.setText("Plus Populaire");
+        jB_PlusPopu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_PlusPopuActionPerformed(evt);
+            }
+        });
+
+        jB_MoinsPopu.setText("Moins Populaire");
+        jB_MoinsPopu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_MoinsPopuActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Trier les cours par : ");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jB_PlusPopu)
+                        .addGap(27, 27, 27)
+                        .addComponent(jB_MoinsPopu))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(jLabel1)))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jB_PlusPopu)
+                    .addComponent(jB_MoinsPopu))
+                .addGap(19, 19, 19))
+        );
+
+        jPannel_2PanneldeToolbox4.setBackground(new java.awt.Color(204, 204, 204));
+        jPannel_2PanneldeToolbox4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jB_MenuAdmin4.setBackground(new java.awt.Color(204, 255, 204));
+        jB_MenuAdmin4.setText("Menu");
+        jB_MenuAdmin4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_MenuAdmin4ActionPerformed(evt);
+            }
+        });
+
+        jBRetourVersConnex4.setBackground(new java.awt.Color(255, 102, 102));
+        jBRetourVersConnex4.setText("Retour");
+        jBRetourVersConnex4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBRetourVersConnex4.setIconTextGap(5);
+        jBRetourVersConnex4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBRetourVersConnex4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRetourVersConnex4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPannel_2PanneldeToolbox4Layout = new javax.swing.GroupLayout(jPannel_2PanneldeToolbox4);
+        jPannel_2PanneldeToolbox4.setLayout(jPannel_2PanneldeToolbox4Layout);
+        jPannel_2PanneldeToolbox4Layout.setHorizontalGroup(
+            jPannel_2PanneldeToolbox4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPannel_2PanneldeToolbox4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jB_MenuAdmin4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBRetourVersConnex4)
+                .addContainerGap())
+        );
+        jPannel_2PanneldeToolbox4Layout.setVerticalGroup(
+            jPannel_2PanneldeToolbox4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jBRetourVersConnex4)
+            .addComponent(jB_MenuAdmin4)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPannel_2PanneldeToolbox4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(255, 255, 255)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jPannel_2PanneldeToolbox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jB_MoinsPopuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MoinsPopuActionPerformed
+        // TODO add your handling code here:
+        this.listeAffichage = maSalle.getCoursMoinsPopulaires();
+        this.afficherDansTableau(this.listeAffichage);             
+    }//GEN-LAST:event_jB_MoinsPopuActionPerformed
+
+    private void jB_MenuAdmin4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuAdmin4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jB_MenuAdmin4ActionPerformed
+
+    private void jBRetourVersConnex4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnex4ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).setVisible(true);
+    }//GEN-LAST:event_jBRetourVersConnex4ActionPerformed
+
+    private void jB_PlusPopuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_PlusPopuActionPerformed
+        // TODO add your handling code here:
+        this.listeAffichage = maSalle.getCoursPlusPopulaires();
+        this.afficherDansTableau(this.listeAffichage);
+        
+        // Boucle pour tests console voir ce qui ne va pas ( a supp pr version finale ) 
+        for (Cours c : listeAffichage) {
+            System.out.println(c.getActivitecour() 
+                + " → inscrits: " + c.getNbreInscrits() 
+                + " | taille liste: " + c.getClientsInscritscours().size()
+            );
+        }
+    }//GEN-LAST:event_jB_PlusPopuActionPerformed
+
+    
+    public void afficherDansTableau(ArrayList<Cours> liste) {
+
+        // 1. Récupérer le modèle du tableau
+        DefaultTableModel modele = (DefaultTableModel) jTab_Affichage.getModel();
+
+        // 2. Vider le tableau avant d'afficher les nouveaux résultats
+        modele.setRowCount(0);
+
+        // 3. Parcourir la liste et ajouter chaque client ligne par ligne
+        for (Cours c : liste) {
+            modele.addRow(new Object[]{
+                c.getIdCours(),
+                c.getActivitecour(),
+                c.getDatecour().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                c.getHeurecour().format(DateTimeFormatter.ofPattern("HH'h'mm")),
+                c.getNbreInscrits(), 
+                
+            });
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -85,5 +293,27 @@ public class FAdminStatsCours extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBRetourVersConnex;
+    private javax.swing.JButton jBRetourVersConnex1;
+    private javax.swing.JButton jBRetourVersConnex2;
+    private javax.swing.JButton jBRetourVersConnex3;
+    private javax.swing.JButton jBRetourVersConnex4;
+    private javax.swing.JButton jB_MenuAdmin;
+    private javax.swing.JButton jB_MenuAdmin1;
+    private javax.swing.JButton jB_MenuAdmin2;
+    private javax.swing.JButton jB_MenuAdmin3;
+    private javax.swing.JButton jB_MenuAdmin4;
+    private javax.swing.JButton jB_MoinsPopu;
+    private javax.swing.JButton jB_PlusPopu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox1;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox2;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox3;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTab_Affichage;
     // End of variables declaration//GEN-END:variables
 }

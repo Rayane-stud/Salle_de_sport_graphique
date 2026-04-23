@@ -121,7 +121,7 @@ public class FAdminMenu extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setText("Stats Cours");
+        jButton3.setText("Popularité des cours");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -137,8 +137,8 @@ public class FAdminMenu extends javax.swing.JDialog {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBGestionCours, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -210,6 +210,9 @@ public class FAdminMenu extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFichAdminStats().setVisible(true);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jB_MenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuAdminActionPerformed
