@@ -170,6 +170,8 @@
         public void setNumClient(int num) {
             this.numClient = num;
         }
+        
+        public void modifId(String nvId){ this.id_email = nvId;}
 
 
         // _________________________________________________ Gestion des listes de cours :

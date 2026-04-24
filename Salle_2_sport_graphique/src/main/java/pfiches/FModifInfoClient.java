@@ -17,7 +17,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FModifInfoClient.class.getName());
 
     private Salle maSalle;
-    private Client Client;
+    private Client client;
     private FprofilClient profileClient;
     
     /**
@@ -398,7 +398,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
     //envoie les donnees entre la fiche client, la modif d'info et la salle
     public void envoyerDonneesVersModifInfo(Salle salle, Client client, FprofilClient menu) {
     this.maSalle = salle;
-    this.Client = client;
+    this.client = client;
     this.profileClient = menu;
     
     JL_ID.setText(client.getIdentifiant());
@@ -435,27 +435,28 @@ public class FModifInfoClient extends javax.swing.JDialog {
         // Des if séparés pour pouvoir modifier plusieurs champs à la fois
         // On vérifie si il a quelque chose avec isEmpty()
         if (!NVmotDePasse.isEmpty()) {
-            Client.setMot2passe(NVmotDePasse);
+            client.setMot2passe(NVmotDePasse);
             message += "- votre mot de passe\n";
             aucunChangement = false;
         }
+        if(!NVidentifiant.isEmpty()){client.modifId(NVidentifiant); message += "- Votre Identifiant\n"; aucunChangement = false;}
         if (!NVnom.isEmpty()) {
-            Client.modifNom(NVnom);
+            client.modifNom(NVnom);
             message += "- votre Nom\n";
             aucunChangement = false;
         }
         if (!NVprenom.isEmpty()) {
-            Client.modifPrenom(NVprenom);
+            client.modifPrenom(NVprenom);
             message += "- votre Prénom\n";
             aucunChangement = false;
         }
         if (!NVtelephone.isEmpty()) {
-            Client.modifTelephone(NVtelephone);
+            client.modifTelephone(NVtelephone);
             message += "- votre Téléphone\n";
             aucunChangement = false;
         }
         if (!NVadresse.isEmpty()) {
-            Client.modifAdresse(NVadresse);
+            client.modifAdresse(NVadresse);
             message += "- votre Adresse\n";
             aucunChangement = false;
         }

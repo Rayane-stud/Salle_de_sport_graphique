@@ -5,6 +5,7 @@
 package pfiches;
 
 import java.io.File;
+import javax.swing.ImageIcon;
 import ptraitements.*;
 import ptraitements.Client;
 
@@ -40,6 +41,7 @@ public class FConnexionUti extends javax.swing.JFrame {
         maSalle.chargerTout();
           
         initComponents();
+        Outilsgraphiques.AfficherImageBTaille(JL_logo, "logoSalle2Sport2.png");
         
         
         fichActivite = new FActivite(this, false);
@@ -206,15 +208,15 @@ public class FConnexionUti extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(JB_inscrire))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGap(69, 69, 69)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(JL_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addGap(157, 157, 157)
+                        .addComponent(JL_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(JB_inscrire)))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,9 +225,9 @@ public class FConnexionUti extends javax.swing.JFrame {
                 .addComponent(JL_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JB_inscrire)
-                .addGap(25, 25, 25))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -282,10 +284,22 @@ public class FConnexionUti extends javax.swing.JFrame {
     }//GEN-LAST:event_JB_inscrireActionPerformed
 
     public void chargerImagesFCo() {
-    Outilsgraphiques.AfficherImageBTaille(JL_logo, "logoSalle2Sport2.png");
-    File f = new File("images/logoSalle2Sport2.png");
+   Outilsgraphiques.AfficherImageBTaille(JL_logo, "logoSalle2Sport2.png");
+     /*File f = new File("images/logoSalle2Sport2.png");
     System.out.println("Image trouvée : " + f.exists());
     System.out.println("Chemin absolu : " + f.getAbsolutePath());
+    // TEST TAILLE DU LABEL A L APPEL 
+    System.out.println("Largeur label : " + JL_logo.getWidth());
+    System.out.println("Hauteur label : " + JL_logo.getHeight());
+    // AUTRE TEST
+    ImageIcon icon = new ImageIcon("C:/Users/rayan/Desktop/Algo A2/S4/Projet_salle2Sport_Graphique/Salle_2_sport_graphique/src/pimages/logoSalle2Sport2.png");
+    System.out.println("Largeur icone : " + icon.getIconWidth());
+    System.out.println("Hauteur icone : " + icon.getIconHeight());
+    JL_logo.setIcon(icon);
+    // Autre test 
+    ImageIcon icon2 = new ImageIcon("C:/Users/rayan/Desktop/Algo A2/S4/Projet_salle2Sport_Graphique/Salle_2_sport_graphique/src/pimages/default-avatar.png");
+    System.out.println("Largeur : " + icon2.getIconWidth());*/
+
     }
     
     
