@@ -4,6 +4,7 @@
  */
 package pfiches;
 
+import java.io.File;
 import ptraitements.*;
 import ptraitements.Client;
 
@@ -39,6 +40,8 @@ public class FConnexionUti extends javax.swing.JFrame {
         maSalle.chargerTout();
           
         initComponents();
+        
+        
         fichActivite = new FActivite(this, false);
         fichAdmin = new FAdminMenu(this, false);
         fichClient = new FClientMenu(this, false);
@@ -55,7 +58,7 @@ public class FConnexionUti extends javax.swing.JFrame {
         fichprofilClient = new FprofilClient(this, false);
         
         this.setLocationRelativeTo(null); // ON CENTRE LA FENETRE
-          
+        Outilsgraphiques.AfficherImageBTaille(JL_logo, "logoSalle2Sport2.png");  
     }
 
     public Salle getsalle(){
@@ -88,25 +91,24 @@ public class FConnexionUti extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JBconnection = new javax.swing.JButton();
+        JL_logo = new javax.swing.JLabel();
+        JB_inscrire = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         JF_mdp = new javax.swing.JTextField();
         JF_ID = new javax.swing.JTextField();
         JL_ID = new javax.swing.JLabel();
         JL_mdp = new javax.swing.JLabel();
         JL_SeConnecter = new javax.swing.JLabel();
-        JL_logo = new javax.swing.JLabel();
-        JB_inscrire = new javax.swing.JButton();
+        JBconnection = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 204));
 
-        JBconnection.setBackground(new java.awt.Color(255, 204, 204));
-        JBconnection.setFont(new java.awt.Font("Gadugi", 3, 12)); // NOI18N
-        JBconnection.setText("Se connecter");
-        JBconnection.addActionListener(new java.awt.event.ActionListener() {
+        JB_inscrire.setText("S'inscrire");
+        JB_inscrire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBconnectionActionPerformed(evt);
+                JB_inscrireActionPerformed(evt);
             }
         });
 
@@ -157,59 +159,73 @@ public class FConnexionUti extends javax.swing.JFrame {
         );
 
         JL_SeConnecter.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        JL_SeConnecter.setText("Connection");
+        JL_SeConnecter.setText("Connexion");
 
-        JL_logo.setText("LOGO");
-
-        JB_inscrire.setText("S'inscrire");
-        JB_inscrire.addActionListener(new java.awt.event.ActionListener() {
+        JBconnection.setFont(new java.awt.Font("Gadugi", 3, 12)); // NOI18N
+        JBconnection.setText("Se connecter");
+        JBconnection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_inscrireActionPerformed(evt);
+                JBconnectionActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(JL_SeConnecter, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(JBconnection)
+                .addGap(111, 111, 111))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(JL_SeConnecter)
+                .addGap(31, 31, 31)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(JBconnection)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(129, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(JBconnection, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JL_SeConnecter, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(174, 174, 174))))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(JL_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addComponent(JB_inscrire))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(JB_inscrire)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(41, 41, 41)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(JL_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(JL_logo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(JL_SeConnecter)
+                .addContainerGap()
+                .addComponent(JL_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JBconnection, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(JB_inscrire)
-                        .addGap(20, 20, 20))))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(JB_inscrire)
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -265,6 +281,14 @@ public class FConnexionUti extends javax.swing.JFrame {
         fichInscrire.setVisible(true);
     }//GEN-LAST:event_JB_inscrireActionPerformed
 
+    public void chargerImagesFCo() {
+    Outilsgraphiques.AfficherImageBTaille(JL_logo, "logoSalle2Sport2.png");
+    File f = new File("images/logoSalle2Sport2.png");
+    System.out.println("Image trouvée : " + f.exists());
+    System.out.println("Chemin absolu : " + f.getAbsolutePath());
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -301,7 +325,11 @@ public class FConnexionUti extends javax.swing.JFrame {
 //_______________________________________________________________________________________________________ 
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FConnexionUti().setVisible(true));
+    java.awt.EventQueue.invokeLater(() -> {
+        FConnexionUti fenetre = new FConnexionUti();
+        fenetre.setVisible(true);
+        fenetre.chargerImagesFCo(); 
+    });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -314,5 +342,6 @@ public class FConnexionUti extends javax.swing.JFrame {
     private javax.swing.JLabel JL_logo;
     private javax.swing.JLabel JL_mdp;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

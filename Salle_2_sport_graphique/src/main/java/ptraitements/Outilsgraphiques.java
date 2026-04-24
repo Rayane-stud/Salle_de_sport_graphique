@@ -5,7 +5,9 @@
 package ptraitements;
 
 import java.awt.Image;
+import java.io.File;
 import javax.swing.ImageIcon; // pour recup l'icone finale a utiliser
+import javax.swing.JLabel;
 
 /**
  * Ici seront mises des methodes d'arrangement ou de personnalisation de composants graphiques 
@@ -47,5 +49,31 @@ public class Outilsgraphiques {
         
         
     }
+    
+    // Methodes permettant de redimensionner et afficher une image dans un label 
+    public static void AfficherImageBTaille(JLabel label, String nomImage) {
+    try {
+        // Charger l'image depuis le dossier
+        ImageIcon icon = new ImageIcon("src/pimages/" + nomImage);
+        
+        // recup les dimensions du label + gestion de cas spéciaux 
+        int largeur = label.getWidth(); if (largeur == 0){throw new Exception("Hauteur du label a 0 ");}
+        int hauteur = label.getHeight(); if (hauteur == 0){throw new Exception("Hauteur du label a 0 ");}
+        
+        // redimensionner l'image a celles  du label
+        Image img = icon.getImage().getScaledInstance(largeur, hauteur, Image.SCALE_SMOOTH);
+        
+        // Afficher l'image dans le label
+        label.setIcon(new ImageIcon(img));
+        
+        // TEST PR VOIR OU L IMAGE EST CHERCHEE PCQ CA MARCHE PAS 
+        File f = new File("src/pimages/" + nomImage);
+        System.out.println("Chemin cherché : " + f.getAbsolutePath());
+        System.out.println("Existe : " + f.exists());
+        
+    } catch (Exception e) {
+        System.out.println("Erreur chargement image : " + e.getMessage());
+    }
+}
     
 }
