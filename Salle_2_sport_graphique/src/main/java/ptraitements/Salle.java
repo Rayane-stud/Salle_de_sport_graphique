@@ -294,6 +294,10 @@ public class Salle {
         client.modifAbonnementActif(false);
     }
     
+    public void setAbo(boolean ouiNon, Client c) {
+        if (ouiNon == true){this.reactiverAbonnement(c);}
+        if (ouiNon == false){this.desactiverAbonnement(c);}    
+    }
     /**
      * Réactive l'abonnement d'un client précédemment désactivé.
      * 
@@ -301,6 +305,16 @@ public class Salle {
      */
     public void reactiverAbonnement(Client client) {
         client.modifAbonnementActif(true);
+    }
+    
+    public void setAboSemestre(Client client) {
+        client.setAbo(TypeAbonnement.SEMAINE);
+    }
+    public void setAboAnnu(Client client) {
+        client.setAbo(TypeAbonnement.ANNUEL);
+    }
+    public void setAboTrime(Client client) {
+        client.setAbo(TypeAbonnement.TRIMESTRIEL);
     }
     
     

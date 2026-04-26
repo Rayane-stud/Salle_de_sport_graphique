@@ -52,10 +52,10 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
         jTF_Tel.setText("");
         jTF_ID.setText("");
         
-        // this.maSalle = ((FConnexionUti)this.getOwner()).getsalle();
-        Admin adminS = new  Admin("1","2");     
-        maSalle = new Salle("Gabray_Sport",adminS,"Salledata");
-        maSalle.chargerTout();
+       this.maSalle = ((FConnexionUti)this.getOwner()).getsalle();
+        /* Admin adminS = new  Admin("1","2");     
+        maSalle = new Salle("Gabray_Sport",adminS,"Salledata");           POUR LES TES DE FENETRES 
+        maSalle.chargerTout(); */  
         
     }
 
@@ -95,11 +95,11 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
         jRB_Inactif = new javax.swing.JRadioButton();
         jB_Rechercher = new javax.swing.JButton();
         jB_trier = new javax.swing.JButton();
-        jB_ModifierAbo = new javax.swing.JButton();
+        jB_ActivAbo = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jB_Semestriel = new javax.swing.JButton();
+        jB_Trimestriel = new javax.swing.JButton();
+        jB_Annuel = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -377,25 +377,35 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
 
         jB_trier.setText("Trier");
 
-        jB_ModifierAbo.setText("Activer / Desactiver");
-        jB_ModifierAbo.addActionListener(new java.awt.event.ActionListener() {
+        jB_ActivAbo.setText("Activer / Desactiver");
+        jB_ActivAbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jB_ModifierAboActionPerformed(evt);
+                jB_ActivAboActionPerformed(evt);
             }
         });
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("Semestriel");
-
-        jButton2.setText("Trimestriel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jB_Semestriel.setText("Semestriel");
+        jB_Semestriel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jB_SemestrielActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Annuel");
+        jB_Trimestriel.setText("Trimestriel");
+        jB_Trimestriel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_TrimestrielActionPerformed(evt);
+            }
+        });
+
+        jB_Annuel.setText("Annuel");
+        jB_Annuel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_AnnuelActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Changer l'Abonnement");
 
@@ -405,11 +415,11 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jButton2)
+                .addComponent(jB_Trimestriel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jB_Annuel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jB_Semestriel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -423,9 +433,9 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(jB_Trimestriel)
+                    .addComponent(jB_Annuel)
+                    .addComponent(jB_Semestriel))
                 .addGap(7, 7, 7))
         );
 
@@ -442,7 +452,7 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jB_ModifierAbo)
+                            .addComponent(jB_ActivAbo)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(16, 16, 16))
@@ -478,7 +488,7 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jB_ModifierAbo))
+                    .addComponent(jB_ActivAbo))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -509,7 +519,7 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
     private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new FConnexionUti().setVisible(true);
+        ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
     }//GEN-LAST:event_jBRetourVersConnexActionPerformed
 
     private void jCB_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_IDActionPerformed
@@ -584,13 +594,46 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jB_RechercherActionPerformed
 
-    private void jB_ModifierAboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ModifierAboActionPerformed
+    private void jB_ActivAboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ActivAboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jB_ModifierAboActionPerformed
+        boolean nvEtat = !this.getClientSelectionne().isAbonnementActif();
+        String ActiOuPas = "";
+        if (nvEtat){ActiOuPas = " Activé ! ";}
+        if (!nvEtat) {ActiOuPas = " Desactivé ! ";} 
+        
+        this.maSalle.setAbo(nvEtat,this.getClientSelectionne());
+        maSalle.sauvegarderClients();
+        
+        javax.swing.JOptionPane.showMessageDialog(this, "Abonnement de " + this.getClientSelectionne().getNom() + ActiOuPas);
+        afficherDansTableau(maSalle.getListeClients()); // Rafraichir l'affichage
+    }//GEN-LAST:event_jB_ActivAboActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jB_TrimestrielActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_TrimestrielActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        this.maSalle.setAboTrime(this.getClientSelectionne());
+        maSalle.sauvegarderClients();
+        
+        javax.swing.JOptionPane.showMessageDialog(this, "Abonnement de " + this.getClientSelectionne().getNom() + " changé en TRIMESTRIEL.");
+        afficherDansTableau(maSalle.getListeClients()); // Rafraichir l'affichage
+    }//GEN-LAST:event_jB_TrimestrielActionPerformed
+
+    private void jB_SemestrielActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_SemestrielActionPerformed
+        // TODO add your handling code here:
+        this.maSalle.setAboSemestre(this.getClientSelectionne());
+        maSalle.sauvegarderClients();
+        
+        javax.swing.JOptionPane.showMessageDialog(this, "Abonnement de " + this.getClientSelectionne().getNom() + " changé en SEMESTRIEL.");
+        afficherDansTableau(maSalle.getListeClients()); // Rafraichir l'affichage
+    }//GEN-LAST:event_jB_SemestrielActionPerformed
+
+    private void jB_AnnuelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_AnnuelActionPerformed
+        // TODO add your handling code here:
+        this.maSalle.setAboAnnu(this.getClientSelectionne());
+        maSalle.sauvegarderClients();
+        
+        javax.swing.JOptionPane.showMessageDialog(this, "Abonnement de " + this.getClientSelectionne().getNom() + " changé en ANNUEL.");
+        afficherDansTableau(maSalle.getListeClients()); // Rafraichir l'affichage
+    }//GEN-LAST:event_jB_AnnuelActionPerformed
     
     // DECOUVERTE DE LA NOTION DE MODEL AVEC IA 
     // Affichage dans le tableau
@@ -650,18 +693,41 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
             }
         });
     }
+    
+    private Client getClientSelectionne() {
+    int ligneSelectionnee = jTab_Clients.getSelectedRow();
+    
+    if (ligneSelectionnee == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Veuillez sélectionner un client dans le tableau.",
+            "Aucune sélection", 
+            javax.swing.JOptionPane.WARNING_MESSAGE);
+        return null;
+    }
+    
+    // Récupérer l'ID depuis la colonne 0 du tableau
+    String idClient = jTab_Clients.getValueAt(ligneSelectionnee, 0).toString();
+    
+    // Retrouver le client dans maSalle par son ID
+    for (Client c : maSalle.rechercherClient("numero", idClient)){ // BOUCLE INUTILE, CAR NUMERO UNIQUE MAIS FLEMME DE FAIRE AUTREMENT.
+        if (c.getNumeroClient() == Integer.parseInt(idClient)){
+            return c;    
+        }
+    }
+    return null;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton JRB_Annuel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBRetourVersConnex;
+    private javax.swing.JButton jB_ActivAbo;
+    private javax.swing.JButton jB_Annuel;
     private javax.swing.JButton jB_MenuAdmin;
-    private javax.swing.JButton jB_ModifierAbo;
     private javax.swing.JButton jB_Rechercher;
+    private javax.swing.JButton jB_Semestriel;
+    private javax.swing.JButton jB_Trimestriel;
     private javax.swing.JButton jB_trier;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCB_Abonnement;
     private javax.swing.JCheckBox jCB_ID;
     private javax.swing.JCheckBox jCB_Nom;

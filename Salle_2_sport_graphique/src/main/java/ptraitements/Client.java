@@ -207,6 +207,10 @@
             listeCoursFuturs.remove(cours);
             listeCoursPasses.add(cours);
         }
+        
+        public void setAbo(TypeAbonnement periodicite ) {
+            this.typeAbonnement = periodicite;
+        }
 
 
         // _________________________________________________ Affichages :

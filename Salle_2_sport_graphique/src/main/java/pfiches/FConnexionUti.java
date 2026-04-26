@@ -24,6 +24,7 @@ public class FConnexionUti extends javax.swing.JFrame {
     private FInscrire fichInscrire;
     private FAdminCreationCours fichAdminCreationCours;
     private FAdminGestionClient fichFAdminGestionClient;
+    private FAdminGestionClientVraie fichFAdminGestionClientVraie;
     private FAdminGestionCours fichAdminGestionCours;
     private FAdminStatsCours fichAdminStatsCours;
     private FModifInfoClient fichModifInfoClient;
@@ -54,6 +55,7 @@ public class FConnexionUti extends javax.swing.JFrame {
         
         fichAdminGestionCours = new FAdminGestionCours(this, false);
         fichFAdminGestionClient = new FAdminGestionClient(this, false);
+        fichFAdminGestionClientVraie = new FAdminGestionClientVraie(this, false);
         fichAdminCreationCours = new FAdminCreationCours(this, false);
         fichAdminStatsCours = new FAdminStatsCours(this, false);
         fichModifInfoClient = new FModifInfoClient(this, false);
@@ -77,6 +79,7 @@ public class FConnexionUti extends javax.swing.JFrame {
     public FAdminMenu getFicheAdminMenu(){return this.fichAdmin;}
     public FAdminGestionClient getFicheAdminModifCours(){return this.fichFAdminGestionClient;}
     public FAdminStatsCours getFichAdminStats() {return this.fichAdminStatsCours;}
+    public FAdminGestionClientVraie getFicheAdminGestionClient() {return this.fichFAdminGestionClientVraie;}
     
     
     public FHistoriqueCoursClient getFicheHistorique(){return this.fichHistorique;}

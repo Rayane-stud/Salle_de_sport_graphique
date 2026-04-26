@@ -113,6 +113,11 @@ public class FAdminMenu extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton1.setText("Gestion Client");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jBGestionCours.setText("Gestion Cours");
         jBGestionCours.addActionListener(new java.awt.event.ActionListener() {
@@ -224,6 +229,12 @@ public class FAdminMenu extends javax.swing.JDialog {
         this.dispose();
         new FConnexionUti().setVisible(true);
     }//GEN-LAST:event_jBRetourVersConnexActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheAdminGestionClient().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
