@@ -718,18 +718,25 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
             return;
         }
 
-        boolean supprime = maSalle.seDesinscrireDeCours(Client, selection);
+        int supprime = maSalle.seDesinscrireDeCours(Client, selection);
 
-        if(supprime){
+        switch (supprime) {
+            case 2 -> {
             maSalle.sauvegarderTout();
             JOptionPane.showMessageDialog(this, "Desinscrit du cours!");
             initialiserDate();
-            initialiserAffichage(dateselec);
-        }else{
+            initialiserAffichage(dateselec);}
+            case 0 -> {
             maSalle.sauvegarderTout();
             JOptionPane.showMessageDialog(this, "Vous n'êtes pas inscrit au cours!");
             initialiserDate();
+            initialiserAffichage(dateselec);}
+            case 1 -> {
+            maSalle.sauvegarderTout();
+            JOptionPane.showMessageDialog(this, "Le cours est passé !");
+            initialiserDate();
             initialiserAffichage(dateselec);
+            }
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

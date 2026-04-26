@@ -1,3 +1,4 @@
+
 /*
 Vignes Gabriel
 Ouchiha Rayane
@@ -189,15 +190,18 @@ public class Salle {
      * @param cours  le cours concerné
      * @return true si la désinscription a réussi, false si le client n'était pas inscrit
      */
-    public boolean seDesinscrireDeCours(Client client, Cours cours) {
+    public int seDesinscrireDeCours(Client client, Cours cours) {
         if (!client.getCoursFuturs().contains(cours)) {
-            return false; // le client n'est pas inscrit à ce cours
+            return 0; // le client n'est pas inscrit à ce cours
+        }
+        else if (cours.getDatecour().isBefore(LocalDate.now()) && cours.getHeurecour().isBefore(LocalTime.now())){
+            return 1; // le cours est passé
         }
         
         // Mise à jour des deux côtés (cours et client)
         cours.retirerClient(client);
         client.retirerCoursFutur(cours);
-        return true;
+        return 2; // le client est bien desinscrit
     }
     
     
