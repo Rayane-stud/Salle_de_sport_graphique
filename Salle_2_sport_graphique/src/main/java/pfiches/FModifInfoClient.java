@@ -4,6 +4,12 @@
  */
 package pfiches;
 
+import java.awt.FileDialog;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javax.swing.JOptionPane;
 import ptraitements.Client;
 import ptraitements.Salle;
@@ -68,6 +74,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jPanel_imageDecoDroite = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        JL_PP = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -225,6 +232,8 @@ public class FModifInfoClient extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        JL_PP.setText("Pas de photo selectionné");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -269,9 +278,12 @@ public class FModifInfoClient extends javax.swing.JDialog {
                             .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JT_tel_inscri, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(JL_ajout_photo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(JB_Ajout_Photo_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JL_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -347,7 +359,9 @@ public class FModifInfoClient extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JT_prenom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(JL_prenom))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JL_PP)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                                 .addComponent(jBenregistrer)))))
                 .addGap(61, 61, 61))
         );
@@ -363,7 +377,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addGap(0, 6, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -419,6 +433,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
        String NVprenom  = JT_prenom_inscri.getText();
        String NVtelephone = JT_tel_inscri.getText();
        String NVadresse = JT_adresse_inscri.getText();
+       String NVpp = JL_PP.getText();
        String message = "Vous avez modifié :\n";
        boolean aucunChangement = true;
        
@@ -429,6 +444,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
        JT_prenom_inscri.setText("");
        JT_tel_inscri.setText("");
        JT_adresse_inscri.setText("");
+       JL_PP.setText("Pas de photo selectionné");
 
 
 
@@ -460,6 +476,12 @@ public class FModifInfoClient extends javax.swing.JDialog {
             message += "- votre Adresse\n";
             aucunChangement = false;
         }
+        
+        if (!NVpp.equals("Pas de photo selectionné")) {
+            client.modifPP(NVpp);
+            message += "- votre photo\n";
+            aucunChangement = false;
+        }
 
         if (aucunChangement) {
             message = "Vous n'avez rien changé.";
@@ -475,7 +497,39 @@ public class FModifInfoClient extends javax.swing.JDialog {
     }//GEN-LAST:event_jBenregistrerActionPerformed
 
     private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
-        // TODO add your handling code here:
+        //methode trouvé par ia mais assemblé par gabriel
+                                                
+    FileDialog dial = new FileDialog(this, "Sélectionner une image", FileDialog.LOAD);
+    dial.setVisible(true);
+
+    String nomFich = dial.getFile();
+    String repertoire = dial.getDirectory();
+
+    if (nomFich != null) {
+        try {
+            // Nettoyage du nom
+            String nomNettoye = nomFich.replaceAll("[^a-zA-Z0-9._-]", "_");
+
+            Path src = Paths.get(repertoire + nomFich);
+
+            // 📁 dossier à la racine du projet
+            Path dossier = Paths.get("pimages");
+            if (!Files.exists(dossier)) {
+                Files.createDirectories(dossier);
+            }
+
+            Path dest = dossier.resolve(nomNettoye);
+
+            Files.copy(src, dest, StandardCopyOption.REPLACE_EXISTING);
+
+            JL_PP.setText(nomNettoye);
+
+            JOptionPane.showMessageDialog(this, "Image ajoutée !");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Erreur : " + e.getMessage());
+        }
+    }
+
     }//GEN-LAST:event_JB_Ajout_Photo_inscriActionPerformed
 
     /**
@@ -519,6 +573,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
     private javax.swing.JButton JB_Ajout_Photo_inscri;
     private javax.swing.JLabel JL_ID;
     private javax.swing.JLabel JL_ID_inscri;
+    private javax.swing.JLabel JL_PP;
     private javax.swing.JLabel JL_adresse;
     private javax.swing.JLabel JL_adresse_inscri;
     private javax.swing.JLabel JL_ajout_photo;
