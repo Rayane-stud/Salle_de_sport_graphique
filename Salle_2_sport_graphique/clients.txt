@@ -2,3 +2,4 @@
 2;test2;1234;;;;;ANNUEL;true;costume.jpg
 3;test3;1234;;;;;ANNUEL;true;pullgris.jpg
 4;test4;1234;;;;;ANNUEL;true;pullgris.jpg
+5;rey;1;rayane;reyyyy;0555028259;chez moi;SEMAINE;true;GIF_Java.gif
