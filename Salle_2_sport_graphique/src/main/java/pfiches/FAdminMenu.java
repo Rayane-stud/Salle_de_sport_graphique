@@ -17,7 +17,7 @@ public class FAdminMenu extends javax.swing.JDialog {
     private Salle maSalle;
     private Admin lAdmin;
     
-    private FAdminGestionClient fichFAdminGestionClient;
+    private FAdminModifierCours fichFAdminGestionClient;
     private FAdminGestionCours fichAdminGestionCours;
 
     

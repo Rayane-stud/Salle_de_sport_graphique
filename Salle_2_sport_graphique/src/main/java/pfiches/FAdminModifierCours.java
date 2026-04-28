@@ -9,6 +9,9 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
+import ptraitements.Admin;
+import ptraitements.Cours;
+import ptraitements.Salle;
 import ptraitements.TypeAbonnement;
 import ptraitements.TypeCours;
 
@@ -16,16 +19,30 @@ import ptraitements.TypeCours;
  *
  * @author rayan
  */
-public class FAdminGestionClient extends javax.swing.JDialog {
+public class FAdminModifierCours extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdminGestionClient.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdminModifierCours.class.getName());
 
+        // ─── Attributs métier ────────────────────────────────────────────────────
+        // Référence à la salle pour appeler modifierCours()
+        private Salle maSalle;
+    
+        // L'admin connecté (utile pour la navigation retour)
+        private Admin lAdmin;
+    
+        // Le cours que l'admin a sélectionné dans FAdminGestionCours
+        // C'est cet objet qui sera modifié via maSalle.modifierCours()
+        private Cours coursAModifier;
+    
+    
     /**
      * Creates new form FAdminGestionClient
      */
-    public FAdminGestionClient(java.awt.Frame parent, boolean modal) {
+    public FAdminModifierCours(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null); // centrage de la fenêtre
+        
         
     }
 
@@ -51,8 +68,6 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         JtextAnnee = new javax.swing.JTextField();
         JtextHeure = new javax.swing.JTextField();
         JL_tel_inscri = new javax.swing.JLabel();
-        JL_adresse_inscri = new javax.swing.JLabel();
-        JT_adresse_inscri = new javax.swing.JTextField();
         JT_NBplace = new javax.swing.JTextField();
         jBenregistrer = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -68,7 +83,6 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 2, 36)); // NOI18N
         jLabel1.setText("Modification de Cour : ");
 
-        JtextMinute.setText("mm");
         JtextMinute.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JtextMinuteActionPerformed(evt);
@@ -81,34 +95,30 @@ public class FAdminGestionClient extends javax.swing.JDialog {
             }
         });
 
-        JL_mdp_inscri.setText("Date");
+        JL_mdp_inscri.setText("Date : (dd/mm/aaaa)");
 
-        JL_nom_inscri.setText("Heure");
+        JL_nom_inscri.setText("Heure : (hh : mm)");
 
         JL_ID_inscri.setText("Activité");
 
-        JtextJour.setText("dd");
         JtextJour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JtextJourActionPerformed(evt);
             }
         });
 
-        JtextMois.setText("mm");
         JtextMois.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JtextMoisActionPerformed(evt);
             }
         });
 
-        JtextAnnee.setText("aaaa");
         JtextAnnee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JtextAnneeActionPerformed(evt);
             }
         });
 
-        JtextHeure.setText("hh");
         JtextHeure.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JtextHeureActionPerformed(evt);
@@ -116,14 +126,6 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         });
 
         JL_tel_inscri.setText("Nombre de place");
-
-        JL_adresse_inscri.setText("Adresse");
-
-        JT_adresse_inscri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JT_adresse_inscriActionPerformed(evt);
-            }
-        });
 
         JT_NBplace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +150,11 @@ public class FAdminGestionClient extends javax.swing.JDialog {
 
         buttonGroupeTypeCours.add(jRBcoll);
         jRBcoll.setText("Collectif");
+        jRBcoll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBcollActionPerformed(evt);
+            }
+        });
 
         JL_prenom_inscri.setText("Type Cours");
 
@@ -180,6 +187,11 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         );
 
         jButton1.setText("Annuler");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Liste Inscrits :");
 
@@ -209,36 +221,23 @@ public class FAdminGestionClient extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(JL_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(65, 65, 65)
-                                    .addComponent(JtextHeure, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(JtextMinute, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(33, 33, 33)
-                                    .addComponent(JT_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(JL_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(JL_mdp_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JT_NBplace, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(JL_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(JL_ID_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(85, 85, 85)
+                                .addComponent(JT_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JL_nom_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JL_tel_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JT_NBplace, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(67, 67, 67))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,9 +245,16 @@ public class FAdminGestionClient extends javax.swing.JDialog {
                                 .addGap(102, 102, 102)
                                 .addComponent(jLabel1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton1))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(154, 154, 154)
+                                        .addComponent(JtextHeure, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(JtextMinute, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(21, 21, 21)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jBenregistrer)
@@ -263,10 +269,8 @@ public class FAdminGestionClient extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JT_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JL_ID_inscri))
-                        .addGap(41, 41, 41)
+                        .addComponent(JL_ID_inscri)
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JL_mdp_inscri)
                             .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,20 +279,18 @@ public class FAdminGestionClient extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JL_tel_inscri)
-                            .addComponent(JT_NBplace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JL_adresse_inscri)
-                            .addComponent(JT_adresse_inscri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(26, 26, 26)
+                            .addComponent(JT_NBplace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JT_Activite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63)))
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JL_nom_inscri)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(JtextHeure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JtextMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(JL_nom_inscri))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JtextMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -320,10 +322,6 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JT_adresse_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_adresse_inscriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JT_adresse_inscriActionPerformed
-
     private void JT_NBplaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_NBplaceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JT_NBplaceActionPerformed
@@ -339,97 +337,132 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         super(message);
     }}
     
+    public void envoyerDonneesVersModifCours(Salle maSalle, Admin admin, Cours cours) {
+        this.maSalle = maSalle;
+        this.lAdmin = admin;
+        this.coursAModifier = cours;
+        
+        // Pré-remplissage des champs avec les valeurs actuelles du cours
+        // Même logique que dans FModifInfoClient.envoyerDonneesVersModifInfo()
+        JT_Activite.setText(cours.getActivitecour());
+        
+        // Décomposition de la date en jour/mois/année pour les 3 JTextFields
+        JtextJour.setText(String.valueOf(cours.getDatecour().getDayOfMonth()));
+        JtextMois.setText(String.valueOf(cours.getDatecour().getMonthValue()));
+        JtextAnnee.setText(String.valueOf(cours.getDatecour().getYear()));
+        
+        // Décomposition de l'heure en heure/minute
+        JtextHeure.setText(String.valueOf(cours.getHeurecour().getHour()));
+        JtextMinute.setText(String.valueOf(cours.getHeurecour().getMinute()));
+        
+        JT_NBplace.setText(String.valueOf(cours.getNombrePlacescour()));
+        
+        // Pré-sélection du bon RadioButton selon le type du cours
+        if (cours.getTypeCours() == TypeCours.Individuel) {
+            jRBindiv.setSelected(true);
+            JT_NBplace.setEditable(false); // cours individuel = 1 place, on bloque
+        } else {
+            jRBcoll.setSelected(true);
+            JT_NBplace.setEditable(true);
+        }
+        
+        // Affichage de la liste des inscrits dans le panel dédié
+        StringBuilder inscrits = new StringBuilder("<html>");
+        if (cours.getClientsInscritscours().isEmpty()) {
+            inscrits.append("Aucun inscrit");
+        } else {
+            for (ptraitements.Client c : cours.getClientsInscritscours()) {
+                inscrits.append("- ").append(c.getNom()).append(" ").append(c.getPrenom()).append("<br>");
+            }
+        }
+        inscrits.append("</html>");
+        jLabel2.setText(inscrits.toString()); // affiche dans le label "Liste Inscrits"
+    }
+    
+    
     
     private void jBenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBenregistrerActionPerformed
         
         String activite = JT_Activite.getText();
-        
-        try {
-            
-        int j, m, a;
-        j = Integer.parseInt(JtextJour.getText().trim());
-        m = Integer.parseInt(JtextMois.getText().trim());
-        a = Integer.parseInt(JtextAnnee.getText().trim());
-        
-        System.out.println("Jour: " + j + " Mois: " + m + " Annee: " + a);
-        // Vérification du mois
-        if (m <= 0) {
-        throw new MoisInvalideException("Le mois doit être > 0");
-        }
-        if (m < 1 || m > 12) {
-            throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
-        }
-        
-        // Vérification du jours
-        if (j<1 || j >30 ) {
-            throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
-        }
 
-        
-        // 3. Création de la date
-        // Note: LocalDate.of lancera sa propre exception si tu mets 31 juin par exemple
-        LocalDate date = LocalDate.of(a, m, j);
-        
-        
-        TypeCours type = null;
-        
-        
-        // Selection du type d'abonnement
-        if (jRBindiv.isSelected()) {
-            type = TypeCours.Individuel;
-            JT_NBplace.setText("1");
-        } else if (jRBcoll.isSelected()) {
-            type = TypeCours.Collectif;
-        } else {
-            JOptionPane.showMessageDialog(this, "Veuillez choisir un type d'abonnement"); // inutile a present car saisie par defaut en place 
-            return;
-        }
-        
-        
-        
-    
-    
-            int h, n;
-            h = Integer.parseInt(JtextHeure.getText().trim());
-            n = Integer.parseInt(JtextMinute.getText().trim());
-        
-            System.out.println("Heure: " + j + " Minute: " + m);
-            
-            // Vérification du mois
-            if (h < 0) {
-            throw new MoisInvalideException("L'heure doit être > 0");
+        try {
+            // ── Validation de la date ──────────────────────────────────────
+            int j = Integer.parseInt(JtextJour.getText().trim());
+            int m = Integer.parseInt(JtextMois.getText().trim());
+            int a = Integer.parseInt(JtextAnnee.getText().trim());
+
+            if (m < 1 || m > 12) {
+                throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
             }
+            if (j < 1 || j > 30) {
+                throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
+            }
+
+            // LocalDate.of lèvera DateTimeException si la date est impossible (ex: 31 juin)
+            LocalDate date = LocalDate.of(a, m, j);
+
+            // ── Validation du type de cours ───────────────────────────────
+            TypeCours type;
+            if (jRBindiv.isSelected()) {
+                type = TypeCours.Individuel;
+            } else if (jRBcoll.isSelected()) {
+                type = TypeCours.Collectif;
+            } else {
+                JOptionPane.showMessageDialog(this, "Veuillez choisir un type de cours.");
+                return;
+            }
+
+            // ── Validation de l'heure ─────────────────────────────────────
+            int h = Integer.parseInt(JtextHeure.getText().trim());
+            int n = Integer.parseInt(JtextMinute.getText().trim());
+
             if (h < 0 || h > 23) {
-                throw new MoisInvalideException("L'heure doit être compris entre 00 et 23");
+                throw new MoisInvalideException("L'heure doit être comprise entre 00 et 23");
             }
-            if (n < 0) {
-            throw new MoisInvalideException("La minute doit être > 0");
+            if (n < 0 || n > 59) {
+                throw new JourInvalideException("La minute doit être comprise entre 00 et 59");
             }
-            // Vérification du jours
-            if (n<0 || n >59 ) {
-                throw new JourInvalideException("La minute doit être compris entre 00 et 59");
+
+            LocalTime heure = LocalTime.of(h, n);
+
+            // ── Validation du nombre de places ────────────────────────────
+            int nbPlace = Integer.parseInt(JT_NBplace.getText().trim());
+
+            if (type == TypeCours.Individuel && nbPlace != 1) {
+                throw new MoisInvalideException("Un cours individuel ne peut avoir qu'1 place.");
             }
-    
-            LocalTime heure = LocalTime.of(h,n);
-            
-            
-            int nbInscrit = Integer.parseInt(JT_NBplace.getText().trim());
-            
-        }
-        catch (NumberFormatException ex) {
-            String message = "Le format n'est pas bon !";
-            JOptionPane.showMessageDialog(this, message); 
-        }
-        catch (MoisInvalideException ex) {
+
+            // ── Appel de la modification via Salle ────────────────────────
+            // modifierCours() retourne false si des clients sont déjà inscrits
+            boolean modifie = maSalle.modifierCours(coursAModifier, activite, date, heure, type, nbPlace);
+
+            if (modifie) {
+                // Sauvegarde et retour vers la gestion des cours
+                maSalle.sauvegarderTout();
+                JOptionPane.showMessageDialog(this, "Cours modifié avec succès !");
+
+                // Pattern de navigation identique à FAdminCreationCours
+                FAdminGestionCours fiche = ((FConnexionUti) getOwner()).getFicheAdminGestionCours();
+                this.setVisible(false);
+                fiche.setVisible(true);
+                fiche.initialiserAffichage(date); // on revient sur la semaine du cours modifié
+            } else {
+                // Salle.modifierCours() refuse si des clients sont inscrits
+                JOptionPane.showMessageDialog(this,
+                    "Impossible : des clients sont inscrits à ce cours.\nDésinscrivez-les d'abord.");
+            }
+
+        } catch (NumberFormatException ex) {
+            // Saisie non numérique dans un champ nombre
+            JOptionPane.showMessageDialog(this, "Le format n'est pas bon !");
+        } catch (MoisInvalideException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        catch (JourInvalideException ex) {
+        } catch (JourInvalideException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (DateTimeException ex) {
+            // Date logiquement impossible (ex: 31 avril)
+            JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
         }
-        catch (DateTimeException ex) {
-        // Capture les erreurs comme le 31 février ou le 31 avril
-        JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
-    }
         
         
         // Methode a appelelr avant pr envoie des données du cours 
@@ -443,7 +476,8 @@ public class FAdminGestionClient extends javax.swing.JDialog {
     }//GEN-LAST:event_JT_ActiviteActionPerformed
 
     private void jRBindivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBindivActionPerformed
-        // TODO add your handling code here:
+        JT_NBplace.setText("1");
+        JT_NBplace.setEditable(false); // on bloque pour éviter une valeur différente de 1
     }//GEN-LAST:event_jRBindivActionPerformed
 
     private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
@@ -465,6 +499,16 @@ public class FAdminGestionClient extends javax.swing.JDialog {
     private void JtextMinuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextMinuteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtextMinuteActionPerformed
+
+    private void jRBcollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBcollActionPerformed
+        JT_NBplace.setText("");
+        JT_NBplace.setEditable(true);
+    }//GEN-LAST:event_jRBcollActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        ((FConnexionUti)this.getOwner()).getFicheAdminGestionCours().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -491,7 +535,7 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FAdminGestionClient dialog = new FAdminGestionClient(new javax.swing.JFrame(), true);
+                FAdminModifierCours dialog = new FAdminModifierCours(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -505,14 +549,12 @@ public class FAdminGestionClient extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JL_ID_inscri;
-    private javax.swing.JLabel JL_adresse_inscri;
     private javax.swing.JLabel JL_mdp_inscri;
     private javax.swing.JLabel JL_nom_inscri;
     private javax.swing.JLabel JL_prenom_inscri;
     private javax.swing.JLabel JL_tel_inscri;
     private javax.swing.JTextField JT_Activite;
     private javax.swing.JTextField JT_NBplace;
-    private javax.swing.JTextField JT_adresse_inscri;
     private javax.swing.JTextField JtextAnnee;
     private javax.swing.JTextField JtextHeure;
     private javax.swing.JTextField JtextJour;

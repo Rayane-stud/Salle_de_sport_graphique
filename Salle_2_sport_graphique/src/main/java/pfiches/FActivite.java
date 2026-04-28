@@ -35,6 +35,9 @@ public class FActivite extends javax.swing.JDialog {
     private Client Client;
     private boolean recherche;
     
+    private LocalDate dateselec;
+
+    
 // déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, c'est pour ca que ca plantait trouvé par ia
     private DefaultListModel<String> modelLundi = new DefaultListModel<>();
     private DefaultListModel<String> modelMardi = new DefaultListModel<>();
@@ -93,6 +96,7 @@ public class FActivite extends javax.swing.JDialog {
      
         
     }
+    
 
     public void initialiserAffichage( LocalDate date ){
         
@@ -162,7 +166,7 @@ public class FActivite extends javax.swing.JDialog {
             LocalDate d = c.getDatecour();
 
         // On n'affiche que les cours de la semaine affichée
-        if ((d.isBefore(lundi) || d.isAfter(dimanche)) && recherche == true) continue;
+        if ((d.isBefore(lundi) || d.isAfter(dimanche))) continue;
 
         String affichage = c.getActivitecour() + " - " + c.getHeurecour() + " - " + c.getNbreInscrits() + "/" + c.getNombrePlacescour();
 
@@ -207,6 +211,14 @@ public class FActivite extends javax.swing.JDialog {
     String nom = c.getActivitecour() + " " + c.getHeurecour();
     model.addElement(nom); // ← addElement sur le modèle
     }        
+    
+    
+    public void initialiserDate (){
+        String textdate = jLabellundi.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        dateselec = LocalDate.parse(textdate, formatter);
+}
+
    
     public void envoyerSalleClientVersActivite(Salle maSalle, Client client){
         this.maSalle = maSalle;
@@ -268,10 +280,7 @@ public class FActivite extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         JbutonRechercher = new javax.swing.JButton();
         jBretour = new javax.swing.JButton();
-        jT_recherche = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -632,22 +641,7 @@ public class FActivite extends javax.swing.JDialog {
             }
         });
 
-        jT_recherche.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jT_rechercheActionPerformed(evt);
-            }
-        });
-
         jLabel8.setText("Date :");
-
-        jLabel9.setText("Activité : ");
-
-        jCheckBox1.setText("date ");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -669,7 +663,7 @@ public class FActivite extends javax.swing.JDialog {
                         .addComponent(JB_Sem_prec)
                         .addGap(18, 18, 18)
                         .addComponent(JB_Sem_suiv)
-                        .addGap(30, 30, 30)
+                        .addGap(134, 134, 134)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -677,12 +671,6 @@ public class FActivite extends javax.swing.JDialog {
                         .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(jT_recherche, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JbutonRechercher)
                         .addGap(58, 58, 58))))
@@ -698,10 +686,7 @@ public class FActivite extends javax.swing.JDialog {
                     .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbutonRechercher)
-                    .addComponent(jT_recherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -723,9 +708,10 @@ public class FActivite extends javax.swing.JDialog {
         String datestring = jLabellundi.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(datestring, formatter);
-        date = date.plusWeeks(-1);
-        initialiserAffichage(date);
+        date = date.minusWeeks(1);
 
+        dateselec = date;
+        initialiserAffichage(dateselec);
 
 
 // TODO add your handling code here:
@@ -737,9 +723,11 @@ public class FActivite extends javax.swing.JDialog {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(datestring, formatter);
         date = date.plusWeeks(1);
-        initialiserAffichage(date);
+        
+        dateselec = date;
+        initialiserAffichage(dateselec);
 
-// TODO add your handling code here:
+
     }//GEN-LAST:event_JB_Sem_suivActionPerformed
 
     private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
@@ -872,14 +860,6 @@ public class FActivite extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void jT_rechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jT_rechercheActionPerformed
-        
-    }//GEN-LAST:event_jT_rechercheActionPerformed
-
     class MoisInvalideException extends Exception {
     public MoisInvalideException(String message) {
         super(message);
@@ -940,7 +920,6 @@ public class FActivite extends javax.swing.JDialog {
     private javax.swing.JTextField JtextMois;
     private javax.swing.JButton jBretour;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -949,7 +928,6 @@ public class FActivite extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabeldimanche;
     private javax.swing.JLabel jLabeljeudi;
     private javax.swing.JLabel jLabellundi;
@@ -979,7 +957,6 @@ public class FActivite extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTextField jT_recherche;
     private java.awt.Scrollbar scrollbar1;
     // End of variables declaration//GEN-END:variables
 }
