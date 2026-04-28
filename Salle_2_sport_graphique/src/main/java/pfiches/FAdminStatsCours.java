@@ -218,7 +218,7 @@ public class FAdminStatsCours extends javax.swing.JDialog {
     private void jBRetourVersConnex4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnex4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        ((FConnexionUti)this.getOwner()).setVisible(true);
+        ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
     }//GEN-LAST:event_jBRetourVersConnex4ActionPerformed
 
     private void jB_PlusPopuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_PlusPopuActionPerformed
