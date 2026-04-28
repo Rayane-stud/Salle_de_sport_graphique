@@ -293,6 +293,7 @@ public class FClientMenu extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JB_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_infoActionPerformed
+        ((FConnexionUti)this.getOwner()).getFicheClientProfile().passageClientMenuProfil(this.client, this.maSalle);
         this.dispose();
         ((FConnexionUti)this.getOwner()).setLocation(this.getLocation());
         ((FConnexionUti)this.getOwner()).getFicheClientProfile().setVisible(true);
@@ -308,7 +309,10 @@ public class FClientMenu extends javax.swing.JDialog {
     private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed
 
         this.dispose();
-        ((FConnexionUti)this.getOwner()).setVisible(true);
+        ((FConnexionUti)this.getOwner()).dispose();
+        FConnexionUti fenetre = new FConnexionUti();
+        fenetre.setVisible(true);
+        fenetre.chargerImagesFCo(); 
     }//GEN-LAST:event_jBRetourVersConnexActionPerformed
 
     private void JB_info1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_info1ActionPerformed

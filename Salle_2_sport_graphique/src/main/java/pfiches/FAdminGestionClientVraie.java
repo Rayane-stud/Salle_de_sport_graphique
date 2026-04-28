@@ -597,6 +597,7 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
 
     private void jB_ActivAboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ActivAboActionPerformed
         // TODO add your handling code here:
+        if (getClientSelectionne() == null) {
         boolean nvEtat = !this.getClientSelectionne().isAbonnementActif();
         String ActiOuPas = "";
         if (nvEtat){ActiOuPas = " Activé ! ";}
@@ -607,6 +608,10 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
         
         javax.swing.JOptionPane.showMessageDialog(this, "Abonnement de " + this.getClientSelectionne().getNom() + ActiOuPas);
         afficherDansTableau(maSalle.getListeClients()); // Rafraichir l'affichage
+        }
+        else {
+            javax.swing.JOptionPane.showMessageDialog(this,"Selectionner Une ligne");
+        }
     }//GEN-LAST:event_jB_ActivAboActionPerformed
 
     private void jB_TrimestrielActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_TrimestrielActionPerformed
