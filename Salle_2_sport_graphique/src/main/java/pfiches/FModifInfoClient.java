@@ -422,7 +422,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
     JL_prenom.setText(client.getPrenom());
     JL_tel.setText(client.getTelephone());
     JL_adresse.setText(client.getAdresse());
-     }
+    }
 
     
     

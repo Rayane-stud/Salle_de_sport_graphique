@@ -16,14 +16,14 @@ import ptraitements.TypeCours;
  *
  * @author rayan
  */
-public class FAdminGestionClient extends javax.swing.JDialog {
+public class FAdminModifierCours extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdminGestionClient.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FAdminModifierCours.class.getName());
 
     /**
      * Creates new form FAdminGestionClient
      */
-    public FAdminGestionClient(java.awt.Frame parent, boolean modal) {
+    public FAdminModifierCours(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -491,7 +491,7 @@ public class FAdminGestionClient extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FAdminGestionClient dialog = new FAdminGestionClient(new javax.swing.JFrame(), true);
+                FAdminModifierCours dialog = new FAdminModifierCours(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
