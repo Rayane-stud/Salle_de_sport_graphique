@@ -55,44 +55,26 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="JL_nom_inscri" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Component id="JtextHeure" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="JtextMinute" min="-2" pref="39" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="JL_ID_inscri" min="-2" pref="69" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="JT_Activite" min="-2" pref="121" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="JL_mdp_inscri" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="JL_mdp_inscri" min="-2" pref="148" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="JtextJour" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="JtextMois" min="-2" pref="39" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="JtextAnnee" min="-2" pref="47" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <EmptySpace pref="48" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="JL_tel_inscri" min="-2" pref="115" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="JT_NBplace" min="-2" pref="121" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="JL_ID_inscri" min="-2" pref="69" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="JT_Activite" min="-2" pref="121" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="JL_adresse_inscri" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="JT_adresse_inscri" min="-2" pref="121" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="JL_nom_inscri" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="JL_tel_inscri" min="-2" pref="115" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="JT_NBplace" min="-2" pref="121" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -102,9 +84,19 @@
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+                                          <Component id="JtextHeure" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="JtextMinute" min="-2" pref="39" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jBenregistrer" min="-2" max="-2" attributes="0"/>
@@ -126,11 +118,8 @@
                   <EmptySpace pref="52" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="JT_Activite" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="JL_ID_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="JL_ID_inscri" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="JL_mdp_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="JtextJour" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -142,25 +131,22 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="JL_tel_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="JT_NBplace" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JT_Activite" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="JL_adresse_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="JT_adresse_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="JL_nom_inscri" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
                                   <Component id="JtextHeure" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="JtextMinute" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="JL_nom_inscri" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
@@ -188,9 +174,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="JtextMinute">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="mm"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtextMinuteActionPerformed"/>
           </Events>
@@ -202,12 +185,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="JL_mdp_inscri">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Date"/>
+            <Property name="text" type="java.lang.String" value="Date : (dd/mm/aaaa)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JL_nom_inscri">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Heure"/>
+            <Property name="text" type="java.lang.String" value="Heure : (hh : mm)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="JL_ID_inscri">
@@ -216,33 +199,21 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="JtextJour">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="dd"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtextJourActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="JtextMois">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="mm"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtextMoisActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="JtextAnnee">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="aaaa"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtextAnneeActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="JtextHeure">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="hh"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtextHeureActionPerformed"/>
           </Events>
@@ -251,16 +222,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre de place"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="JL_adresse_inscri">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Adresse"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="JT_adresse_inscri">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JT_adresse_inscriActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="JT_NBplace">
           <Events>
@@ -331,6 +292,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Collectif"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRBcollActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JL_prenom_inscri">
               <Properties>
@@ -343,6 +307,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Annuler"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel3">
 

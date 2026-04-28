@@ -889,9 +889,26 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     }//GEN-LAST:event_jBretourActionPerformed
 
     private void jB_ModifierCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ModifierCoursActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        ((FConnexionUti)this.getOwner()).getFicheAdminModifCours().setVisible(true);
+        // Récupérer le cours sélectionné (même logique que la suppression)
+        Cours selection = null;
+        if (!jListLundi.isSelectionEmpty()) selection = listeLundi.get(jListLundi.getSelectedIndex());
+        else if (!jListMardi.isSelectionEmpty()) selection = listeMardi.get(jListMardi.getSelectedIndex());
+        else if (!jListMercredi.isSelectionEmpty()) selection = listeMercredi.get(jListMercredi.getSelectedIndex());
+        else if (!jListJeudi.isSelectionEmpty()) selection = listeJeudi.get(jListJeudi.getSelectedIndex());
+        else if (!jListVendredi.isSelectionEmpty()) selection = listeVendredi.get(jListVendredi.getSelectedIndex());
+        else if (!jListSamedi.isSelectionEmpty()) selection = listeSamedi.get(jListSamedi.getSelectedIndex());
+        else if (!jListDimanche.isSelectionEmpty()) selection = listeDimanche.get(jListDimanche.getSelectedIndex());
+
+        if (selection == null) {
+            JOptionPane.showMessageDialog(this, "Veuillez sélectionner un cours à modifier.");
+            return;
+        }
+
+        // Envoi des données et ouverture de la fiche
+        FAdminModifierCours fiche = ((FConnexionUti) getOwner()).getFicheAdminModifCours();
+        fiche.envoyerDonneesVersModifCours(maSalle, lAdmin, selection);
+        this.setVisible(false);
+        fiche.setVisible(true);
     }//GEN-LAST:event_jB_ModifierCoursActionPerformed
 
     /**
