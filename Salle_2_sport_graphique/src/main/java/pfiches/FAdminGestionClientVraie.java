@@ -515,6 +515,8 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
 
     private void jB_MenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuAdminActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
     }//GEN-LAST:event_jB_MenuAdminActionPerformed
 
     private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed

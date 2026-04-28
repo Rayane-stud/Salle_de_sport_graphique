@@ -151,9 +151,6 @@ public class FClientMenu extends javax.swing.JDialog {
             }
         });
 
-        jP_Bonjour.setBackground(new java.awt.Color(255, 255, 255));
-        jP_Bonjour.setForeground(new java.awt.Color(255, 255, 255));
-
         JL_PRE.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         JL_PRE.setText("Prenom");
 
@@ -186,6 +183,11 @@ public class FClientMenu extends javax.swing.JDialog {
 
         jB_MenuClient.setBackground(new java.awt.Color(204, 255, 204));
         jB_MenuClient.setText("Menu");
+        jB_MenuClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_MenuClientActionPerformed(evt);
+            }
+        });
 
         JB_info.setText("Profile");
         JB_info.addActionListener(new java.awt.event.ActionListener() {
@@ -329,6 +331,10 @@ public class FClientMenu extends javax.swing.JDialog {
         this.setVisible(false); 
         fichActivite.setVisible(true);
     }//GEN-LAST:event_JB_ActiviteActionPerformed
+
+    private void jB_MenuClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuClientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jB_MenuClientActionPerformed
 
     public void envoyerSalleClientVersMenuClient(Salle maSalle, Client client){
         this.maSalle = maSalle;
