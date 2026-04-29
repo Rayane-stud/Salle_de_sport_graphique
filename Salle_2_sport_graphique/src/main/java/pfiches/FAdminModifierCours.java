@@ -16,8 +16,13 @@ import ptraitements.TypeAbonnement;
 import ptraitements.TypeCours;
 
 /**
- *
- * @author rayan
+ * Fiche de modification d'un cours existant (admin uniquement).
+ * Suit le même pattern que FAdminCreationCours :
+ * - Les données du cours sélectionné sont pré-remplies à l'ouverture
+ * - L'admin modifie ce qu'il veut et clique Enregistrer
+ * - La modification est refusée si des clients sont déjà inscrits selon le nombre et si c'est une activité coll ou indiv (géré par Salle.modifierCours)
+ * - La gestion des dates aurait pu être faite car théoriquement c'est possible mais pas primordiale
+ * @author Vignes Gabriel / Ouchiha Rayane
  */
 public class FAdminModifierCours extends javax.swing.JDialog {
     
