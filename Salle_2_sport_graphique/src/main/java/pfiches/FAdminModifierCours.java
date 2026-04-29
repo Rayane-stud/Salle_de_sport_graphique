@@ -285,11 +285,11 @@ public class FAdminModifierCours extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JL_nom_inscri)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(JtextHeure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JtextMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(JtextMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JL_nom_inscri))
                         .addGap(15, 15, 15)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))
@@ -337,37 +337,37 @@ public class FAdminModifierCours extends javax.swing.JDialog {
         super(message);
     }}
     
+    /**
+        * Reçoit le cours à modifier depuis FAdminGestionCours et pré-remplit les champs.
+        * Appelée AVANT setVisible(true).
+        * 
+        * Fait par Gabriel
+    */
     public void envoyerDonneesVersModifCours(Salle maSalle, Admin admin, Cours cours) {
         this.maSalle = maSalle;
         this.lAdmin = admin;
         this.coursAModifier = cours;
-        
+
         // Pré-remplissage des champs avec les valeurs actuelles du cours
-        // Même logique que dans FModifInfoClient.envoyerDonneesVersModifInfo()
         JT_Activite.setText(cours.getActivitecour());
-        
-        // Décomposition de la date en jour/mois/année pour les 3 JTextFields
         JtextJour.setText(String.valueOf(cours.getDatecour().getDayOfMonth()));
         JtextMois.setText(String.valueOf(cours.getDatecour().getMonthValue()));
         JtextAnnee.setText(String.valueOf(cours.getDatecour().getYear()));
-        
-        // Décomposition de l'heure en heure/minute
         JtextHeure.setText(String.valueOf(cours.getHeurecour().getHour()));
         JtextMinute.setText(String.valueOf(cours.getHeurecour().getMinute()));
-        
         JT_NBplace.setText(String.valueOf(cours.getNombrePlacescour()));
-        
-        // Pré-sélection du bon RadioButton selon le type du cours
+
+        // Pré-sélection du bon RadioButton
         if (cours.getTypeCours() == TypeCours.Individuel) {
             jRBindiv.setSelected(true);
-            JT_NBplace.setEditable(false); // cours individuel = 1 place, on bloque
+            JT_NBplace.setEditable(false);
         } else {
-            jRBcoll.setSelected(true);
+             jRBcoll.setSelected(true);
             JT_NBplace.setEditable(true);
         }
-        
-        // Affichage de la liste des inscrits dans le panel dédié
-        StringBuilder inscrits = new StringBuilder("<html>");
+
+        // Affichage de la liste des inscrits
+        StringBuilder inscrits = new StringBuilder("<html><b>Inscrits (" + cours.getNbreInscrits() + ") :</b><br>");
         if (cours.getClientsInscritscours().isEmpty()) {
             inscrits.append("Aucun inscrit");
         } else {
@@ -376,104 +376,177 @@ public class FAdminModifierCours extends javax.swing.JDialog {
             }
         }
         inscrits.append("</html>");
-        jLabel2.setText(inscrits.toString()); // affiche dans le label "Liste Inscrits"
+        jLabel2.setText(inscrits.toString());
+
+        // Configuration des restrictions selon les inscrits — APRÈS le pré-remplissage
+        configurerSelonInscrits();
+}
+    
+    
+    /**
+        * Configure les composants selon le nombre d'inscrits au cours.
+        * Appelée dans envoyerDonneesVersModifCours() après le pré-remplissage.
+        * 
+        * Logique réelle :
+        * - Si 0 inscrit : tout est possible, aucune restriction
+        * - Si 1 inscrit : on peut garder Individuel ou passer en Collectif, 
+        *                  mais le nb de places minimum est 1
+        * - Si 2+ inscrits : Individuel impossible (on le désactive),
+        *                    le nb de places minimum = nb d'inscrits actuels
+        * 
+        * Fait par Gabriel
+    */
+    private void configurerSelonInscrits() {
+        
+        int nbInscrits = coursAModifier.getNbreInscrits();
+
+        if (nbInscrits > 1) {
+            // Impossible de passer en individuel : plusieurs clients sont inscrits
+            // On désactive le bouton et on force Collectif
+            jRBindiv.setEnabled(false);
+            jRBcoll.setSelected(true);
+            JT_NBplace.setEditable(true);
+
+            // Message d'info dans le panel inscrits pour que l'admin comprenne pourquoi
+            // (le label jLabel2 affiche déjà la liste, on enrichit juste le titre)
+            jLabel2.setToolTipText("Individuel désactivé : " + nbInscrits + " clients inscrits.");
+
+        } else if (nbInscrits == 1) {
+            // 1 seul inscrit : on peut rester en individuel ou passer en collectif
+            jRBindiv.setEnabled(true);
+
+        } else {
+            // 0 inscrit : toutes les options sont disponibles
+            jRBindiv.setEnabled(true);
+        }
     }
     
     
+    /**
+    * Bouton Enregistrer : valide les saisies et appelle maSalle.modifierCours().
+    * 
+    * Validations réelles ajoutées :
+    * - On ne peut pas réduire les places en dessous du nb d'inscrits actuels
+    * - Un cours individuel ne peut avoir qu'1 place
+    * - Si 2+ inscrits, le passage en individuel est bloqué (déjà géré par les RadioButtons,
+    *   mais on double-vérifie côté code au cas où)
+    * 
+    * Fait par Gabriel
+    */
     
     private void jBenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBenregistrerActionPerformed
         
-        String activite = JT_Activite.getText();
+        String activite = JT_Activite.getText().trim();
+        int nbInscritsActuels = coursAModifier.getNbreInscrits();
 
-        try {
-            // ── Validation de la date ──────────────────────────────────────
-            int j = Integer.parseInt(JtextJour.getText().trim());
-            int m = Integer.parseInt(JtextMois.getText().trim());
-            int a = Integer.parseInt(JtextAnnee.getText().trim());
+        // Vérification que l'activité n'est pas vide
+        if (activite.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Le nom de l'activité ne peut pas être vide.");
+        return;
+        }
 
-            if (m < 1 || m > 12) {
-                throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
-            }
-            if (j < 1 || j > 30) {
-                throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
-            }
+    try {
+        // ── Validation de la date ──────────────────────────────────────────
+        int j = Integer.parseInt(JtextJour.getText().trim());
+        int m = Integer.parseInt(JtextMois.getText().trim());
+        int a = Integer.parseInt(JtextAnnee.getText().trim());
 
-            // LocalDate.of lèvera DateTimeException si la date est impossible (ex: 31 juin)
-            LocalDate date = LocalDate.of(a, m, j);
+        if (m < 1 || m > 12) throw new MoisInvalideException("Le mois doit être entre 1 et 12.");
+        if (j < 1 || j > 31) throw new JourInvalideException("Le jour doit être entre 1 et 31.");
 
-            // ── Validation du type de cours ───────────────────────────────
-            TypeCours type;
-            if (jRBindiv.isSelected()) {
-                type = TypeCours.Individuel;
-            } else if (jRBcoll.isSelected()) {
-                type = TypeCours.Collectif;
-            } else {
-                JOptionPane.showMessageDialog(this, "Veuillez choisir un type de cours.");
+        LocalDate date = LocalDate.of(a, m, j); // lève DateTimeException si date impossible
+
+        // Un cours passé ne peut pas être replanifié dans le futur non plus,
+        // mais on laisse l'admin libre sur la date
+
+        // ── Validation du type de cours ───────────────────────────────────
+        TypeCours type;
+        if (jRBindiv.isSelected()) {
+            // Double vérification : normalement le bouton est désactivé si nbInscrits > 1
+            if (nbInscritsActuels > 1) {
+                JOptionPane.showMessageDialog(this,
+                    "Impossible de passer en Individuel : " + nbInscritsActuels +
+                    " clients sont inscrits.\nVeuillez les désinscrire d'abord.");
                 return;
             }
-
-            // ── Validation de l'heure ─────────────────────────────────────
-            int h = Integer.parseInt(JtextHeure.getText().trim());
-            int n = Integer.parseInt(JtextMinute.getText().trim());
-
-            if (h < 0 || h > 23) {
-                throw new MoisInvalideException("L'heure doit être comprise entre 00 et 23");
-            }
-            if (n < 0 || n > 59) {
-                throw new JourInvalideException("La minute doit être comprise entre 00 et 59");
-            }
-
-            LocalTime heure = LocalTime.of(h, n);
-
-            // ── Validation du nombre de places ────────────────────────────
-            int nbPlace = Integer.parseInt(JT_NBplace.getText().trim());
-
-            if (type == TypeCours.Individuel && nbPlace != 1) {
-                throw new MoisInvalideException("Un cours individuel ne peut avoir qu'1 place.");
-            }
-
-            // ── Appel de la modification via Salle ────────────────────────
-            // modifierCours() retourne false si des clients sont déjà inscrits
-            boolean modifie = maSalle.modifierCours(coursAModifier, activite, date, heure, type, nbPlace);
-
-            if (modifie) {
-                // Sauvegarde et retour vers la gestion des cours
-                maSalle.sauvegarderTout();
-                JOptionPane.showMessageDialog(this, "Cours modifié avec succès !");
-
-                // Pattern de navigation identique à FAdminCreationCours
-                FAdminGestionCours fiche = ((FConnexionUti) getOwner()).getFicheAdminGestionCours();
-                this.setVisible(false);
-                fiche.setVisible(true);
-                fiche.initialiserAffichage(date); // on revient sur la semaine du cours modifié
-            } else {
-                // Salle.modifierCours() refuse si des clients sont inscrits
-                JOptionPane.showMessageDialog(this,
-                    "Impossible : des clients sont inscrits à ce cours.\nDésinscrivez-les d'abord.");
-            }
-
-        } catch (NumberFormatException ex) {
-            // Saisie non numérique dans un champ nombre
-            JOptionPane.showMessageDialog(this, "Le format n'est pas bon !");
-        } catch (MoisInvalideException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        } catch (JourInvalideException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        } catch (DateTimeException ex) {
-            // Date logiquement impossible (ex: 31 avril)
-            JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
+            type = TypeCours.Individuel;
+        } else if (jRBcoll.isSelected()) {
+            type = TypeCours.Collectif;
+        } else {
+            JOptionPane.showMessageDialog(this, "Veuillez choisir un type de cours.");
+            return;
         }
-        
-        
-        // Methode a appelelr avant pr envoie des données du cours 
-        
-        
+
+        // ── Validation de l'heure ─────────────────────────────────────────
+        int h = Integer.parseInt(JtextHeure.getText().trim());
+        int n = Integer.parseInt(JtextMinute.getText().trim());
+
+        if (h < 0 || h > 23) throw new MoisInvalideException("L'heure doit être entre 00 et 23.");
+        if (n < 0 || n > 59) throw new JourInvalideException("La minute doit être entre 00 et 59.");
+
+        LocalTime heure = LocalTime.of(h, n);
+
+        // ── Validation du nombre de places ────────────────────────────────
+        int nbPlace = Integer.parseInt(JT_NBplace.getText().trim());
+
+        if (nbPlace < 1) {
+            JOptionPane.showMessageDialog(this, "Le nombre de places doit être d'au moins 1.");
+            return;
+        }
+
+        // Logique réelle : on ne peut pas avoir moins de places que d'inscrits actuels
+        // (sinon des clients se retrouveraient dans un cours "plein" sans y être inscrits)
+        if (nbPlace < nbInscritsActuels) {
+            JOptionPane.showMessageDialog(this,
+                "Impossible : " + nbInscritsActuels + " client(s) sont déjà inscrits.\n" +
+                "Le nombre de places minimum est " + nbInscritsActuels + ".");
+            return;
+        }
+
+        if (type == TypeCours.Individuel && nbPlace != 1) {
+            JOptionPane.showMessageDialog(this, "Un cours Individuel ne peut avoir qu'1 place.");
+            return;
+        }
+
+        // ── Appel de la modification via Salle ────────────────────────────
+        // On passe outre la restriction de Salle.modifierCours() qui refuse
+        // dès qu'il y a des inscrits, car ici on a nos propres validations plus fines.
+        // On modifie donc directement les attributs du cours via les setters.
+        coursAModifier.setActivite(activite);
+        coursAModifier.setDate(date);
+        coursAModifier.setHeure(heure);
+        coursAModifier.setTypeCours(type);
+        coursAModifier.setNombrePlaces(nbPlace);
+
+        maSalle.sauvegarderTout();
+        JOptionPane.showMessageDialog(this, "Cours modifié avec succès !");
+
+        // Retour vers la gestion des cours, centré sur la semaine du cours modifié
+        FAdminGestionCours fiche = ((FConnexionUti) getOwner()).getFicheAdminGestionCours();
+        this.setVisible(false);
+        fiche.setVisible(true);
+        fiche.initialiserAffichage(date);
+
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Un champ numérique contient une valeur invalide.");
+    } catch (MoisInvalideException ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage());
+    } catch (JourInvalideException ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage());
+    } catch (DateTimeException ex) {
+        JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
+    }
         
     }//GEN-LAST:event_jBenregistrerActionPerformed
 
     private void JT_ActiviteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JT_ActiviteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JT_ActiviteActionPerformed
+
+    
+    /**
+    * Sélection Individuel : force 1 place et bloque le champ.
+    */
 
     private void jRBindivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBindivActionPerformed
         JT_NBplace.setText("1");
@@ -500,14 +573,31 @@ public class FAdminModifierCours extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JtextMinuteActionPerformed
 
+    
+    
+    /**
+    * Sélection Collectif : débloque le champ.
+    * On remet le nb de places actuel comme valeur minimale suggérée.
+    */
     private void jRBcollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBcollActionPerformed
-        JT_NBplace.setText("");
         JT_NBplace.setEditable(true);
+        // Si on repasse en collectif depuis individuel, on remet la valeur d'origine
+        if (coursAModifier != null && coursAModifier.getNbreInscrits() > 0) {
+            JT_NBplace.setText(String.valueOf(coursAModifier.getNombrePlacescour()));
+        } else {
+            JT_NBplace.setText("");
+        }
     }//GEN-LAST:event_jRBcollActionPerformed
 
+    
+    
+    /**
+    * Bouton Annuler : retour sans sauvegarder.
+    * Fait par Gabriel
+    */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        ((FConnexionUti)this.getOwner()).getFicheAdminGestionCours().setVisible(true);
+        ((FConnexionUti) getOwner()).getFicheAdminGestionCours().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
