@@ -68,7 +68,6 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         
         // Taille fixe de la fenêtre
         this.setSize(1000, 550); // largeur, hauteur
-        this.setResizable(false); // empêche le redimensionnement
         this.setLocationRelativeTo(null); // centre la fenêtre      
 
         

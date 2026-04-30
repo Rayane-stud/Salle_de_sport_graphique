@@ -30,6 +30,10 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
+        
+        this.setLocationRelativeTo(null); // centre la fenêtre      
+
+        
         // ORDRE TRES IMPORTANT PR GARDER LE LIEN ENTRE CHACUN DES DEUX PAR LA SUITE 
         listeCheckBox.add(jCB_ID);
         listeTextFields.add(jTF_ID);
