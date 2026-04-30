@@ -64,6 +64,9 @@ public class FAdminCreationCours extends javax.swing.JDialog {
         JT_NBplace = new javax.swing.JTextField();
         jBenregistrer = new javax.swing.JButton();
         JL_tel_inscri = new javax.swing.JLabel();
+        jPannel_2PanneldeToolbox = new javax.swing.JPanel();
+        jB_MenuAdmin = new javax.swing.JButton();
+        jBRetourVersConnex = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -249,6 +252,45 @@ public class FAdminCreationCours extends javax.swing.JDialog {
                 .addGap(28, 28, 28))
         );
 
+        jPannel_2PanneldeToolbox.setBackground(new java.awt.Color(204, 204, 204));
+        jPannel_2PanneldeToolbox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jB_MenuAdmin.setBackground(new java.awt.Color(204, 255, 204));
+        jB_MenuAdmin.setText("Menu");
+        jB_MenuAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_MenuAdminActionPerformed(evt);
+            }
+        });
+
+        jBRetourVersConnex.setBackground(new java.awt.Color(255, 102, 102));
+        jBRetourVersConnex.setText("Retour");
+        jBRetourVersConnex.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBRetourVersConnex.setIconTextGap(5);
+        jBRetourVersConnex.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBRetourVersConnex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRetourVersConnexActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPannel_2PanneldeToolboxLayout = new javax.swing.GroupLayout(jPannel_2PanneldeToolbox);
+        jPannel_2PanneldeToolbox.setLayout(jPannel_2PanneldeToolboxLayout);
+        jPannel_2PanneldeToolboxLayout.setHorizontalGroup(
+            jPannel_2PanneldeToolboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPannel_2PanneldeToolboxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jB_MenuAdmin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBRetourVersConnex)
+                .addContainerGap())
+        );
+        jPannel_2PanneldeToolboxLayout.setVerticalGroup(
+            jPannel_2PanneldeToolboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jBRetourVersConnex)
+            .addComponent(jB_MenuAdmin)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -257,11 +299,17 @@ public class FAdminCreationCours extends javax.swing.JDialog {
                 .addGap(89, 89, 89)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
         );
@@ -423,6 +471,18 @@ public class FAdminCreationCours extends javax.swing.JDialog {
         JT_NBplace.setEditable(true); // on débloque le champ
     }//GEN-LAST:event_jRBcollActionPerformed
 
+    private void jB_MenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuAdminActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
+    }//GEN-LAST:event_jB_MenuAdminActionPerformed
+
+    private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
+    }//GEN-LAST:event_jBRetourVersConnexActionPerformed
+
     
      class MoisInvalideException extends Exception {
     public MoisInvalideException(String message) {
@@ -493,10 +553,13 @@ public class FAdminCreationCours extends javax.swing.JDialog {
     private javax.swing.JTextField JtextMinute;
     private javax.swing.JTextField JtextMois;
     private javax.swing.ButtonGroup buttonGroupcOURS;
+    private javax.swing.JButton jBRetourVersConnex;
+    private javax.swing.JButton jB_MenuAdmin;
     private javax.swing.JButton jBannuler;
     private javax.swing.JButton jBenregistrer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox;
     private javax.swing.JRadioButton jRBcoll;
     private javax.swing.JRadioButton jRBindiv;
     // End of variables declaration//GEN-END:variables

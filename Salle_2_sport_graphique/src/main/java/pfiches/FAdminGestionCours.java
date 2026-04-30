@@ -65,7 +65,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
 
                 
         // Taille fixe de la fenêtre
-        this.setSize(900, 550); // largeur, hauteur
+        this.setSize(1000, 750); // largeur, hauteur
         this.setResizable(false); // empêche le redimensionnement
         this.setLocationRelativeTo(null); // centre la fenêtre      
         
@@ -275,6 +275,9 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         jBCreeCours = new javax.swing.JButton();
         jBretour = new javax.swing.JButton();
         jB_ModifierCours = new javax.swing.JButton();
+        jPannel_2PanneldeToolbox = new javax.swing.JPanel();
+        jB_MenuAdmin = new javax.swing.JButton();
+        jBRetourVersConnex = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -611,7 +614,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -656,6 +659,45 @@ public class FAdminGestionCours extends javax.swing.JDialog {
             }
         });
 
+        jPannel_2PanneldeToolbox.setBackground(new java.awt.Color(204, 204, 204));
+        jPannel_2PanneldeToolbox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jB_MenuAdmin.setBackground(new java.awt.Color(204, 255, 204));
+        jB_MenuAdmin.setText("Menu");
+        jB_MenuAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_MenuAdminActionPerformed(evt);
+            }
+        });
+
+        jBRetourVersConnex.setBackground(new java.awt.Color(255, 102, 102));
+        jBRetourVersConnex.setText("Retour");
+        jBRetourVersConnex.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBRetourVersConnex.setIconTextGap(5);
+        jBRetourVersConnex.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBRetourVersConnex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRetourVersConnexActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPannel_2PanneldeToolboxLayout = new javax.swing.GroupLayout(jPannel_2PanneldeToolbox);
+        jPannel_2PanneldeToolbox.setLayout(jPannel_2PanneldeToolboxLayout);
+        jPannel_2PanneldeToolboxLayout.setHorizontalGroup(
+            jPannel_2PanneldeToolboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPannel_2PanneldeToolboxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jB_MenuAdmin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBRetourVersConnex)
+                .addContainerGap())
+        );
+        jPannel_2PanneldeToolboxLayout.setVerticalGroup(
+            jPannel_2PanneldeToolboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jBRetourVersConnex)
+            .addComponent(jB_MenuAdmin)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -688,11 +730,16 @@ public class FAdminGestionCours extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButonRechercher)
                         .addGap(61, 61, 61))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
+                .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_Sem_prec)
                     .addComponent(JB_Sem_suiv)
@@ -702,7 +749,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
                     .addComponent(jButonRechercher))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -911,6 +958,18 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         fiche.setVisible(true);
     }//GEN-LAST:event_jB_ModifierCoursActionPerformed
 
+    private void jB_MenuAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuAdminActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
+    }//GEN-LAST:event_jB_MenuAdminActionPerformed
+
+    private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
+    }//GEN-LAST:event_jBRetourVersConnexActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -955,7 +1014,9 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     private javax.swing.JTextField JtextJour;
     private javax.swing.JTextField JtextMois;
     private javax.swing.JButton jBCreeCours;
+    private javax.swing.JButton jBRetourVersConnex;
     private javax.swing.JButton jBSuppCours;
+    private javax.swing.JButton jB_MenuAdmin;
     private javax.swing.JButton jB_ModifierCours;
     private javax.swing.JButton jBretour;
     private javax.swing.JToggleButton jButonRechercher;
@@ -988,6 +1049,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

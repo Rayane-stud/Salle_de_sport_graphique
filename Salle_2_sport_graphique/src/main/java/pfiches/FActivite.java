@@ -918,6 +918,14 @@ public class FActivite extends javax.swing.JDialog {
     private javax.swing.JTextField JtextAnnee;
     private javax.swing.JTextField JtextJour;
     private javax.swing.JTextField JtextMois;
+    private javax.swing.JButton jBRetourVersConnex;
+    private javax.swing.JButton jBRetourVersConnex1;
+    private javax.swing.JButton jBRetourVersConnex2;
+    private javax.swing.JButton jBRetourVersConnex3;
+    private javax.swing.JButton jB_MenuAdmin;
+    private javax.swing.JButton jB_MenuAdmin1;
+    private javax.swing.JButton jB_MenuAdmin2;
+    private javax.swing.JButton jB_MenuAdmin3;
     private javax.swing.JButton jBretour;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -950,6 +958,10 @@ public class FActivite extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox1;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox2;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
