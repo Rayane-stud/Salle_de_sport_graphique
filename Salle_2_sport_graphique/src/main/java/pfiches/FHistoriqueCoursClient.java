@@ -114,14 +114,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        JbutonRechercher = new javax.swing.JButton();
-        jBretour = new javax.swing.JButton();
-        JB_Sem_prec = new javax.swing.JButton();
-        JB_Sem_suiv = new javax.swing.JButton();
-        JtextJour = new javax.swing.JTextField();
-        JtextMois = new javax.swing.JTextField();
-        JtextAnnee = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -158,64 +151,20 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         jLabeldimanche = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jListDimanche = new javax.swing.JList<>();
+        JbutonRechercher = new javax.swing.JButton();
+        JB_Sem_prec = new javax.swing.JButton();
+        JB_Sem_suiv = new javax.swing.JButton();
+        JtextJour = new javax.swing.JTextField();
+        JtextMois = new javax.swing.JTextField();
+        JtextAnnee = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jBretour = new javax.swing.JButton();
+        jPannel_2PanneldeToolbox = new javax.swing.JPanel();
+        jB_MenuClient = new javax.swing.JButton();
+        JB_info = new javax.swing.JButton();
+        jBRetourVersConnex = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jButton1.setText("Se desinscrire");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        JbutonRechercher.setText("Rechercher");
-        JbutonRechercher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbutonRechercherActionPerformed(evt);
-            }
-        });
-
-        jBretour.setText("Retour");
-        jBretour.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBretourActionPerformed(evt);
-            }
-        });
-
-        JB_Sem_prec.setText("<");
-        JB_Sem_prec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_Sem_precActionPerformed(evt);
-            }
-        });
-
-        JB_Sem_suiv.setText(">");
-        JB_Sem_suiv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_Sem_suivActionPerformed(evt);
-            }
-        });
-
-        JtextJour.setText("dd");
-        JtextJour.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JtextJourActionPerformed(evt);
-            }
-        });
-
-        JtextMois.setText("mm");
-        JtextMois.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JtextMoisActionPerformed(evt);
-            }
-        });
-
-        JtextAnnee.setText("aaaa");
-        JtextAnnee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JtextAnneeActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -250,7 +199,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabellundi)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -288,7 +237,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelmardi)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                .addComponent(jScrollPane2))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -326,7 +275,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelmercredi)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                .addComponent(jScrollPane3))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -364,7 +313,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabeljeudi)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                .addComponent(jScrollPane4))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -403,7 +352,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelvendredi)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                .addComponent(jScrollPane5))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -441,7 +390,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelsamedi)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                .addComponent(jScrollPane6))
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -479,7 +428,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabeldimanche)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                .addComponent(jScrollPane7))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -518,62 +467,339 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+        JbutonRechercher.setText("Rechercher");
+        JbutonRechercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbutonRechercherActionPerformed(evt);
+            }
+        });
+
+        JB_Sem_prec.setText("<");
+        JB_Sem_prec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_Sem_precActionPerformed(evt);
+            }
+        });
+
+        JB_Sem_suiv.setText(">");
+        JB_Sem_suiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_Sem_suivActionPerformed(evt);
+            }
+        });
+
+        JtextJour.setText("dd");
+        JtextJour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextJourActionPerformed(evt);
+            }
+        });
+
+        JtextMois.setText("mm");
+        JtextMois.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextMoisActionPerformed(evt);
+            }
+        });
+
+        JtextAnnee.setText("aaaa");
+        JtextAnnee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtextAnneeActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Se desinscrire");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jBretour.setText("Retour");
+        jBretour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBretourActionPerformed(evt);
+            }
+        });
+
+        jPannel_2PanneldeToolbox.setBackground(new java.awt.Color(204, 204, 204));
+        jPannel_2PanneldeToolbox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jB_MenuClient.setBackground(new java.awt.Color(204, 255, 204));
+        jB_MenuClient.setText("Menu");
+        jB_MenuClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_MenuClientActionPerformed(evt);
+            }
+        });
+
+        JB_info.setText("Profile");
+        JB_info.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_infoActionPerformed(evt);
+            }
+        });
+
+        jBRetourVersConnex.setBackground(new java.awt.Color(255, 102, 102));
+        jBRetourVersConnex.setText("Retour");
+        jBRetourVersConnex.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBRetourVersConnex.setIconTextGap(5);
+        jBRetourVersConnex.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBRetourVersConnex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRetourVersConnexActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPannel_2PanneldeToolboxLayout = new javax.swing.GroupLayout(jPannel_2PanneldeToolbox);
+        jPannel_2PanneldeToolbox.setLayout(jPannel_2PanneldeToolboxLayout);
+        jPannel_2PanneldeToolboxLayout.setHorizontalGroup(
+            jPannel_2PanneldeToolboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPannel_2PanneldeToolboxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jB_MenuClient)
+                .addGap(18, 18, 18)
+                .addComponent(JB_info)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBRetourVersConnex)
+                .addContainerGap())
+        );
+        jPannel_2PanneldeToolboxLayout.setVerticalGroup(
+            jPannel_2PanneldeToolboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jBRetourVersConnex)
+            .addGroup(jPannel_2PanneldeToolboxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jB_MenuClient)
+                .addComponent(JB_info))
+        );
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(JB_Sem_prec)
+                .addGap(18, 18, 18)
+                .addComponent(JB_Sem_suiv)
+                .addGap(58, 58, 58)
+                .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JbutonRechercher)
+                .addGap(90, 90, 90))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addComponent(jBretour)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(47, 47, 47))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JB_Sem_prec)
-                        .addGap(18, 18, 18)
-                        .addComponent(JB_Sem_suiv)
-                        .addGap(58, 58, 58)
-                        .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JbutonRechercher)
-                        .addGap(58, 58, 58))))
+                .addGap(87, 87, 87))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(jPannel_2PanneldeToolbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JB_Sem_prec)
                     .addComponent(JB_Sem_suiv)
                     .addComponent(JtextJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtextMois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JtextAnnee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JbutonRechercher))
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBretour)
-                        .addContainerGap())))
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton1)
+                        .addContainerGap(23, Short.MAX_VALUE))))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JtextAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextAnneeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextAnneeActionPerformed
+
+    private void JtextMoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextMoisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextMoisActionPerformed
+
+    private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtextJourActionPerformed
+
+    private void JB_Sem_suivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_suivActionPerformed
+
+        String datestring = jLabellundi.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(datestring, formatter);
+        date = date.plusWeeks(1);
+
+        dateselec = date;
+        initialiserAffichage(dateselec);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JB_Sem_suivActionPerformed
+
+    private void JB_Sem_precActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_precActionPerformed
+
+        String datestring = jLabellundi.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(datestring, formatter);
+        date = date.minusWeeks(1);
+
+        dateselec = date;
+        initialiserAffichage(dateselec);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JB_Sem_precActionPerformed
+
+    private void jBretourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBretourActionPerformed
+        this.setVisible(false);
+        ((FConnexionUti)this.getOwner()).getFicheClientMenu().setVisible(true);
+    }//GEN-LAST:event_jBretourActionPerformed
+
+    private void JbutonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbutonRechercherActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            int j, m, a;
+            j = Integer.parseInt(JtextJour.getText().trim());
+            m = Integer.parseInt(JtextMois.getText().trim());
+            a = Integer.parseInt(JtextAnnee.getText().trim());
+
+            System.out.println("Jour: " + j + " Mois: " + m + " Annee: " + a);
+            // Vérification du mois
+            if (m <= 0) {
+                throw new MoisInvalideException("Le mois doit être > 0");
+            }
+            if (m < 1 || m > 12) {
+                throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
+            }
+
+            // Vérification du jours
+            if (j<1 || j >30 ) {
+                throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
+            }
+
+            // 3. Création de la date
+            // Note: LocalDate.of lancera sa propre exception si tu mets 31 juin par exemple
+            LocalDate date = LocalDate.of(a, m, j);
+
+            dateselec = date;
+            initialiserAffichage(dateselec);
+        }
+        catch (NumberFormatException ex) {
+            String message = "Le format n'est pas bon !";
+            JOptionPane.showMessageDialog(this, message);
+        }
+        catch (MoisInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        catch (JourInvalideException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        catch (DateTimeException ex) {
+            // Capture les erreurs comme le 31 février ou le 31 avril
+            JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
+        }
+    }//GEN-LAST:event_JbutonRechercherActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Cours selection = null;
+
+        if (!jListLundi.isSelectionEmpty()) {
+            selection = listeLundi.get(jListLundi.getSelectedIndex());
+        }
+        else if (!jListMardi.isSelectionEmpty()) {
+            selection = listeMardi.get(jListMardi.getSelectedIndex());
+        }
+        else if (!jListMercredi.isSelectionEmpty()) {
+            selection = listeMercredi.get(jListMercredi.getSelectedIndex());
+        }
+        else if (!jListJeudi.isSelectionEmpty()) {
+            selection = listeJeudi.get(jListJeudi.getSelectedIndex());
+        }
+        else if (!jListVendredi.isSelectionEmpty()) {
+            selection = listeVendredi.get(jListVendredi.getSelectedIndex());
+        }
+        else if (!jListSamedi.isSelectionEmpty()) {
+            selection = listeSamedi.get(jListSamedi.getSelectedIndex());
+        }
+        else if (!jListDimanche.isSelectionEmpty()) {
+            selection = listeDimanche.get(jListDimanche.getSelectedIndex());
+        }
+
+        if (selection == null) {
+            JOptionPane.showMessageDialog(this, "Veuillez sélectionner un cours.");
+            initialiserDate();
+            initialiserAffichage(dateselec);
+            return;
+        }
+
+        int supprime = maSalle.seDesinscrireDeCours(Client, selection);
+
+        switch (supprime) {
+            case 2 -> {
+                maSalle.sauvegarderTout();
+                JOptionPane.showMessageDialog(this, "Desinscrit du cours!");
+                initialiserDate();
+                initialiserAffichage(dateselec);}
+            case 0 -> {
+                maSalle.sauvegarderTout();
+                JOptionPane.showMessageDialog(this, "Vous n'êtes pas inscrit au cours!");
+                initialiserDate();
+                initialiserAffichage(dateselec);}
+            case 1 -> {
+                maSalle.sauvegarderTout();
+                JOptionPane.showMessageDialog(this, "Le cours est passé !");
+                initialiserDate();
+                initialiserAffichage(dateselec);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jB_MenuClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuClientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jB_MenuClientActionPerformed
+
+    private void JB_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_infoActionPerformed
+        ((FConnexionUti)this.getOwner()).getFicheClientProfile().passageClientMenuProfil(this.Client, this.maSalle);
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).setLocation(this.getLocation());
+        ((FConnexionUti)this.getOwner()).getFicheClientProfile().setVisible(true);
+    }//GEN-LAST:event_JB_infoActionPerformed
+
+    private void jBRetourVersConnexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourVersConnexActionPerformed
+        this.dispose();
+        ((FConnexionUti)this.getOwner()).getFicheClientMenu().setVisible(true);
+    }//GEN-LAST:event_jBRetourVersConnexActionPerformed
 
     public void initialiserAffichage( LocalDate date ){
         
@@ -687,152 +913,6 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
     }
     
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Cours selection = null;
-
-        if (!jListLundi.isSelectionEmpty()) {
-            selection = listeLundi.get(jListLundi.getSelectedIndex());
-        }
-        else if (!jListMardi.isSelectionEmpty()) {
-            selection = listeMardi.get(jListMardi.getSelectedIndex());
-        }
-        else if (!jListMercredi.isSelectionEmpty()) {
-            selection = listeMercredi.get(jListMercredi.getSelectedIndex());
-        }
-        else if (!jListJeudi.isSelectionEmpty()) {
-            selection = listeJeudi.get(jListJeudi.getSelectedIndex());
-        }
-        else if (!jListVendredi.isSelectionEmpty()) {
-            selection = listeVendredi.get(jListVendredi.getSelectedIndex());
-        }
-        else if (!jListSamedi.isSelectionEmpty()) {
-            selection = listeSamedi.get(jListSamedi.getSelectedIndex());
-        }
-        else if (!jListDimanche.isSelectionEmpty()) {
-            selection = listeDimanche.get(jListDimanche.getSelectedIndex());
-        }
-
-        if (selection == null) {
-            JOptionPane.showMessageDialog(this, "Veuillez sélectionner un cours.");
-            initialiserDate();
-            initialiserAffichage(dateselec);
-            return;
-        }
-
-        int supprime = maSalle.seDesinscrireDeCours(Client, selection);
-
-        switch (supprime) {
-            case 2 -> {
-            maSalle.sauvegarderTout();
-            JOptionPane.showMessageDialog(this, "Desinscrit du cours!");
-            initialiserDate();
-            initialiserAffichage(dateselec);}
-            case 0 -> {
-            maSalle.sauvegarderTout();
-            JOptionPane.showMessageDialog(this, "Vous n'êtes pas inscrit au cours!");
-            initialiserDate();
-            initialiserAffichage(dateselec);}
-            case 1 -> {
-            maSalle.sauvegarderTout();
-            JOptionPane.showMessageDialog(this, "Le cours est passé !");
-            initialiserDate();
-            initialiserAffichage(dateselec);
-            }
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void JbutonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbutonRechercherActionPerformed
-        // TODO add your handling code here:
-        try {
-
-            int j, m, a;
-            j = Integer.parseInt(JtextJour.getText().trim());
-            m = Integer.parseInt(JtextMois.getText().trim());
-            a = Integer.parseInt(JtextAnnee.getText().trim());
-
-            System.out.println("Jour: " + j + " Mois: " + m + " Annee: " + a);
-            // Vérification du mois
-            if (m <= 0) {
-                throw new MoisInvalideException("Le mois doit être > 0");
-            }
-            if (m < 1 || m > 12) {
-                throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
-            }
-
-            // Vérification du jours
-            if (j<1 || j >30 ) {
-                throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
-            }
-
-            // 3. Création de la date
-            // Note: LocalDate.of lancera sa propre exception si tu mets 31 juin par exemple
-            LocalDate date = LocalDate.of(a, m, j);
-
-            dateselec = date;
-            initialiserAffichage(dateselec);
-        }
-        catch (NumberFormatException ex) {
-            String message = "Le format n'est pas bon !";
-            JOptionPane.showMessageDialog(this, message);
-        }
-        catch (MoisInvalideException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        catch (JourInvalideException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        catch (DateTimeException ex) {
-            // Capture les erreurs comme le 31 février ou le 31 avril
-            JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
-        }
-
-    }//GEN-LAST:event_JbutonRechercherActionPerformed
-
-    private void jBretourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBretourActionPerformed
-        this.setVisible(false);
-        ((FConnexionUti)this.getOwner()).getFicheClientMenu().setVisible(true);
-    }//GEN-LAST:event_jBretourActionPerformed
-
-    private void JB_Sem_precActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_precActionPerformed
-
-        String datestring = jLabellundi.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse(datestring, formatter);
-        date = date.minusWeeks(1);
-
-        dateselec = date;
-        initialiserAffichage(dateselec);
-        
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JB_Sem_precActionPerformed
-
-    private void JB_Sem_suivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_suivActionPerformed
-
-        String datestring = jLabellundi.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse(datestring, formatter);
-        date = date.plusWeeks(1);
-        
-        dateselec = date;
-        initialiserAffichage(dateselec);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JB_Sem_suivActionPerformed
-
-    private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JtextJourActionPerformed
-
-    private void JtextMoisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextMoisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JtextMoisActionPerformed
-
-    private void JtextAnneeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextAnneeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JtextAnneeActionPerformed
-
     
     class MoisInvalideException extends Exception {
     public MoisInvalideException(String message) {
@@ -887,10 +967,13 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_Sem_prec;
     private javax.swing.JButton JB_Sem_suiv;
+    private javax.swing.JButton JB_info;
     private javax.swing.JButton JbutonRechercher;
     private javax.swing.JTextField JtextAnnee;
     private javax.swing.JTextField JtextJour;
     private javax.swing.JTextField JtextMois;
+    private javax.swing.JButton jBRetourVersConnex;
+    private javax.swing.JButton jB_MenuClient;
     private javax.swing.JButton jBretour;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -922,6 +1005,8 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPannel_2PanneldeToolbox;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
