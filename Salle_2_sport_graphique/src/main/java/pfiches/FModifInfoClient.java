@@ -15,9 +15,11 @@ import javax.swing.JOptionPane;
 import ptraitements.Client;
 import ptraitements.Salle;
 
+
+
 /**
- *
- * @author rayan
+ * Interface graphique (JDialog) permettant à un client de modifier ses informations personnelles.
+ * Cette fiche communique avec le profil du client et la base de données globale (Salle).
  */
 public class FModifInfoClient extends javax.swing.JDialog {
     
@@ -410,7 +412,13 @@ public class FModifInfoClient extends javax.swing.JDialog {
     }//GEN-LAST:event_JT_tel_inscriActionPerformed
 
     // fait par gabriel
-    //envoie les donnees entre la fiche client, la modif d'info et la salle
+    /**
+     * Reçoit les instances nécessaires et pré-remplit les labels avec les données actuelles.
+     * Cette méthode fait le lien entre la vue "Profil" et la vue "Modification".
+     * @param salle L'objet métier gérant les données.
+     * @param client Le client connecté.
+     * @param menu La fenêtre de profil parente.
+     */
     public void envoyerDonneesVersModifInfo(Salle salle, Client client, FprofilClient menu) {
     this.maSalle = salle;
     this.client = client;
@@ -426,8 +434,16 @@ public class FModifInfoClient extends javax.swing.JDialog {
 
     
     
+    
+    /**
+     * Action déclenchée par le bouton "Enregistrer".
+     * Cette méthode vérifie chaque champ et ne modifie que les informations saisies par l'utilisateur.
+     */
+    
     private void jBenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBenregistrerActionPerformed
        
+        
+        // 1. Récupération des nouvelles valeurs saisies
        String NVidentifiant = JT_Id_inscri.getText();
        String NVmotDePasse = JT_mdp_inscri.getText();
        String NVnom = JT_nom_inscri.getText();
@@ -498,7 +514,7 @@ public class FModifInfoClient extends javax.swing.JDialog {
     }//GEN-LAST:event_jBenregistrerActionPerformed
 
     private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
-        //methode trouvé par ia mais assemblé par gabriel
+    //methode trouvé par ia mais assemblé par gabriel, possiblement infonctionnel
                                                 
     FileDialog dial = new FileDialog(this, "Sélectionner une image", FileDialog.LOAD);
     dial.setVisible(true);
