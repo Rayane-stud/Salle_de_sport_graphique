@@ -1,7 +1,7 @@
 2;yoga;2026-12-12;12:02;Collectif;2
 3;danse;2026-04-22;12:02;Collectif;2
 4;yoga;2026-12-12;12:01;Collectif;1
-5;DANSE;2026-04-30;13:03;Collectif;3
+5;yoga;2026-05-01;13:03;Collectif;10
 6;yoga;2026-04-24;12:05;Collectif;5
 7;JUDO;2026-04-23;12:05;Individuel;1
 8;course;2026-04-25;14:01;Individuel;1

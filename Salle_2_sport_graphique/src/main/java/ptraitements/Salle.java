@@ -143,6 +143,7 @@ public class Salle {
     }
     
     /**
+     * METHODE MODIFIEE POUR LA PARTIE GRAPHIQUE
      * Inscrit un client à un cours futur.
      * Effectue plusieurs vérifications avant de procéder :
      *  - le client n'est pas déjà inscrit à ce cours
@@ -182,6 +183,7 @@ public class Salle {
     }
     
     /**
+     * METHODE MODIFIEE POUR LA PARTIE GRAPHIQUE
      * Désinscrit un client d'un cours futur.
      * Vérifie que le client est bien inscrit avant de procéder.
      * Met à jour la liste du cours et celle du client.
