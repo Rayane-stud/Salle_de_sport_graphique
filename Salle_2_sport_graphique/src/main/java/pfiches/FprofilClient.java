@@ -336,7 +336,7 @@ public class FprofilClient extends javax.swing.JDialog {
     private void jB_MenuClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_MenuClientActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        ((FConnexionUti)this.getOwner()).getFicheClientMenu();
+        ((FConnexionUti)this.getOwner()).getFicheClientMenu().setVisible(true);
     }//GEN-LAST:event_jB_MenuClientActionPerformed
 
     /**
