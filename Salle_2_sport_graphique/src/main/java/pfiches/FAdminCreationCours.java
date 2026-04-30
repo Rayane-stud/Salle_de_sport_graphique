@@ -317,105 +317,75 @@ public class FAdminCreationCours extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void initialiserComposant(){
-        JT_Activite.setText("");
-        JtextJour.setText("dd");
-        JtextMois.setText("mm");
-        JtextAnnee.setText("aaaa");
-        JtextHeure.setText("hh");
-        JtextMinute.setText("mm");
-        JT_NBplace.setText("");
-        JT_NBplace.setEditable(true); // réactive le champ
-        buttonGroupcOURS.clearSelection();
+    /**
+     * Réinitialise tous les champs de saisie aux valeurs par défaut.
+     * Utile lors de l'ouverture de la fenêtre ou après un enregistrement réussi.
+     */
+    public void initialiserComposant() {
+        JT_Activite.setText("");           // Vide le nom de l'activité
+        JtextJour.setText("dd");           // Remet l'indice pour le jour
+        JtextMois.setText("mm");           // Remet l'indice pour le mois
+        JtextAnnee.setText("aaaa");        // Remet l'indice pour l'année
+        JtextHeure.setText("hh");          // Remet l'indice pour l'heure
+        JtextMinute.setText("mm");         // Remet l'indice pour les minutes
+        JT_NBplace.setText("");            // Vide le nombre de places
+        JT_NBplace.setEditable(true);      // Réactive la saisie (au cas où elle était bloquée par un cours indiv)
+        buttonGroupcOURS.clearSelection(); // Décoche les boutons radio
     }
     
     
+    
+    /**
+    * Gère l'événement du bouton Enregistrer.
+    * Valide la date, l'heure et le type de cours avant de créer l'objet.
+    */
     private void jBenregistrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBenregistrerActionPerformed
 
-        String activite = JT_Activite.getText();
+        String activite = JT_Activite.getText(); // Récupère le nom de l'activité
 
         try {
+            // --- 1. Validation de la Date ---
+            int j = Integer.parseInt(JtextJour.getText().trim());
+            int m = Integer.parseInt(JtextMois.getText().trim());
+            int a = Integer.parseInt(JtextAnnee.getText().trim());
 
-            int j, m, a;
-            j = Integer.parseInt(JtextJour.getText().trim());
-            m = Integer.parseInt(JtextMois.getText().trim());
-            a = Integer.parseInt(JtextAnnee.getText().trim());
+            if (m < 1 || m > 12) throw new MoisInvalideException("Mois entre 1 et 12"); 
+            if (j < 1 || j > 30) throw new JourInvalideException("Jour entre 1 et 30"); 
 
-            System.out.println("Jour: " + j + " Mois: " + m + " Annee: " + a);
-            // Vérification du mois
-            if (m < 1 || m > 12) {
-                throw new MoisInvalideException("Le mois doit être compris entre 1 et 12");
-            }
+            LocalDate date = LocalDate.of(a, m, j); // Vérifie la validité calendaire réelle
+            // --- 2. Validation de l'Heure ---
+            int h = Integer.parseInt(JtextHeure.getText().trim());
+            int n = Integer.parseInt(JtextMinute.getText().trim());
 
-            // Vérification du jours
-            if (j<1 || j >30 ) {
-                throw new JourInvalideException("Le jour doit être compris entre 1 et 30");
-            }
+            if (h < 0 || h > 23) throw new MoisInvalideException("Heure entre 00 et 23"); 
+            if (n < 0 || n > 59) throw new JourInvalideException("Minute entre 00 et 59"); 
 
-            // 3. Création de la date
-            // Note: LocalDate.of lancera sa propre exception si tu mets 31 juin par exemple
-            LocalDate date = LocalDate.of(a, m, j);
+            LocalTime heure = LocalTime.of(h, n); 
 
-            TypeCours type = null;
-
-            // Selection du type d'abonnement
-            if (jRBindiv.isSelected()) {
-                type = TypeCours.Individuel;
-            } else if (jRBcoll.isSelected()) {
-                type = TypeCours.Collectif;
-            } else {
-                JOptionPane.showMessageDialog(this, "Veuillez choisir un type d'abonnement"); // inutile a present car saisie par defaut en place
-                return;
-            }
-
-            int h, n;
-            h = Integer.parseInt(JtextHeure.getText().trim());
-            n = Integer.parseInt(JtextMinute.getText().trim());
-
-            System.out.println("Heure: " + j + " Minute: " + n);
-
-            // Vérification de l'heure
-            if (h < 0 || h > 23) {
-                throw new MoisInvalideException("L'heure doit être compris entre 00 et 23");
-            }
-            // Vérification de la minute
-            if (n<0 || n >59 ) {
-                throw new JourInvalideException("La minute doit être compris entre 00 et 59");
-            }
-
-            LocalTime heure = LocalTime.of(h,n);
-
+            // --- 3. Détermination du Type et Places ---
+            TypeCours type = jRBindiv.isSelected() ? TypeCours.Individuel : TypeCours.Collectif; 
             int nbPlace = Integer.parseInt(JT_NBplace.getText().trim());
-            
-            if(jRBindiv.isSelected() && nbPlace != 1){
-                throw new NombreInvalideException("Si le cours est individuel, il faut mettre 1 dans le nombre de place");
+
+            // Sécurité spécifique au cours individuel
+            if (jRBindiv.isSelected() && nbPlace != 1) {
+                throw new NombreInvalideException("Un cours individuel ne peut avoir qu'une place."); 
             }
-            
-            maSalle.creerCours(activite, date, heure, type, nbPlace);
-            
+
+            // --- 4. Appel à la logique de Salle et Sauvegarde ---
+            maSalle.creerCours(activite, date, heure, type, nbPlace); 
+            maSalle.sauvegarderTout(); // Persistance immédiate dans cours.txt
+
+            // --- 5. Mise à jour de l'UI ---
             FAdminGestionCours fiche = ((FConnexionUti) getOwner()).getFicheAdminGestionCours();
-            maSalle.sauvegarderTout();
             this.setVisible(false);
             fiche.setVisible(true);
-            fiche.initialiserAffichage(date);
+            fiche.initialiserAffichage(date); // Actualise la liste des cours à la date choisie
 
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Veuillez saisir des nombres valides."); 
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage()); // Affiche les messages d'erreurs spécifiques
         }
-        catch (NumberFormatException ex) {
-            String message = "Le format n'est pas bon !";
-            JOptionPane.showMessageDialog(this, message);
-        }
-        catch (MoisInvalideException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        catch (JourInvalideException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        catch (DateTimeException ex) {
-            // Capture les erreurs comme le 31 février ou le 31 avril
-            JOptionPane.showMessageDialog(this, "Cette date n'existe pas dans le calendrier.");
-        }
-        catch (NombreInvalideException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());}
 
 
     }//GEN-LAST:event_jBenregistrerActionPerformed
