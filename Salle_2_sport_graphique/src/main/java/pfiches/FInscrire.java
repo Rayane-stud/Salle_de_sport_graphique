@@ -30,6 +30,7 @@ public class FInscrire extends javax.swing.JDialog {
     public FInscrire(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents(); // Initialisation des composants graphiques (NetBeans)
+        this.setLocationRelativeTo(this);
         
         // Sélection par défaut du bouton "Annuel" pour éviter une valeur nulle
         jRadioButtonAnnuel.setSelected(true);

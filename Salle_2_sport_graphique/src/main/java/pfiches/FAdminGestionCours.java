@@ -61,6 +61,7 @@ public class FAdminGestionCours extends javax.swing.JDialog {
      */
     public FAdminGestionCours(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setLocationRelativeTo(this);
         initComponents();
 
                 

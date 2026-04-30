@@ -76,6 +76,7 @@ import ptraitements.Salle;
     public FActivite(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(this);
         
         // Taille fixe de la fenêtre
         this.setSize(1000, 550); // largeur, hauteur

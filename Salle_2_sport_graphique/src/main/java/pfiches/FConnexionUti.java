@@ -53,6 +53,7 @@ public class FConnexionUti extends javax.swing.JFrame {
         maSalle.chargerTout();
           
         initComponents();
+        this.setLocationRelativeTo(this);
         Outilsgraphiques.AfficherImageBTaille(JL_logo, "logoSalle2Sport2.png");
         
         
