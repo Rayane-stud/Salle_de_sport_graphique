@@ -878,7 +878,9 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     private void jBSuppCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSuppCoursActionPerformed
     
     Cours selection = null;
-
+    
+    // --- 1. Identification du cours sélectionné ---
+    // On parcourt les JList de chaque jour pour récupérer l'objet Cours correspondant
     if (!jListLundi.isSelectionEmpty()) {
         selection = listeLundi.get(jListLundi.getSelectedIndex());
     } 
@@ -900,18 +902,22 @@ public class FAdminGestionCours extends javax.swing.JDialog {
     else if (!jListDimanche.isSelectionEmpty()) {
         selection = listeDimanche.get(jListDimanche.getSelectedIndex());
     }
-
+    
+    // Sécurité : Si aucun cours n'est sélectionné dans l'interface
     if (selection == null) {
         JOptionPane.showMessageDialog(this, "Veuillez sélectionner un cours.");
         return;
     }
 
+    // --- 2. Tentative de suppression ---
+    // Appel à la méthode métier qui vérifie généralement si le cours peut être supprimé
     boolean supprime = maSalle.supprimerCours(selection);
 
+    // --- 3. Traitement du résultat ---
     if (supprime) {
         maSalle.sauvegarderTout();
         JOptionPane.showMessageDialog(this, "Cours supprimé !");
-        initialiserAffichage(LocalDate.now());
+        initialiserAffichage(LocalDate.now()); // Rafraîchit l'affichage complet de la semaine à partir de la date du jour
     } else {
         JOptionPane.showMessageDialog(this, "Impossible : des clients sont inscrits.");
     }
@@ -935,6 +941,8 @@ public class FAdminGestionCours extends javax.swing.JDialog {
         ((FConnexionUti)this.getOwner()).getFicheAdminMenu().setVisible(true);
     }//GEN-LAST:event_jBretourActionPerformed
 
+    
+    // Rayane
     private void jB_ModifierCoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ModifierCoursActionPerformed
         // Récupérer le cours sélectionné (même logique que la suppression)
         Cours selection = null;
