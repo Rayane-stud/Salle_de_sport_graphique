@@ -13,7 +13,7 @@ import ptraitements.Salle;
 
 /**
  *
- * @author rayan
+ * @author Rayane 100%
  */
 public class FAdminGestionClientVraie extends javax.swing.JDialog {
     

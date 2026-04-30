@@ -9,7 +9,7 @@ import ptraitements.*;
 
 /**
  *
- * @author gabri
+ * @author Rayane 100
  */
 public class FAdminMenu extends javax.swing.JDialog {
     

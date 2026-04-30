@@ -14,7 +14,7 @@ import ptraitements.*;
 
 /**
  *
- * @author rayan
+ * @author rayane et gabriel
  */
 public class FAdminCreationCours extends javax.swing.JDialog {
     

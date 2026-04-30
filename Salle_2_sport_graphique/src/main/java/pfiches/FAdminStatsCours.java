@@ -15,6 +15,7 @@ import ptraitements.Salle;
 /**
  *
  * @author rayan
+ * FICHE FAITE PAR RAYANE A 100%
  */
 public class FAdminStatsCours extends javax.swing.JDialog {
     
