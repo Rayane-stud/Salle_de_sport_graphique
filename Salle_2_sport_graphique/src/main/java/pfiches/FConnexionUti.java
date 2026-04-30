@@ -11,13 +11,20 @@ import ptraitements.*;
 import ptraitements.Client;
 
 /**
- *
- * @author rayan
+ * Classe FConnexionUti : Contrôleur principal et Fenêtre de Connexion.
+ * Identifiant : Hub Central / Authentification.
+ * Cette classe initialise la salle de sport, charge les données et gère le routage
+ * entre les interfaces Admin et Client.
  */
 public class FConnexionUti extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FConnexionUti.class.getName());
+    
+    // --- Identification : Instances des Données (Modèle) ---
     private Salle maSalle;
+    
+    // --- Identification : Instances de toutes les fenêtres (Vues) ---
+    // Cette fiche conserve les références pour éviter de recréer les fenêtres inutilement
     private FActivite fichActivite;
     private FAdminMenu fichAdmin;
     private FClientMenu fichClient;
@@ -31,10 +38,13 @@ public class FConnexionUti extends javax.swing.JFrame {
     private FModifInfoClient fichModifInfoClient;
     private FprofilClient fichprofilClient;
     
-    protected String ad_id = "admin" ; protected  String ad_mdp = "admin123";
+    // Identifiants administrateur par défaut (hardcoded pour le projet)
+    protected String ad_id = "admin" ; 
+    protected String ad_mdp = "admin123";
          
     /**
-     * Creates new form FAcceuil
+     * Constructeur de la fiche de connexion.
+     * Identifiant : Initialisation du système et des composants graphiques.
      */
     public FConnexionUti() {
         
@@ -66,10 +76,10 @@ public class FConnexionUti extends javax.swing.JFrame {
         Outilsgraphiques.AfficherImageBTaille(JL_logo, "logoSalle2Sport2.png");  
     }
 
-    public Salle getsalle(){
-        return this.maSalle;
-    }
     
+    // --- Identification : Getters (Accesseurs) pour la navigation ---
+    // Permet aux autres fiches d'accéder aux instances gérées par ce Hub
+    public Salle getsalle(){return this.maSalle;}
     public FClientMenu getFicheClientMenu(){return this.fichClient;}
     public FprofilClient getFicheClientProfile(){return this.fichprofilClient;}
     public FModifInfoClient getFichClientModifInfo(){return this.fichModifInfoClient;}
@@ -237,8 +247,16 @@ public class FConnexionUti extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /**
+     * Identifiant : Logique d'authentification.
+     * Vérifie les identifiants et redirige vers le bon menu selon le type d'utilisateur.
+     */
+    
+    
     private void JBconnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBconnectionActionPerformed
-        // TODO add your handling code here:
+   
+        
         String mdp, id;
         Utilisateur user;
         
@@ -281,6 +299,10 @@ public class FConnexionUti extends javax.swing.JFrame {
         
     }//GEN-LAST:event_JBconnectionActionPerformed
 
+    
+    /**
+     * Identifiant : Navigation vers l'inscription.
+     */
     private void JB_inscrireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_inscrireActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);

@@ -8,8 +8,9 @@ package pfiches;
 import ptraitements.*;
 
 /**
- *
- * @author rayan
+ * Interface de consultation du profil.
+ * Cette fiche affiche les informations personnelles du client connecté 
+ * et permet d'accéder à la modification de celles-ci.
  */
 public class FprofilClient extends javax.swing.JDialog {
     
@@ -20,7 +21,7 @@ public class FprofilClient extends javax.swing.JDialog {
     
 
     /**
-     * Creates new form FprofilClient
+     * Constructeur de la fiche Profil.
      */
     public FprofilClient(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -29,6 +30,11 @@ public class FprofilClient extends javax.swing.JDialog {
         fichModifInfoClient = ((FConnexionUti)this.getOwner()).getFichClientModifInfo();
     }
     
+    
+    /**
+     * Met à jour les composants graphiques (Labels) avec les données 
+     * réelles de l'objet Client.
+     */
     public void iniAffichage(){
      Jl_mdp.setText(client.getMot2Passe());
      jL_Id.setText(client.getIdentifiant());
@@ -39,6 +45,12 @@ public class FprofilClient extends javax.swing.JDialog {
         
     }
     
+    
+    /**
+     * Reçoit les objets nécessaires depuis une autre fiche et lance l'affichage.
+     * @param client L'objet client récupéré après connexion.
+     * @param maSalle L'instance de la salle pour la gestion des données.
+     */
     public void passageClientMenuProfil(Client client, Salle maSalle){
         this.client = client;
         this.maSalle = maSalle;
@@ -319,6 +331,12 @@ public class FprofilClient extends javax.swing.JDialog {
         ((FConnexionUti)this.getOwner()).getFicheClientMenu().setVisible(true);
     }//GEN-LAST:event_jB_MenuClient3ActionPerformed
 
+    
+    /**
+     * Action du bouton "Modifier".
+     * Prépare la fiche de modification en lui envoyant les données actuelles
+     * puis bascule l'affichage vers celle-ci.
+     */
     private void jB_ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ModifierActionPerformed
         // TODO add your handling code here:
         fichModifInfoClient.envoyerDonneesVersModifInfo(maSalle, client, this);

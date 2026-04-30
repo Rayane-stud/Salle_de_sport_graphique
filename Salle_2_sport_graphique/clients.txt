@@ -1,2 +1,3 @@
-1;gabriel;1234;Vignes;Gabriel;0782839748;Ferrand;ANNUEL;true;costume.jpg
+1;gabriel;1234;Vignes;Gabriel;0782839748;rue truc;ANNUEL;true;costume.jpg
 5;R;1;Rayane;Ouchiha;0555028259;chez toi ;SEMAINE;true;GIF_Java.gif
+6;nicolas;1234;nicolas;copin;0838474893;rue;ANNUEL;true;

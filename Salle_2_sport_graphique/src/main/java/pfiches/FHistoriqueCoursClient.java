@@ -25,8 +25,9 @@ import ptraitements.Cours;
 import ptraitements.Salle;
 
 /**
- *
- * @author gabri
+ * Fiche de l'historique des cours pour un client.
+ * Permet la visualisation par semaine et la désinscription.
+ * fait par gabriel
  */
 public class FHistoriqueCoursClient extends javax.swing.JDialog {
     
@@ -60,7 +61,7 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FHistoriqueCoursClient.class.getName());
 
     /**
-     * Creates new form FHistorique
+     * Constructeur de la fiche
      */
     public FHistoriqueCoursClient(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -97,6 +98,12 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         
     }
 
+    
+    /**
+     * Méthode de synchronisation temporelle.
+     * Récupère la date affichée sur le label du Lundi pour mettre à jour l'objet dateselec.
+     */
+    
     public void initialiserDate (){
         String textdate = jLabellundi.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -652,7 +659,12 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
     private void JtextJourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtextJourActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtextJourActionPerformed
-
+    
+    
+    /**
+     * Identifiant : Action d'avancer d'une semaine.
+     * Cette méthode décrémente la date de référence de 7 jours.
+     */
     private void JB_Sem_suivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_suivActionPerformed
 
         String datestring = jLabellundi.getText();
@@ -666,6 +678,11 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JB_Sem_suivActionPerformed
 
+    
+    /**
+     * Identifiant : Action de reculer d'une semaine.
+     * Cette méthode décrémente la date de référence de 7 jours.
+     */
     private void JB_Sem_precActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_precActionPerformed
 
         String datestring = jLabellundi.getText();
@@ -683,6 +700,12 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         this.setVisible(false);
         ((FConnexionUti)this.getOwner()).getFicheClientMenu().setVisible(true);
     }//GEN-LAST:event_jBretourActionPerformed
+
+    
+    /**
+     * Identifiant : Recherche d'une date spécifique.
+     * Permet à l'utilisateur de saisir une date pour positionner le planning.
+     */
 
     private void JbutonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbutonRechercherActionPerformed
         // TODO add your handling code here:
@@ -730,9 +753,20 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_JbutonRechercherActionPerformed
 
+    /**
+    * Gestion du bouton de désinscription.
+    * Cette méthode identifie le cours sélectionné, traite la désinscription 
+    * via la classe Salle et rafraîchit l'affichage.
+    */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        // Variable temporaire pour stocker l'objet Cours que l'on va identifier
         Cours selection = null;
 
+        
+        // 1. PHASE D'IDENTIFICATION DE LA SÉLECTION
+        // On parcourt les listes de chaque jour pour voir laquelle possède un élément sélectionné.
+        // Une fois trouvé, on récupère l'objet Cours correspondant dans l'ArrayList parallèle.
         if (!jListLundi.isSelectionEmpty()) {
             selection = listeLundi.get(jListLundi.getSelectedIndex());
         }
@@ -755,15 +789,22 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
             selection = listeDimanche.get(jListDimanche.getSelectedIndex());
         }
 
+        
+        // 2. VÉRIFICATION DE SÉCURITÉ
+        // Si aucune liste n'avait d'élément sélectionné, 'selection' reste null.
         if (selection == null) {
             JOptionPane.showMessageDialog(this, "Veuillez sélectionner un cours.");
             initialiserDate();
             initialiserAffichage(dateselec);
             return;
         }
-
+    
+        // 3. APPEL À LA LOGIQUE MÉTIER
+        // On demande à l'objet 'maSalle' de désinscrire le client du cours choisi.
+        // La méthode renvoie un code entier (int) pour indiquer le résultat.
         int supprime = maSalle.seDesinscrireDeCours(Client, selection);
 
+        // 4. TRAITEMENT DU RÉSULTAT (Code retour)
         switch (supprime) {
             case 2 -> {
                 maSalle.sauvegarderTout();
@@ -801,6 +842,13 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
         this.dispose();
         ((FConnexionUti)this.getOwner()).getFicheClientMenu().setVisible(true);
     }//GEN-LAST:event_jBRetourVersConnexActionPerformed
+    
+    
+    /**
+     * Méthode principale de gestion de l'affichage.
+     * Remplit les listes du planning en fonction de la semaine de la date fournie.
+     * @param date La date de référence pour déterminer la semaine à afficher
+     */
 
     public void initialiserAffichage( LocalDate date ){
         
@@ -1017,3 +1065,4 @@ public class FHistoriqueCoursClient extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane7;
     // End of variables declaration//GEN-END:variables
 }
+

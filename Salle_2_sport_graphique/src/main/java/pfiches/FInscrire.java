@@ -16,20 +16,24 @@ import ptraitements.TypeAbonnement;
 import ptraitements.Client;
 
 /**
- *
- * @author gabri
+ * Interface graphique de type JDialog permettant l'inscription d'un nouveau client.
+ * Elle gère la saisie des informations personnelles, le choix de l'abonnement 
+ * et l'importation d'une photo de profil.
  */
 public class FInscrire extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FInscrire.class.getName());
 
     /**
-     * Creates new form FInscrire
+     * Constructeur de la fiche d'inscription.
      */
     public FInscrire(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
-        jRadioButtonAnnuel.setSelected(true);    }
+        initComponents(); // Initialisation des composants graphiques (NetBeans)
+        
+        // Sélection par défaut du bouton "Annuel" pour éviter une valeur nulle
+        jRadioButtonAnnuel.setSelected(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -338,6 +342,10 @@ public class FInscrire extends javax.swing.JDialog {
 
 
     
+    /**
+     * Méthode principale déclenchée lors du clic sur le bouton "S'inscrire".
+     * Elle orchestre la récupération des données, la création du compte et la sauvegarde.
+     */
     
     private void jBinscrireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinscrireActionPerformed
         
@@ -403,8 +411,14 @@ public class FInscrire extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonSemActionPerformed
 
+    
+    /**
+     * Gestionnaire de l'ajout de photo de profil.
+     * Utilise un explorateur de fichiers système pour choisir et copier une image.
+     */
+    
     private void JB_Ajout_Photo_inscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Ajout_Photo_inscriActionPerformed
-    //methode trouvé par ia mais assemblé par gabriel
+    //methode trouvé par ia mais assemblé par gabriel, possiblement infonctionnel
                                                 
     FileDialog dial = new FileDialog(this, "Sélectionner une image", FileDialog.LOAD);
     dial.setVisible(true);

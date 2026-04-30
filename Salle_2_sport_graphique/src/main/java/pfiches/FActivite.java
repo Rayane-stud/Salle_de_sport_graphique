@@ -26,19 +26,23 @@ import ptraitements.Cours;
 import ptraitements.Salle;
 
 /**
- *
- * @author gabri
- */
-public class FActivite extends javax.swing.JDialog {
+ * Classe FActivite : Fenêtre de type JDialog affichant le planning hebdomadaire des cours.
+ * Elle permet aux utilisateurs de visualiser les cours par jour de la semaine.
+ * fiche entierement faite par gabriel 
+ */public class FActivite extends javax.swing.JDialog {
     
     private Salle maSalle;
     private Client Client;
-    private boolean recherche;
     
-    private LocalDate dateselec;
+    private LocalDate dateselec; // Date actuellement sélectionnée/affichée dans le planning
 
     
-// déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, c'est pour ca que ca plantait trouvé par ia
+/**
+     * Modèles de listes (DefaultListModel) pour chaque jour.
+     * Ils servent de "moteur" de données pour les composants graphiques JList.
+     * ici déclaration les modèles, il vont permettre de stocker les données des cours et pas juste afficher un affichage, 
+     * idée trouvé par ia mais développé par gabriel ensuite
+     */
     private DefaultListModel<String> modelLundi = new DefaultListModel<>();
     private DefaultListModel<String> modelMardi = new DefaultListModel<>();
     private DefaultListModel<String> modelMercredi = new DefaultListModel<>();
@@ -48,7 +52,11 @@ public class FActivite extends javax.swing.JDialog {
     private DefaultListModel<String> modelDimanche = new DefaultListModel<>();
     
     
-    //liste parrallele pour la suppression de cours
+    /**
+     * Listes parallèles stockant les objets 'Cours' réels.
+     * Utilisées pour faire le lien entre une ligne sélectionnée dans la JList (String) 
+     * et l'objet métier correspondant (Cours).
+     */
     private ArrayList<Cours> listeLundi = new ArrayList<>();
     private ArrayList<Cours> listeMardi = new ArrayList<>();
     private ArrayList<Cours> listeMercredi = new ArrayList<>();
@@ -61,17 +69,20 @@ public class FActivite extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FActivite.class.getName());
 
     /**
-     * Creates new form FActivite
+     * Constructeur de la fiche Activité.
+     * Initialise l'interface, configure les dimensions et lie les modèles aux JLists.
      */
+
     public FActivite(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         // Taille fixe de la fenêtre
         this.setSize(1000, 550); // largeur, hauteur
         this.setResizable(false); // empêche le redimensionnement
         this.setLocationRelativeTo(null); // centre la fenêtre      
         
-        //Liaison du model à la JList
+        // Liaison des modèles aux composants graphiques JList     
         jListLundi.setModel(modelLundi);
         jListMardi.setModel(modelMardi);
         jListMercredi.setModel(modelMercredi);
@@ -81,8 +92,7 @@ public class FActivite extends javax.swing.JDialog {
         jListDimanche.setModel(modelDimanche);
         
         
-        //initialiserAffichage(LocalDate.now()); // On ne l'appelle pas ici car ma salle est null à ce moment, les données n'y sont pas arrivé
-        // Fixer la taille de chaque ScrollPane
+        // Configuration visuelle des colonnes du planning
         int largeur = 120; // largeur de chaque colonne
         int hauteur = 250; // hauteur de la liste
     
@@ -97,10 +107,16 @@ public class FActivite extends javax.swing.JDialog {
         
     }
     
-
+        
+    /**
+     * Méthode principale de gestion de l'affichage.
+     * Remplit les listes du planning en fonction de la semaine de la date fournie.
+     * @param date La date de référence pour déterminer la semaine à afficher
+     */
+    
     public void initialiserAffichage( LocalDate date ){
         
-        
+        // On vide les listes d'objets métiers (ArrayList)
         listeLundi.clear();
         listeMardi.clear();
         listeMercredi.clear();
@@ -110,11 +126,11 @@ public class FActivite extends javax.swing.JDialog {
         listeDimanche.clear();
         
         
-        // Sécurité : on ne fait rien si maSalle n'est pas encore initialisée, car ca a planté à cuase de ca
+        // Sécurité : on ne fait rien si maSalle n'est pas encore initialisée, car ca a planté à cause de ca
         if (maSalle == null) return;
         
         
-        // Vider les modèles avant de les reremplir
+        // On vide les modèles graphiques avant de les mettre à jour
         modelLundi.clear();
         modelMardi.clear();
         modelMercredi.clear();
@@ -124,10 +140,10 @@ public class FActivite extends javax.swing.JDialog {
         modelDimanche.clear();
         
         
-        // Trouver le lundi de la même semaine
+        // Calcul des dates de la semaine (du lundi au dimanche)
+
         LocalDate lundi = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         
-        //Trouver les autres jours de la semaine
         LocalDate mardi = lundi.plusDays(1);
         LocalDate mercredi = lundi.plusDays(2);
         LocalDate jeudi = lundi.plusDays(3);
@@ -135,10 +151,9 @@ public class FActivite extends javax.swing.JDialog {
         LocalDate samedi = lundi.plusDays(5);
         LocalDate dimanche = lundi.plusDays(6);
         
-        
+        // Formatage des dates pour les en-têtes de colonnes
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // Conversion en String
         String textel = lundi.format(formatter);
         String textema = mardi.format(formatter);
         String texteme = mercredi.format(formatter);
@@ -156,7 +171,7 @@ public class FActivite extends javax.swing.JDialog {
         jLabelsamedi.setText(textes);
         jLabeldimanche.setText(texted);
         
-        // On parcourt LES DEUX listes à chaque fois
+        // Récupération de tous les cours (Passés et Futurs) pour filtrage
         ArrayList<Cours> tousLesCours = new ArrayList<>();
         tousLesCours.addAll(maSalle.getCoursFuturs());
         tousLesCours.addAll(maSalle.getListeCoursPassees());
@@ -202,16 +217,20 @@ public class FActivite extends javax.swing.JDialog {
             }    
         }
     }
+    
+    
     /**
-     *
-     * @param c
-     * @param model
-     */
+     * Méthode utilitaire pour ajouter un élément formaté à un modèle spécifique.
+     */    
+    
     public void AjouterCoursItem(Cours c, javax.swing.DefaultListModel<String> model) {
-    String nom = c.getActivitecour() + " " + c.getHeurecour();
-    model.addElement(nom); // ← addElement sur le modèle
+        String nom = c.getActivitecour() + " " + c.getHeurecour();
+        model.addElement(nom);
     }        
     
+    /**
+     * Récupère la date du lundi affiché pour mettre à jour 'dateselec'.
+     */
     
     public void initialiserDate (){
         String textdate = jLabellundi.getText();
@@ -219,7 +238,11 @@ public class FActivite extends javax.swing.JDialog {
         dateselec = LocalDate.parse(textdate, formatter);
 }
 
-   
+   /**
+     * Permet de transmettre les données depuis une autre fenêtre.
+     * Appelle le remplissage du planning une fois que les objets sont reçus.
+     */
+    
     public void envoyerSalleClientVersActivite(Salle maSalle, Client client){
         this.maSalle = maSalle;
         this.Client = client;
@@ -758,7 +781,11 @@ public class FActivite extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Identifiant : Action de reculer d'une semaine.
+     * Cette méthode décrémente la date de référence de 7 jours.
+     */
     private void JB_Sem_precActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_precActionPerformed
         
         String datestring = jLabellundi.getText();
@@ -769,10 +796,14 @@ public class FActivite extends javax.swing.JDialog {
         dateselec = date;
         initialiserAffichage(dateselec);
 
-
-// TODO add your handling code here:
     }//GEN-LAST:event_JB_Sem_precActionPerformed
 
+    
+    /**
+     * Identifiant : Action d'avancer d'une semaine.
+     * Cette méthode incrémente la date de référence de 7 jours.
+     */
+    
     private void JB_Sem_suivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_Sem_suivActionPerformed
 
         String datestring = jLabellundi.getText();
@@ -798,6 +829,13 @@ public class FActivite extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_JtextAnneeActionPerformed
 
+    
+    
+    /**
+     * Identifiant : Recherche d'une date spécifique.
+     * Permet à l'utilisateur de saisir une date pour positionner le planning.
+     */
+    
     private void JbutonRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbutonRechercherActionPerformed
         // TODO add your handling code here:
         try {
