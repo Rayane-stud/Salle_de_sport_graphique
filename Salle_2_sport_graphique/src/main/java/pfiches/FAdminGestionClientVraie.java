@@ -599,7 +599,7 @@ public class FAdminGestionClientVraie extends javax.swing.JDialog {
 
     private void jB_ActivAboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ActivAboActionPerformed
         // TODO add your handling code here:
-        if (getClientSelectionne() == null) {
+        if (getClientSelectionne() != null) {
         boolean nvEtat = !this.getClientSelectionne().isAbonnementActif();
         String ActiOuPas = "";
         if (nvEtat){ActiOuPas = " Activé ! ";}
