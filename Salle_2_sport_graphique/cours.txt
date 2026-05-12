@@ -12,3 +12,6 @@
 15;course;2026-05-01;19:00;Collectif;2
 16;volley;2026-05-03;13:00;Collectif;10
 17;volley;2026-05-20;19:00;Collectif;15
+18;Course;2026-05-13;15:00;Collectif;5
+19;yoga;2026-05-19;10:00;Individuel;1
+20;FOOT;2026-05-16;19:00;Collectif;11
