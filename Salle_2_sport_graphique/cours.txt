@@ -8,3 +8,7 @@
 9;course;2026-04-26;14:00;Individuel;1
 12;course;2026-04-23;18:08;Collectif;10
 13;testheure;2026-04-23;17:02;Collectif;3
+14;danse;2026-04-30;13:00;Individuel;1
+15;course;2026-05-01;19:00;Collectif;2
+16;volley;2026-05-03;13:00;Collectif;10
+17;volley;2026-05-20;19:00;Collectif;15

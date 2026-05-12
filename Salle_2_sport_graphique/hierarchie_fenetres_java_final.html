@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hiérarchie des fenêtres Java — Salle de sport</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #111112; display: flex; flex-direction: column; align-items: center; padding: 24px 16px; min-height: 100vh; font-family: system-ui, sans-serif; }
+  h1 { color: #c2c0b6; font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; opacity: 0.6; }
+  svg { width: 100%; max-width: 1280px; height: auto; display: block; }
+  g[onclick] { cursor: pointer; }
+  g[onclick]:hover > rect { filter: brightness(1.25); transition: filter 0.15s; }
+</style>
+</head>
+<body>
+<h1>Hiérarchie des fenêtres Java — Application salle de sport</h1>
+<svg viewBox="0 0 1280 760" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="context-stroke" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- ══════════════════════════════════
+     LÉGENDE
+══════════════════════════════════ -->
+<rect x="20" y="14" width="100" height="26" rx="8" fill="#3c3489" stroke="#afa9ec" stroke-width="0.6"/>
+<text x="70" y="27" text-anchor="middle" dominant-baseline="central" fill="#afa9ec" font-size="12">JFrame</text>
+
+<rect x="138" y="14" width="100" height="26" rx="4" fill="#085041" stroke="#5dcaa5" stroke-width="0.6"/>
+<text x="188" y="27" text-anchor="middle" dominant-baseline="central" fill="#5dcaa5" font-size="12">JDialog</text>
+
+<rect x="256" y="14" width="130" height="26" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+<text x="321" y="27" text-anchor="middle" dominant-baseline="central" fill="#b4b2a9" font-size="12">Classe métier</text>
+
+<line x1="408" y1="27" x2="448" y2="27" stroke="rgba(222,220,209,0.35)" stroke-width="0.6" stroke-dasharray="4 3"/>
+<text x="456" y="27" dominant-baseline="central" fill="#9c9a92" font-size="12">utilise</text>
+
+<line x1="530" y1="27" x2="560" y2="27" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="568" y="27" dominant-baseline="central" fill="#9c9a92" font-size="12">ouvre</text>
+
+<!-- ══════════════════════════════════
+     NIVEAU 0 — point d'entrée
+══════════════════════════════════ -->
+<!-- Salle_2_sport_graphique — cx=640, y=58, w=260, h=44 -->
+<g onclick="sendPrompt('Montre moi le code du main Salle_2_sport_graphique')">
+  <rect x="510" y="58" width="260" height="44" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="640" y="76" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="14" font-weight="600">Salle_2_sport_graphique</text>
+  <text x="640" y="93" text-anchor="middle" dominant-baseline="central" fill="#9c9a92" font-size="11">main · charge Salle</text>
+</g>
+
+<!-- Arrow: Niveau 0 → Niveau 1 -->
+<line x1="640" y1="102" x2="640" y2="146" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- ══════════════════════════════════
+     NIVEAU 1 — connexion
+══════════════════════════════════ -->
+<!-- FenetreConnexion — cx=640, y=150, w=270, h=56 -->
+<g onclick="sendPrompt('Génère le code de FenetreConnexion en Java Swing')">
+  <rect x="505" y="150" width="270" height="56" rx="8" fill="#3c3489" stroke="#afa9ec" stroke-width="0.6"/>
+  <text x="640" y="170" text-anchor="middle" dominant-baseline="central" fill="#cecbf6" font-size="14" font-weight="600">FenetreConnexion</text>
+  <text x="640" y="188" text-anchor="middle" dominant-baseline="central" fill="#afa9ec" font-size="11">Email + MDP · bouton connexion</text>
+</g>
+
+<!-- Utilisateur model (inline, right of FenetreConnexion) -->
+<line x1="775" y1="178" x2="808" y2="178" stroke="rgba(222,220,209,0.35)" stroke-width="0.6" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<g onclick="sendPrompt('Montre moi la classe Utilisateur existante')">
+  <rect x="810" y="162" width="130" height="34" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="875" y="179" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="13" font-weight="600">Utilisateur</text>
+</g>
+
+<!-- Branch arrows from FenetreConnexion to menus -->
+<line x1="575" y1="206" x2="330" y2="248" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="705" y1="206" x2="950" y2="248" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- Section labels -->
+<text x="280" y="240" text-anchor="middle" fill="#6a6860" font-size="10" letter-spacing="0.1em" font-weight="600">CLIENT</text>
+<text x="1000" y="240" text-anchor="middle" fill="#6a6860" font-size="10" letter-spacing="0.1em" font-weight="600">ADMIN</text>
+
+<!-- ══════════════════════════════════
+     NIVEAU 2 — menus principaux
+══════════════════════════════════ -->
+<!-- FenetreMenuClient — cx=280, y=252, w=260, h=56 -->
+<g onclick="sendPrompt('Génère le code de FenetreMenuClient en Java Swing')">
+  <rect x="150" y="252" width="260" height="56" rx="8" fill="#3c3489" stroke="#afa9ec" stroke-width="0.6"/>
+  <text x="280" y="272" text-anchor="middle" dominant-baseline="central" fill="#cecbf6" font-size="14" font-weight="600">FenetreMenuClient</text>
+  <text x="280" y="290" text-anchor="middle" dominant-baseline="central" fill="#afa9ec" font-size="11">Voir cours · Profil · Déconnexion</text>
+</g>
+
+<!-- FenetreMenuAdmin — cx=970, y=252, w=260, h=56 -->
+<g onclick="sendPrompt('Génère le code de FenetreMenuAdmin en Java Swing')">
+  <rect x="840" y="252" width="260" height="56" rx="8" fill="#712b13" stroke="#f0997b" stroke-width="0.6"/>
+  <text x="970" y="272" text-anchor="middle" dominant-baseline="central" fill="#f5c4b3" font-size="14" font-weight="600">FenetreMenuAdmin</text>
+  <text x="970" y="290" text-anchor="middle" dominant-baseline="central" fill="#f0997b" font-size="11">Clients · Cours · Stats</text>
+</g>
+<!-- Admin model inline -->
+<line x1="1100" y1="280" x2="1120" y2="280" stroke="rgba(222,220,209,0.35)" stroke-width="0.6" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<g onclick="sendPrompt('Montre moi la classe Admin existante')">
+  <rect x="1122" y="264" width="100" height="32" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="1172" y="280" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="13" font-weight="600">Admin</text>
+</g>
+
+<!-- ══════════════════════════════════
+     NIVEAU 3 — côté CLIENT
+══════════════════════════════════ -->
+<!-- Fan arrows from FenetreMenuClient -->
+<line x1="220" y1="308" x2="130" y2="352" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="280" y1="308" x2="308" y2="352" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="340" y1="308" x2="488" y2="352" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- FenetreListeCours — cx=130, y=355, w=210, h=56 -->
+<g onclick="sendPrompt('Génère FenetreListeCours côté client en Java Swing')">
+  <rect x="25" y="355" width="210" height="56" rx="8" fill="#3c3489" stroke="#afa9ec" stroke-width="0.6"/>
+  <text x="130" y="375" text-anchor="middle" dominant-baseline="central" fill="#cecbf6" font-size="14" font-weight="600">FenetreListeCours</text>
+  <text x="130" y="393" text-anchor="middle" dominant-baseline="central" fill="#afa9ec" font-size="11">Parcourir · S'inscrire</text>
+</g>
+
+<!-- FenetreProfil — cx=313, y=355, w=210, h=56 -->
+<g onclick="sendPrompt('Génère FenetreProfil client en Java Swing')">
+  <rect x="208" y="355" width="210" height="56" rx="8" fill="#3c3489" stroke="#afa9ec" stroke-width="0.6"/>
+  <text x="313" y="375" text-anchor="middle" dominant-baseline="central" fill="#cecbf6" font-size="14" font-weight="600">FenetreProfil</text>
+  <text x="313" y="393" text-anchor="middle" dominant-baseline="central" fill="#afa9ec" font-size="11">Infos · MDP · Mes cours</text>
+</g>
+
+<!-- DialogInscriptionCours — cx=544, y=355, w=226, h=56 -->
+<g onclick="sendPrompt('Génère DialogInscriptionCours en Java Swing')">
+  <rect x="431" y="355" width="226" height="56" rx="4" fill="#085041" stroke="#5dcaa5" stroke-width="0.6"/>
+  <text x="544" y="375" text-anchor="middle" dominant-baseline="central" fill="#9fe1cb" font-size="14" font-weight="600">DialogInscriptionCours</text>
+  <text x="544" y="393" text-anchor="middle" dominant-baseline="central" fill="#5dcaa5" font-size="11">Confirmer · Places restantes</text>
+</g>
+
+<!-- Arrow FenetreProfil → DialogModifInfos -->
+<line x1="313" y1="411" x2="313" y2="453" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- DialogModifInfos — cx=313, y=456, w=220, h=56 -->
+<g onclick="sendPrompt('Génère DialogModifInfos en Java Swing')">
+  <rect x="203" y="456" width="220" height="56" rx="4" fill="#085041" stroke="#5dcaa5" stroke-width="0.6"/>
+  <text x="313" y="476" text-anchor="middle" dominant-baseline="central" fill="#9fe1cb" font-size="14" font-weight="600">DialogModifInfos</text>
+  <text x="313" y="494" text-anchor="middle" dominant-baseline="central" fill="#5dcaa5" font-size="11">Nom · Tel · Email · MDP</text>
+</g>
+<!-- Uses Client model (dashed to bottom) -->
+<line x1="270" y1="512" x2="130" y2="568" stroke="rgba(222,220,209,0.25)" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+
+<!-- ══════════════════════════════════
+     NIVEAU 3 — côté ADMIN
+══════════════════════════════════ -->
+<!-- Fan arrows from FenetreMenuAdmin -->
+<line x1="900" y1="308" x2="810" y2="352" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="970" y1="308" x2="1010" y2="352" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="1040" y1="308" x2="1180" y2="352" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- FenetreGestionClients — cx=810, y=355, w=230, h=56 -->
+<g onclick="sendPrompt('Génère FenetreGestionClients admin en Java Swing')">
+  <rect x="695" y="355" width="230" height="56" rx="8" fill="#712b13" stroke="#f0997b" stroke-width="0.6"/>
+  <text x="810" y="375" text-anchor="middle" dominant-baseline="central" fill="#f5c4b3" font-size="14" font-weight="600">FenetreGestionClients</text>
+  <text x="810" y="393" text-anchor="middle" dominant-baseline="central" fill="#f0997b" font-size="11">Recherche · Activer/désactiver</text>
+</g>
+
+<!-- FenetreGestionCours — cx=1010, y=355, w=230, h=56 -->
+<g onclick="sendPrompt('Génère FenetreGestionCours admin en Java Swing')">
+  <rect x="895" y="355" width="230" height="56" rx="8" fill="#712b13" stroke="#f0997b" stroke-width="0.6"/>
+  <text x="1010" y="375" text-anchor="middle" dominant-baseline="central" fill="#f5c4b3" font-size="14" font-weight="600">FenetreGestionCours</text>
+  <text x="1010" y="393" text-anchor="middle" dominant-baseline="central" fill="#f0997b" font-size="11">Ajouter · Modifier · Supprimer</text>
+</g>
+
+<!-- FenetreStats — cx=1180, y=355, w=130, h=56 -->
+<g onclick="sendPrompt('Génère FenetreStats admin en Java Swing')">
+  <rect x="1115" y="355" width="145" height="56" rx="8" fill="#712b13" stroke="#f0997b" stroke-width="0.6"/>
+  <text x="1187" y="375" text-anchor="middle" dominant-baseline="central" fill="#f5c4b3" font-size="14" font-weight="600">FenetreStats</text>
+  <text x="1187" y="393" text-anchor="middle" dominant-baseline="central" fill="#f0997b" font-size="11">Populaires · Vides</text>
+</g>
+
+<!-- Arrow FenetreGestionCours → DialogFormCours -->
+<line x1="1010" y1="411" x2="1010" y2="453" stroke="#9c9a92" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<!-- DialogFormCours — cx=1010, y=456, w=250, h=56 -->
+<g onclick="sendPrompt('Génère DialogFormCours admin en Java Swing')">
+  <rect x="885" y="456" width="250" height="56" rx="4" fill="#085041" stroke="#5dcaa5" stroke-width="0.6"/>
+  <text x="1010" y="476" text-anchor="middle" dominant-baseline="central" fill="#9fe1cb" font-size="14" font-weight="600">DialogFormCours</text>
+  <text x="1010" y="494" text-anchor="middle" dominant-baseline="central" fill="#5dcaa5" font-size="11">Activité · Places · Type · Horaire</text>
+</g>
+
+<!-- ══════════════════════════════════
+     SÉPARATEUR — classes métier
+══════════════════════════════════ -->
+<text x="640" y="546" text-anchor="middle" fill="#555552" font-size="11" letter-spacing="0.06em">— classes métier utilisées par les fenêtres ci-dessus —</text>
+<line x1="30"  y1="552" x2="380" y2="552" stroke="rgba(222,220,209,0.1)" stroke-width="0.5" stroke-dasharray="3 3"/>
+<line x1="900" y1="552" x2="1250" y2="552" stroke="rgba(222,220,209,0.1)" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+<!-- ══════════════════════════════════
+     MODÈLES — rangée du bas
+══════════════════════════════════ -->
+<!-- Client — cx=90, y=568, w=130 -->
+<g onclick="sendPrompt('Montre moi la classe Client existante')">
+  <rect x="25" y="568" width="130" height="44" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="90" y="584" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="13" font-weight="600">Client</text>
+  <text x="90" y="601" text-anchor="middle" dominant-baseline="central" fill="#9c9a92" font-size="11">extends Util.</text>
+</g>
+
+<!-- Admin — cx=230, y=568, w=130 -->
+<g onclick="sendPrompt('Montre moi la classe Admin existante')">
+  <rect x="165" y="568" width="130" height="44" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="230" y="584" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="13" font-weight="600">Admin</text>
+  <text x="230" y="601" text-anchor="middle" dominant-baseline="central" fill="#9c9a92" font-size="11">extends Util.</text>
+</g>
+
+<!-- Cours — cx=390, y=568, w=140 -->
+<g onclick="sendPrompt('Montre moi la classe Cours existante')">
+  <rect x="320" y="568" width="140" height="44" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="390" y="584" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="13" font-weight="600">Cours</text>
+  <text x="390" y="601" text-anchor="middle" dominant-baseline="central" fill="#9c9a92" font-size="11">TypeCours</text>
+</g>
+
+<!-- Salle — cx=540, y=568, w=130 -->
+<g onclick="sendPrompt('Montre moi la classe Salle existante')">
+  <rect x="475" y="568" width="130" height="44" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="540" y="584" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="13" font-weight="600">Salle</text>
+  <text x="540" y="601" text-anchor="middle" dominant-baseline="central" fill="#9c9a92" font-size="11">Liste cours</text>
+</g>
+
+<!-- TypeAbonnement — cx=700, y=568, w=165 -->
+<g onclick="sendPrompt('Montre moi la classe TypeAbonnement existante')">
+  <rect x="617" y="568" width="165" height="44" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="700" y="584" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="13" font-weight="600">TypeAbonnement</text>
+  <text x="700" y="601" text-anchor="middle" dominant-baseline="central" fill="#9c9a92" font-size="11">Trimestriel…</text>
+</g>
+
+<!-- TypeCours — cx=870, y=568, w=145 -->
+<g onclick="sendPrompt('Montre moi la classe TypeCours existante')">
+  <rect x="797" y="568" width="145" height="44" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="870" y="584" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="13" font-weight="600">TypeCours</text>
+  <text x="870" y="601" text-anchor="middle" dominant-baseline="central" fill="#9c9a92" font-size="11">Individuel…</text>
+</g>
+
+<!-- ══════════════════════════════════
+     HÉRITAGE — Utilisateur
+══════════════════════════════════ -->
+<!-- extends lines from Client and Admin down to Utilisateur -->
+<line x1="90"  y1="612" x2="155" y2="656" stroke="rgba(222,220,209,0.3)" stroke-width="0.6" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<line x1="230" y1="612" x2="175" y2="656" stroke="rgba(222,220,209,0.3)" stroke-width="0.6" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<text x="238" y="640" fill="#6a6860" font-size="11" font-style="italic">extends</text>
+
+<!-- Utilisateur — cx=160, y=658, w=170 -->
+<g onclick="sendPrompt('Montre moi la classe Utilisateur existante')">
+  <rect x="75" y="658" width="170" height="44" rx="2" fill="#2e2e2b" stroke="#b4b2a9" stroke-width="0.6"/>
+  <text x="160" y="674" text-anchor="middle" dominant-baseline="central" fill="#d3d1c7" font-size="13" font-weight="600">Utilisateur</text>
+  <text x="160" y="691" text-anchor="middle" dominant-baseline="central" fill="#9c9a92" font-size="11">Email · MDP (super)</text>
+</g>
+
+</svg>
+<script>
+function sendPrompt(text) {
+  // En contexte Claude, la fonction parent prend le relais
+  if (window.parent && window.parent !== window && typeof window.parent.sendPrompt === 'function') {
+    window.parent.sendPrompt(text);
+  } else {
+    console.log('[sendPrompt]', text);
+    alert('Prompt : ' + text);
+  }
+}
+</script>
+</body>
+</html>

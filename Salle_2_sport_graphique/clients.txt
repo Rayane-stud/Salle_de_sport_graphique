@@ -1,3 +1,4 @@
 1;gabriel;1234;Vignes;Gabriel;0782839748;rue truc;ANNUEL;true;costume.jpg
 5;R;1;Rayane;Ouchiha;0555028259;chez toi ;SEMAINE;true;GIF_Java.gif
 6;idSout;mdp1;Rayane;VIGNES;0102b;Hier;TRIMESTRIEL;true;Capture_d__cran_2025-02-23_160606.png
+7;idsout;1234;VIGNES;Rayane;0555028263;16 rue avenue wilson;ANNUEL;true;imageCompte_Soutenance.jpg
